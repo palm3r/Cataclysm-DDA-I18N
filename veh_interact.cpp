@@ -614,7 +614,7 @@ void veh_interact::display_list (int pos)
         bool has_comps = crafting_inv.has_amount(itm, 1);
         bool has_skill = g->u.skillLevel("mechanics") >= vpart_list[can_mount[i]].difficulty;
         nc_color col = has_comps && has_skill? c_white : c_dkgray;
-        mvwprintz(w_list, y, 3, pos == i? hilite (col) : col, vpart_list[can_mount[i]].name);
+        mvwprintz(w_list, y, 3, pos == i? hilite (col) : col, vpart_list[can_mount[i]].name.c_str());
         mvwputch (w_list, y, 1,
                   vpart_list[can_mount[i]].color, special_symbol (vpart_list[can_mount[i]].sym));
     }
@@ -739,7 +739,7 @@ void complete_vehicle (game *g)
         tools.push_back(component(itm_toolset, welder_charges/5));
         g->consume_tools(tools);
         g->add_msg ("You install a %s into the %s.",
-                   vpart_list[part].name, veh->name.c_str());
+                   vpart_list[part].name.c_str(), veh->name.c_str());
         g->u.practice ("mechanics", vpart_list[part].difficulty * 5 + 20);
         break;
     case 'r':
@@ -757,7 +757,7 @@ void complete_vehicle (game *g)
         g->consume_tools(tools);
         veh->parts[part].hp = veh->part_info(part).durability;
         g->add_msg ("You repair the %s's %s.",
-                    veh->name.c_str(), veh->part_info(part).name);
+                    veh->name.c_str(), veh->part_info(part).name.c_str());
         g->u.practice ("mechanics", (vpart_list[part].difficulty + dd) * 5 + 20);
         break;
     case 'f':
@@ -795,7 +795,7 @@ void complete_vehicle (game *g)
         else
         {
             g->add_msg ("You remove %s%s from %s.", broken? "broken " : "",
-                        veh->part_info(part).name, veh->name.c_str());
+                        veh->part_info(part).name.c_str(), veh->name.c_str());
             veh->remove_part (part);
         }
         //break;

@@ -6,6 +6,7 @@
 #include "npc.h"
 #include <vector>
 #include <string>
+#include "mission.h"
 
 struct dialogue {
  player *alpha;
@@ -77,7 +78,7 @@ enum talk_trial
  NUM_TALK_TRIALS
 };
 
-std::string talk_trial_text[NUM_TALK_TRIALS] = {
+const std::string talk_trial_text[NUM_TALK_TRIALS] = {
 "", "LIE", "PERSUADE", "INTIMIDATE"
 };
 
@@ -145,10 +146,10 @@ struct talk_response_list
 struct tag_data
 {
  std::string tag;
- std::string (*replacement)[10];
+ const std::string (*replacement)[10];
 };
 
-std::string talk_needs[num_needs][5] = {
+const std::string talk_needs[num_needs][5] = {
 {"", "", "", "", ""},
 {"Hey<punc> You got any <ammo>?", "I'll need some <ammo> soon, got any?",
  "I really need some <ammo><punc>", "I need <ammo> for my <mywp>, got any?",
@@ -177,69 +178,69 @@ std::string talk_needs[num_needs][5] = {
 */
 };
 
-std::string talk_okay[10] = {
+const std::string talk_okay[10] = {
 "okay", "get it", "you dig", "dig", "got it", "you see", "see, <name_g>",
 "alright", "that clear"};
 
-std::string talk_no[10] = {
+const std::string talk_no[10] = {
 "no", "fuck no", "hell no", "no way", "not a chance",
 "I don't think so", "no way in hell", "nuh uh", "nope", "fat chance"};
 
-std::string talk_bad_names[10] = {
+const std::string talk_bad_names[10] = {
 "punk",		"bitch",	"dickhead",	"asshole",	"fucker",
 "sucker",	"fuckwad",	"cocksucker",	"motherfucker",	"shithead"};
 
-std::string talk_good_names[10] = {
+const std::string talk_good_names[10] = {
 "stranger",	"friend",	"pilgrim",	"traveler",	"pal",
 "fella",	"you",		"dude",		"buddy",	"man"};
 
-std::string talk_swear[10] = { // e.g. "drop the <swear> weapon"
+const std::string talk_swear[10] = { // e.g. "drop the <swear> weapon"
 "fucking", "goddamn", "motherfucking", "freaking", "damn", "<swear> <swear>",
 "fucking", "fuckin'", "god damn", "mafuckin'"};
 
-std::string talk_swear_interjection[10] = {
+const std::string talk_swear_interjection[10] = {
 "fuck", "damn", "damnit", "shit", "cocksucker", "crap",
 "motherfucker", "<swear><punc> <swear!>", "<very> <swear!>", "son of a bitch"};
 
-std::string talk_fuck_you[10] = {
+const std::string talk_fuck_you[10] = {
 "fuck you", "fuck off", "go fuck yourself", "<fuck_you>, <name_b>",
 "<fuck_you>, <swear> <name_b>", "<name_b>", "<swear> <name_b>",
 "fuck you", "fuck off", "go fuck yourself"};
 
-std::string talk_very[10] = { // Synonyms for "very" -- applied to adjectives
+const std::string talk_very[10] = { // Synonyms for "very" -- applied to adjectives
 "really", "fucking", "super", "wicked", "very", "mega", "uber", "ultra",
 "so <very>", "<very> <very>"};
 
-std::string talk_really[10] = { // Synonyms for "really" -- applied to verbs
+const std::string talk_really[10] = { // Synonyms for "really" -- applied to verbs
 "really", "fucking", "absolutely", "definitely", "for real", "honestly",
 "<really> <really>", "most <really>", "urgently", "REALLY"};
 
-std::string talk_happy[10] = {
+const std::string talk_happy[10] = {
 "glad", "happy", "overjoyed", "ecstatic", "thrilled", "stoked",
 "<very> <happy>", "tickled pink", "delighted", "pumped"};
 
-std::string talk_sad[10] = {
+const std::string talk_sad[10] = {
 "sad", "bummed", "depressed", "pissed", "unhappy", "<very> <sad>", "dejected",
 "down", "blue", "glum"};
 
-std::string talk_greeting_gen[10] = {
+const std::string talk_greeting_gen[10] = {
 "Hey <name_g>.", "Greetings <name_g>.", "Hi <name_g><punc> You okay?",
 "<name_g><punc>  Let's talk.", "Well hey there.",
 "<name_g><punc>  Hello.", "What's up, <name_g>?", "You okay, <name_g>?",
 "Hello, <name_g>.", "Hi <name_g>"};
 
-std::string talk_ill_die[10] = {
+const std::string talk_ill_die[10] = {
 "I'm not gonna last much longer", "I'll be dead soon", "I'll be a goner",
 "I'm dead, <name_g>,", "I'm dead meat", "I'm in <very> serious trouble",
 "I'm <very> doomed", "I'm done for", "I won't last much longer",
 "my days are <really> numbered"};
 
-std::string talk_ill_kill_you[10] = {
+const std::string talk_ill_kill_you[10] = {
 "I'll kill you", "you're dead", "I'll <swear> kill you", "you're dead meat",
 "<ill_kill_you>, <name_b>", "you're a dead <man>", "you'll taste my <mywp>",
 "you're <swear> dead", "<name_b>, <ill_kill_you>"};
 
-std::string talk_drop_weapon[10] = {
+const std::string talk_drop_weapon[10] = {
 "Drop your <swear> weapon!",
 "Okay <name_b>, drop your weapon!",
 "Put your <swear> weapon down!",
@@ -252,7 +253,7 @@ std::string talk_drop_weapon[10] = {
 "Alright, drop the <yrwp>!"
 };
 
-std::string talk_hands_up[10] = {
+const std::string talk_hands_up[10] = {
 "Put your <swear> hands up!",
 "Put your hands up, <name_b>!",
 "Reach for the sky!",
@@ -265,7 +266,7 @@ std::string talk_hands_up[10] = {
 "Hands in the air, <name_b>!"
 };
 
-std::string talk_no_faction[10] = {
+const std::string talk_no_faction[10] = {
 "I'm unaffiliated.",
 "I don't run with a crew.",
 "I'm a solo artist, <okay>?",
@@ -278,7 +279,7 @@ std::string talk_no_faction[10] = {
 "I don't belong to a faction, <name_g>."
 };
 
-std::string talk_come_here[10] = {
+const std::string talk_come_here[10] = {
 "Wait up, let's talk!",
 "Hey, I <really> want to talk to you!",
 "Come on, talk to me!",
@@ -291,7 +292,7 @@ std::string talk_come_here[10] = {
 "Look, <name_g><punc> let's talk!"
 };
 
-std::string talk_keep_up[10] = {
+const std::string talk_keep_up[10] = {
 "Catch up!",
 "Get over here!",
 "Catch up, <name_g>!",
@@ -305,7 +306,7 @@ std::string talk_keep_up[10] = {
 "Let's keep going!"
 };
 
-std::string talk_wait[10] = {
+const std::string talk_wait[10] = {
 "Hey, where are you?",
 "Wait up, <name_g>!",
 "<name_g>, wait for me!",
@@ -318,7 +319,7 @@ std::string talk_wait[10] = {
 "Hey, I'm over here!"
 };
 
-std::string talk_let_me_pass[10] = {
+const std::string talk_let_me_pass[10] = {
 "Excuse me, let me pass.",
 "Hey <name_g>, can I get through?",
 "Let me get past you, <name_g>.",
@@ -332,7 +333,7 @@ std::string talk_let_me_pass[10] = {
 };
 
 // Used to tell player to move to avoid friendly fire
-std::string talk_move[10] = {
+const std::string talk_move[10] = {
 "Move",
 "Move your ass",
 "Get out of the way",
@@ -345,7 +346,7 @@ std::string talk_move[10] = {
 "Get out of my line of fire"
 };
 
-std::string talk_done_mugging[10] = {
+const std::string talk_done_mugging[10] = {
 "Thanks for the cash, <name_b>!",
 "So long, <name_b>!",
 "Thanks a lot, <name_g>!",
@@ -358,7 +359,7 @@ std::string talk_done_mugging[10] = {
 "Thanks, <name_g>!"
 };
 
-std::string talk_leaving[10] = {
+const std::string talk_leaving[10] = {
 "So long, <name_b>!",
 "Hasta luego, <name_g>!",
 "I'm outta here!",
@@ -371,7 +372,7 @@ std::string talk_leaving[10] = {
 "Bye bye, <name_b>!"
 };
 
-std::string talk_catch_up[10] = {
+const std::string talk_catch_up[10] = {
 "You're too far away, <name_b>!",
 "Hurry up, <name_g>!",
 "I'm outta here soon!",
@@ -386,7 +387,7 @@ std::string talk_catch_up[10] = {
 
 #define NUM_STATIC_TAGS 26
 
-tag_data talk_tags[NUM_STATIC_TAGS] = {
+const tag_data talk_tags[NUM_STATIC_TAGS] = {
 {"<okay>",		&talk_okay},
 {"<no>",		&talk_no},
 {"<name_b>",		&talk_bad_names},

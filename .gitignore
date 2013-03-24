@@ -6,3 +6,13 @@ debug.log
 logg.txt
 bindist/
 cataclysmdda-*
+
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+build*/
+/tags
+*~
+*.sublime-project
+*.sublime-workspace

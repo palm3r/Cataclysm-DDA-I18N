@@ -5,7 +5,7 @@
 #include "artifact.h"
 #include "itype.h"
 
-int passive_effect_cost[NUM_AEPS] = {
+const int passive_effect_cost[NUM_AEPS] = {
 0,	// AEP_NULL
 
 3,	// AEP_STR_UP
@@ -48,7 +48,7 @@ int passive_effect_cost[NUM_AEPS] = {
 -1	// AEP_SICK
 };
 
-int active_effect_cost[NUM_AEAS] = {
+const int active_effect_cost[NUM_AEAS] = {
  0, // AEA_NULL
 
  2, // AEA_STORM
@@ -93,7 +93,7 @@ struct artifact_shape_datum
  int weight_min, weight_max;
 };
 
-artifact_shape_datum artifact_shape_data[ARTSHAPE_MAX] = {
+const artifact_shape_datum artifact_shape_data[ARTSHAPE_MAX] = {
 {"BUG", "BUG", 0, 0, 0, 0},
 {"sphere", "smooth sphere", 2, 4, 0, 10},
 {"rod", "tapered rod", 1, 7, 1, 7},
@@ -124,7 +124,7 @@ struct artifact_property_datum
  art_effect_active active_bad[4];
 };
 
-artifact_property_datum artifact_property_data[ARTPROP_MAX] = {
+const artifact_property_datum artifact_property_data[ARTPROP_MAX] = {
 {"BUG", "BUG",
  {AEP_NULL, AEP_NULL, AEP_NULL, AEP_NULL},
  {AEP_NULL, AEP_NULL, AEP_NULL, AEP_NULL},
@@ -283,7 +283,7 @@ enum artifact_tool_form
  NUM_ARTTOOLFORMS
 };
 
-artifact_tool_form_datum artifact_tool_form_data[NUM_ARTTOOLFORMS] = {
+const artifact_tool_form_datum artifact_tool_form_data[NUM_ARTTOOLFORMS] = {
 {"", '*', c_white, MNULL, MNULL, 0, 0, 0, 0, ARTWEAP_BULK,
  {ARTWEAP_NULL, ARTWEAP_NULL, ARTWEAP_NULL}},
 
@@ -313,7 +313,7 @@ struct artifact_weapon_datum
  unsigned flags : NUM_ITEM_FLAGS;
 };
 
-artifact_weapon_datum artifact_weapon_data[NUM_ARTWEAPS] = {
+const artifact_weapon_datum artifact_weapon_data[NUM_ARTWEAPS] = {
 {"", 0, 0, 0, 0, 0, 0, 0, 0, 0},
 // Adjective	Vol,wgt		Bash		Cut		To-Hit
 {"Heavy",	 0, 12,		10, 20,		 0,  0,		-2,  0,
@@ -387,7 +387,7 @@ enum artifact_armor_form
  NUM_ARTARMFORMS
 };
 
-artifact_armor_form_datum artifact_armor_form_data[NUM_ARTARMFORMS] = {
+const artifact_armor_form_datum artifact_armor_form_data[NUM_ARTARMFORMS] = {
 {"", c_white, MNULL, MNULL,        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
  0, false,
  {ARMORMOD_NULL, ARMORMOD_NULL, ARMORMOD_NULL, ARMORMOD_NULL, ARMORMOD_NULL}},
@@ -434,7 +434,7 @@ artifact_armor_form_datum artifact_armor_form_data[NUM_ARTARMFORMS] = {
  * If the basic armor type has MNULL as its second material, and the mod has a
  * material attached, the second material will be changed.
  */
-artifact_armor_form_datum artifact_armor_mod_data[NUM_ARMORMODS] = {
+const artifact_armor_form_datum artifact_armor_mod_data[NUM_ARMORMODS] = {
 
 {"", c_white, MNULL, MNULL, 0,  0,  0,  0,  0,  0,  0,  0,  0, 0, 0, 0, false,
  {ARMORMOD_NULL, ARMORMOD_NULL, ARMORMOD_NULL, ARMORMOD_NULL, ARMORMOD_NULL}},
@@ -469,7 +469,7 @@ artifact_armor_form_datum artifact_armor_mod_data[NUM_ARMORMODS] = {
 
 
 #define NUM_ART_ADJS 20
-std::string artifact_adj[NUM_ART_ADJS] = {
+const std::string artifact_adj[NUM_ART_ADJS] = {
 "Forbidden", "Unknown", "Forgotten", "Hideous", "Eldritch",
 "Gelatinous", "Ancient", "Cursed", "Bloody", "Undying",
 "Shadowy", "Silent", "Cyclopean", "Fungal", "Unspeakable",
@@ -478,7 +478,7 @@ std::string artifact_adj[NUM_ART_ADJS] = {
 
 #define NUM_ART_NOUNS 20
 // Prepending + makes it proper, e.g. "The Forbidden Abyss"
-std::string artifact_noun[NUM_ART_NOUNS] = {
+const std::string artifact_noun[NUM_ART_NOUNS] = {
 "Technique", "Dreams", "Beasts", "Evil", "Miasma",
 "+Abyss", "+City", "Shadows", "Shade", "Illusion",
 "Justice", "+Necropolis", "Ichor", "+Monolith", "Aeons",

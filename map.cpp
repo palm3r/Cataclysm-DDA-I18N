@@ -209,7 +209,7 @@ void map::board_vehicle(game *g, int x, int y, player *p)
  const int seat_part = veh->part_with_feature (part, vpf_seat);
  if (part < 0) {
   debugmsg ("map::board_vehicle: boarding %s (not seat)",
-            veh->part_info(part).name);
+            veh->part_info(part).name.c_str());
   return;
  }
  if (veh->parts[seat_part].has_flag(vehicle_part::passenger_flag)) {
@@ -242,7 +242,7 @@ void map::unboard_vehicle(game *g, const int x, const int y)
  const int seat_part = veh->part_with_feature (part, vpf_seat, false);
  if (part < 0) {
   debugmsg ("map::unboard_vehicle: unboarding %s (not seat)",
-            veh->part_info(part).name);
+            veh->part_info(part).name.c_str());
   return;
  }
  player *psg = veh->get_passenger(seat_part);
@@ -574,8 +574,8 @@ bool map::vehproceed(game* g){
       veh_collision c = veh_veh_colls[0];
       vehicle* veh2 = (vehicle*) c.target;
       g->add_msg("The %s's %s collides with the %s's %s",
-                 veh->name.c_str(),  veh->part_info(c.part).name,
-                veh2->name.c_str(), veh2->part_info(c.target_part).name);
+                 veh->name.c_str(),  veh->part_info(c.part).name.c_str(),
+                veh2->name.c_str(), veh2->part_info(c.target_part).name.c_str());
 
       // for reference, a cargo truck weighs ~25300, a bicycle 690,
       //  and 38mph is 3800 'velocity'

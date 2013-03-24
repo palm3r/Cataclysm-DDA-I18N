@@ -3,6 +3,8 @@
 #include "options.h"
 #include <cstdlib>
 #include <fstream>
+#include <stdlib.h>
+#include <limits.h>
 
 //***********************************
 //Globals                           *
@@ -171,16 +173,31 @@ void DrawWindow(WINDOW *win)
                 drawx=((win->x+i)*fontwidth);
                 drawy=((win->y+j)*fontheight);//-j;
                 if (((drawx+fontwidth)<=WindowWidth) && ((drawy+fontheight)<=WindowHeight)){
+
+                const char *p = &(win->line[j].chars[i]);
+                int len = mblen(p, MB_CUR_MAX);
+
                 tmp = win->line[j].chars[i];
                 int FG = win->line[j].FG[i];
                 int BG = win->line[j].BG[i];
+                int color = RGB(windowsPalette[FG].rgbRed, windowsPalette[FG].rgbGreen, windowsPalette[FG].rgbBlue);
+                
+                if (len > 1) {
+                    // draw multi-byte character
+                    SetTextColor(backbuffer, color);
+                    FillRectDIB(drawx, drawy, fontwidth * 2, fontheight, BG);
+                    wchar_t wc;
+                    int ret = mbtowc(&wc, p, MB_CUR_MAX);
+                    ExtTextOutW(backbuffer, drawx, drawy, 0, NULL, &wc, 1, NULL);
+                    i += (len - 1);
+                } else { // if (len > 1)
+
                 FillRectDIB(drawx,drawy,fontwidth,fontheight,BG);
 
                 if ( tmp > 0){
                 //if (tmp==95){//If your font doesnt draw underscores..uncomment
                 //        HorzLineDIB(drawx,drawy+fontheight-2,drawx+fontwidth,1,FG);
                 //    } else { // all the wa to here
-                    int color = RGB(windowsPalette[FG].rgbRed,windowsPalette[FG].rgbGreen,windowsPalette[FG].rgbBlue);
                     SetTextColor(backbuffer,color);
                     ExtTextOut(backbuffer,drawx,drawy,0,NULL,&tmp,1,NULL);
                 //    }     //and this line too.
@@ -234,6 +251,7 @@ void DrawWindow(WINDOW *win)
                         break;
                     }
                     };//switch (tmp)
+                } // if (len > 1)
                 }//(tmp < 0)
             };//for (i=0;i<_windows[w].width;i++)
     };// for (j=0;j<_windows[w].height;j++)

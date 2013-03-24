@@ -3,7 +3,7 @@
 
 #include "weather.h"
 
-std::string season_name[4] = {
+const std::string season_name[4] = {
 "Spring", "Summer", "Autumn", "Winter"
 };
 
@@ -14,7 +14,7 @@ std::string season_name[4] = {
  *  patterns have "stay the same" as a highly likely transition; see below
  * Note light modifier assumes baseline of DAYLIGHT_LEVEL at 60
  */
-weather_datum weather_data[NUM_WEATHER_TYPES] = {
+const weather_datum weather_data[NUM_WEATHER_TYPES] = {
 {"NULL Weather - BUG", c_magenta,
  {0, 0, 0, 0}, 0, 0, 0, 0, false,
  &weather_effect::none},
@@ -59,7 +59,7 @@ weather_datum weather_data[NUM_WEATHER_TYPES] = {
 /* Chances for each season, for the weather listed on the left to shift to the
  * weather listed across the top.
  */
-int weather_shift[4][NUM_WEATHER_TYPES][NUM_WEATHER_TYPES] = {
+const int weather_shift[4][NUM_WEATHER_TYPES][NUM_WEATHER_TYPES] = {
 { // SPRING
 //         NUL CLR SUN CLD DRZ RAI THN LGT AC1 AC2 SN1 SN2 SN3
 /* NUL */ {  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},

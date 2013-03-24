@@ -5549,7 +5549,7 @@ void game::pickup(int posx, int posy, int min)
   veh_part = veh->part_with_feature(veh_part, vpf_cargo, false);
   from_veh = veh && veh_part >= 0 &&
              veh->parts[veh_part].items.size() > 0 &&
-             query_yn("Get items from %s?", veh->part_info(veh_part).name);
+             query_yn("Get items from %s?", veh->part_info(veh_part).name.c_str());
  }
 // Picking up water?
  if ((!from_veh) && m.i_at(posx, posy).size() == 0) {
@@ -6152,14 +6152,14 @@ void game::drop(char chInput)
   if (to_veh)
    add_msg("You put your %s%s in the %s's %s.", dropped[0].tname(this).c_str(),
           (dropped.size() == 1 ? "" : "s"), veh->name.c_str(),
-          veh->part_info(veh_part).name);
+          veh->part_info(veh_part).name.c_str());
   else
    add_msg("You drop your %s%s.", dropped[0].tname(this).c_str(),
           (dropped.size() == 1 ? "" : "s"));
  } else {
   if (to_veh)
    add_msg("You put several items in the %s's %s.", veh->name.c_str(),
-           veh->part_info(veh_part).name);
+           veh->part_info(veh_part).name.c_str());
   else
    add_msg("You drop several items.");
  }
@@ -6231,7 +6231,7 @@ void game::drop_in_direction()
   if (to_veh)
    add_msg("You put your %s%s in the %s's %s.", dropped[0].tname(this).c_str(),
           (dropped.size() == 1 ? "" : "s"), veh->name.c_str(),
-          veh->part_info(veh_part).name);
+          veh->part_info(veh_part).name.c_str());
   else
    add_msg("You %s your %s%s %s the %s.", verb.c_str(),
            dropped[0].tname(this).c_str(),
@@ -6240,7 +6240,7 @@ void game::drop_in_direction()
  } else {
   if (to_veh)
    add_msg("You put several items in the %s's %s.", veh->name.c_str(),
-           veh->part_info(veh_part).name);
+           veh->part_info(veh_part).name.c_str());
   else
    add_msg("You %s several items %s the %s.", verb.c_str(), prep.c_str(),
            m.tername(dirx, diry).c_str());
@@ -7257,7 +7257,7 @@ void game::plmove(int x, int y)
       ( u.has_trait(PF_PARKOUR) && m.move_cost(x, y) > 4    ))
   {
    if (veh)
-    add_msg("Moving past this %s is slow!", veh->part_info(vpart).name);
+    add_msg("Moving past this %s is slow!", veh->part_info(vpart).name.c_str());
    else
     add_msg("Moving past this %s is slow!", m.tername(x, y).c_str());
   }
@@ -7388,7 +7388,7 @@ void game::plmove(int x, int y)
   veh->insides_dirty = true;
   u.moves -= 100;
   add_msg ("You open the %s's %s.", veh->name.c_str(),
-                                    veh->part_info(dpart).name);
+                                    veh->part_info(dpart).name.c_str());
 
  } else if (m.has_flag(swimmable, x, y)) { // Dive into water!
 // Requires confirmation if we were on dry land previously

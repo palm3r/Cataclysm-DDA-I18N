@@ -36,7 +36,7 @@ void game::init_vehicles()
 
 #define VEHICLE(nm) { veh = new vehicle(this, (vhtype_id)index++); veh->name = nm; vtypes.push_back(veh); }
 #define PART(mdx, mdy, id) { pi = veh->install_part(mdx, mdy, id); \
-    if (pi < 0) debugmsg("init_vehicles: '%s' part '%s'(%d) can't be installed to %d,%d", veh->name.c_str(), vpart_list[id].name, veh->parts.size(), mdx, mdy); }
+    if (pi < 0) debugmsg("init_vehicles: '%s' part '%s'(%d) can't be installed to %d,%d", veh->name.c_str(), vpart_list[id].name.c_str(), veh->parts.size(), mdx, mdy); }
 
     //        name
     VEHICLE ("Bicycle");

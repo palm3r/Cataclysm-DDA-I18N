@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 #include <cstdlib>
 #include <signal.h>
+#include "i18n.h"
 
 void exit_handler(int s);
 
@@ -37,6 +38,8 @@ int main(int argc, char *argv[])
   else // ignore unknown args.
    argc--; argv++;
  }
+
+ i18n_init();
 
 // ncurses stuff
  load_options(); // For getting size options
