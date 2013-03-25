@@ -1,0 +1,3 @@
+[submodule "lang/ja"]
+	path = lang/ja
+	url = https://github.com/palm3r/Cataclysm-DDA-I18N-JA.git
