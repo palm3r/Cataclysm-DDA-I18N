@@ -6,6 +6,7 @@
 #include "item.h"
 #include "bionics.h"
 #include "line.h"
+#include "i18n.h"
 
 #define BATTERY_AMOUNT 4 // How much batteries increase your power
 
@@ -22,8 +23,8 @@ void player::power_bionics(game *g)
 
  std::vector <bionic> passive;
  std::vector <bionic> active;
- mvwprintz(wBio, 1,  1, c_blue, "BIONICS -");
- mvwprintz(wBio, 1, 11, c_white, "Activating.  Press '!' to examine your implants.");
+ mvwprintz(wBio, 1,  1, c_blue, _("BIONICS -"));
+ mvwprintz(wBio, 1, 11, c_white, _("Activating.  Press '!' to examine your implants."));
 
  for (int i = 1; i < 79; i++) {
   mvwputch(wBio,  2, i, c_ltgray, LINE_OXOX);
@@ -45,7 +46,7 @@ void player::power_bionics(game *g)
  }
  nc_color type;
  if (passive.size() > 0) {
-  mvwprintz(wBio, 3, 1, c_ltblue, "Passive:");
+  mvwprintz(wBio, 3, 1, c_ltblue, _("Passive:"));
   for (int i = 0; i < passive.size(); i++) {
    if (bionics[passive[i].id].power_source)
     type = c_ltcyan;
@@ -56,7 +57,7 @@ void player::power_bionics(game *g)
   }
  }
  if (active.size() > 0) {
-  mvwprintz(wBio, 3, 33, c_ltblue, "Active:");
+  mvwprintz(wBio, 3, 33, c_ltblue, _("Active:"));
   for (int i = 0; i < active.size(); i++) {
    if (active[i].powered)
     type = c_red;
@@ -64,7 +65,7 @@ void player::power_bionics(game *g)
     type = c_ltred;
    mvwputch(wBio, 4 + i, 33, type, active[i].invlet);
    mvwprintz(wBio, 4 + i, 35, type,
-             (active[i].powered ? "%s - ON" : "%s - %d PU / %d trns"),
+             (active[i].powered ? _("%s - ON") : _("%s - %d PU / %d trns")),
              bionics[active[i].id].name.c_str(),
              bionics[active[i].id].power_cost,
              bionics[active[i].id].charge_time);
@@ -80,9 +81,9 @@ void player::power_bionics(game *g)
   if (ch == '!') {
    activating = !activating;
    if (activating)
-    mvwprintz(wBio, 1, 11, c_white, "Activating.  Press '!' to examine your implants.");
+    mvwprintz(wBio, 1, 11, c_white, _("Activating.  Press '!' to examine your implants."));
    else
-    mvwprintz(wBio, 1, 11, c_white, "Examining.  Press '!' to activate your implants.");
+    mvwprintz(wBio, 1, 11, c_white, _("Examining.  Press '!' to activate your implants."));
   } else if (ch == ' ')
    ch = KEY_ESCAPE;
   else if (ch != KEY_ESCAPE) {
@@ -98,14 +99,14 @@ void player::power_bionics(game *g)
      if (bionics[tmp->id].activated) {
       if (tmp->powered) {
        tmp->powered = false;
-       g->add_msg("%s powered off.", bionics[tmp->id].name.c_str());
+       g->add_msg(_("%s powered off."), bionics[tmp->id].name.c_str());
       } else if (power_level >= bionics[tmp->id].power_cost ||
                  (weapon.type->id == itm_bio_claws && tmp->id == bio_claws))
        activate_bionic(b, g);
      } else
-      mvwprintz(wBio, 21, 1, c_ltred, "\
+      mvwprintz(wBio, 21, 1, c_ltred, _("\
 You can not activate %s!  To read a description of \
-%s, press '!', then '%c'.", bionics[tmp->id].name.c_str(),
+%s, press '!', then '%c'."), bionics[tmp->id].name.c_str(),
                             bionics[tmp->id].name.c_str(), tmp->invlet);
     } else {	// Describing bionics, not activating them!
 // Clear the lines first
@@ -137,10 +138,10 @@ void player::activate_bionic(int b, game *g)
   power_cost = 0;
  if (power_level < power_cost) {
   if (my_bionics[b].powered) {
-   g->add_msg("Your %s powers down.", bionics[bio.id].name.c_str());
+   g->add_msg(_("Your %s powers down."), bionics[bio.id].name.c_str());
    my_bionics[b].powered = false;
   } else
-   g->add_msg("You cannot power your %s", bionics[bio.id].name.c_str());
+   g->add_msg(_("You cannot power your %s"), bionics[bio.id].name.c_str());
   return;
  }
 
@@ -179,7 +180,7 @@ void player::activate_bionic(int b, game *g)
   break;
 
  case bio_resonator:
-  g->sound(posx, posy, 30, "VRRRRMP!");
+  g->sound(posx, posy, 30, _("VRRRRMP!"));
   for (int i = posx - 1; i <= posx + 1; i++) {
    for (int j = posy - 1; j <= posy + 1; j++) {
     g->m.bash(i, j, 40, junk);
@@ -194,9 +195,9 @@ void player::activate_bionic(int b, game *g)
  case bio_time_freeze:
   moves += 100 * power_level;
   power_level = 0;
-  g->add_msg("Your speed suddenly increases!");
+  g->add_msg(_("Your speed suddenly increases!"));
   if (one_in(3)) {
-   g->add_msg("Your muscles tear with the strain.");
+   g->add_msg(_("Your muscles tear with the strain."));
    hurt(g, bp_arms, 0, rng(5, 10));
    hurt(g, bp_arms, 1, rng(5, 10));
    hurt(g, bp_legs, 0, rng(7, 12));
@@ -219,35 +220,35 @@ void player::activate_bionic(int b, game *g)
   wborder(w, LINE_XOXO, LINE_XOXO, LINE_OXOX, LINE_OXOX,
              LINE_OXXO, LINE_OOXX, LINE_XXOO, LINE_XOOX );
   if (has_disease(DI_FUNGUS))
-   bad.push_back("Fungal Parasite");
+   bad.push_back(_("Fungal Parasite"));
   if (has_disease(DI_DERMATIK))
-   bad.push_back("Insect Parasite");
+   bad.push_back(_("Insect Parasite"));
   if (has_disease(DI_POISON))
-   bad.push_back("Poison");
+   bad.push_back(_("Poison"));
   if (radiation > 0)
-   bad.push_back("Irradiated");
+   bad.push_back(_("Irradiated"));
   if (has_disease(DI_PKILL1))
-   good.push_back("Minor Painkiller");
+   good.push_back(_("Minor Painkiller"));
   if (has_disease(DI_PKILL2))
-   good.push_back("Moderate Painkiller");
+   good.push_back(_("Moderate Painkiller"));
   if (has_disease(DI_PKILL3))
-   good.push_back("Heavy Painkiller");
+   good.push_back(_("Heavy Painkiller"));
   if (has_disease(DI_PKILL_L))
-   good.push_back("Slow-Release Painkiller");
+   good.push_back(_("Slow-Release Painkiller"));
   if (has_disease(DI_DRUNK))
-   good.push_back("Alcohol");
+   good.push_back(_("Alcohol"));
   if (has_disease(DI_CIG))
-   good.push_back("Nicotine");
+   good.push_back(_("Nicotine"));
   if (has_disease(DI_HIGH))
-   good.push_back("Intoxicant: Other");
+   good.push_back(_("Intoxicant: Other"));
   if (has_disease(DI_TOOK_PROZAC))
-   good.push_back("Prozac");
+   good.push_back(_("Prozac"));
   if (has_disease(DI_TOOK_FLUMED))
-   good.push_back("Antihistamines");
+   good.push_back(_("Antihistamines"));
   if (has_disease(DI_ADRENALINE))
-   good.push_back("Adrenaline Spike");
+   good.push_back(_("Adrenaline Spike"));
   if (good.size() == 0 && bad.size() == 0)
-   mvwprintz(w, 1, 1, c_white, "No effects.");
+   mvwprintz(w, 1, 1, c_white, _("No effects."));
   else {
    for (int line = 1; line < 39 && line <= good.size() + bad.size(); line++) {
     if (line <= bad.size())
@@ -278,34 +279,34 @@ void player::activate_bionic(int b, game *g)
   break;
 
  case bio_evap:
-  if (query_yn("Drink directly? Otherwise you will need a container.")) {
+  if (query_yn(_("Drink directly? Otherwise you will need a container."))) {
    tmp_item = item(g->itypes[itm_water], 0);
    thirst -= 50;
    if (has_trait(PF_GOURMAND) && thirst < -60) {
-     g->add_msg("You can't finish it all!");
+     g->add_msg(_("You can't finish it all!"));
      thirst = -60;
    } else if (!has_trait(PF_GOURMAND) && thirst < -20) {
-     g->add_msg("You can't finish it all!");
+     g->add_msg(_("You can't finish it all!"));
      thirst = -20;
    }
   } else {
-   t = g->inv("Choose a container:");
+   t = g->inv(_("Choose a container:"));
    if (i_at(t).type == 0) {
-    g->add_msg("You don't have that item!");
+    g->add_msg(_("You don't have that item!"));
     power_level += bionics[bio_evap].power_cost;
    } else if (!i_at(t).is_container()) {
-    g->add_msg("That %s isn't a container!", i_at(t).tname().c_str());
+    g->add_msg(_("That %s isn't a container!"), i_at(t).tname().c_str());
     power_level += bionics[bio_evap].power_cost;
    } else {
     it_container *cont = dynamic_cast<it_container*>(i_at(t).type);
     if (i_at(t).volume_contained() + 1 > cont->contains) {
-     g->add_msg("There's no space left in your %s.", i_at(t).tname().c_str());
+     g->add_msg(_("There's no space left in your %s."), i_at(t).tname().c_str());
      power_level += bionics[bio_evap].power_cost;
     } else if (!(cont->flags & con_wtight)) {
-     g->add_msg("Your %s isn't watertight!", i_at(t).tname().c_str());
+     g->add_msg(_("Your %s isn't watertight!"), i_at(t).tname().c_str());
      power_level += bionics[bio_evap].power_cost;
     } else {
-     g->add_msg("You pour water into your %s.", i_at(t).tname().c_str());
+     g->add_msg(_("You pour water into your %s."), i_at(t).tname().c_str());
      i_at(t).put_in(item(g->itypes[itm_water], 0));
     }
    }
@@ -314,32 +315,32 @@ void player::activate_bionic(int b, game *g)
 
  case bio_lighter:
   g->draw();
-  mvprintw(0, 0, "Torch in which direction?");
+  mvprintw(0, 0, _("Torch in which direction?"));
   input = get_input();
   get_direction(dirx, diry, input);
   if (dirx == -2) {
-   g->add_msg("Invalid direction.");
+   g->add_msg(_("Invalid direction."));
    power_level += bionics[bio_lighter].power_cost;
    return;
   }
   dirx += posx;
   diry += posy;
   if (!g->m.add_field(g, dirx, diry, fd_fire, 1))	// Unsuccessful.
-   g->add_msg("You can't light a fire there.");
+   g->add_msg(_("You can't light a fire there."));
   break;
 
  case bio_claws:
   if (weapon.type->id == itm_bio_claws) {
-   g->add_msg("You withdraw your claws.");
+   g->add_msg(_("You withdraw your claws."));
    weapon = ret_null;
   } else if (weapon.type->id != 0) {
-   g->add_msg("Your claws extend, forcing you to drop your %s.",
+   g->add_msg(_("Your claws extend, forcing you to drop your %s."),
               weapon.tname().c_str());
    g->m.add_item(posx, posy, weapon);
    weapon = item(g->itypes[itm_bio_claws], 0);
    weapon.invlet = '#';
   } else {
-   g->add_msg("Your claws extend!");
+   g->add_msg(_("Your claws extend!"));
    weapon = item(g->itypes[itm_bio_claws], 0);
    weapon.invlet = '#';
   }
@@ -367,11 +368,11 @@ void player::activate_bionic(int b, game *g)
 
  case bio_emp:
   g->draw();
-  mvprintw(0, 0, "Fire EMP in which direction?");
+  mvprintw(0, 0, _("Fire EMP in which direction?"));
   input = get_input();
   get_direction(dirx, diry, input);
   if (dirx == -2) {
-   g->add_msg("Invalid direction.");
+   g->add_msg(_("Invalid direction."));
    power_level += bionics[bio_emp].power_cost;
    return;
   }
@@ -381,29 +382,29 @@ void player::activate_bionic(int b, game *g)
   break;
 
  case bio_hydraulics:
-  g->add_msg("Your muscles hiss as hydraulic strength fills them!");
+  g->add_msg(_("Your muscles hiss as hydraulic strength fills them!"));
   break;
 
  case bio_water_extractor:
   for (int i = 0; i < g->m.i_at(posx, posy).size(); i++) {
    item tmp = g->m.i_at(posx, posy)[i];
-   if (tmp.type->id == itm_corpse && query_yn("Extract water from the %s",
+   if (tmp.type->id == itm_corpse && query_yn(_("Extract water from the %s"),
                                               tmp.tname().c_str())) {
     i = g->m.i_at(posx, posy).size() + 1;	// Loop is finished
-    t = g->inv("Choose a container:");
+    t = g->inv(_("Choose a container:"));
     if (i_at(t).type == 0) {
-     g->add_msg("You don't have that item!");
+     g->add_msg(_("You don't have that item!"));
      power_level += bionics[bio_water_extractor].power_cost;
     } else if (!i_at(t).is_container()) {
-     g->add_msg("That %s isn't a container!", i_at(t).tname().c_str());
+     g->add_msg(_("That %s isn't a container!"), i_at(t).tname().c_str());
      power_level += bionics[bio_water_extractor].power_cost;
     } else {
      it_container *cont = dynamic_cast<it_container*>(i_at(t).type);
      if (i_at(t).volume_contained() + 1 > cont->contains) {
-      g->add_msg("There's no space left in your %s.", i_at(t).tname().c_str());
+      g->add_msg(_("There's no space left in your %s."), i_at(t).tname().c_str());
       power_level += bionics[bio_water_extractor].power_cost;
      } else {
-      g->add_msg("You pour water into your %s.", i_at(t).tname().c_str());
+      g->add_msg(_("You pour water into your %s."), i_at(t).tname().c_str());
       i_at(t).put_in(item(g->itypes[itm_water], 0));
      }
     }
@@ -453,11 +454,11 @@ void player::activate_bionic(int b, game *g)
 
  case bio_lockpick:
   g->draw();
-  mvprintw(0, 0, "Unlock in which direction?");
+  mvprintw(0, 0, _("Unlock in which direction?"));
   input = get_input();
   get_direction(dirx, diry, input);
   if (dirx == -2) {
-   g->add_msg("Invalid direction.");
+   g->add_msg(_("Invalid direction."));
    power_level += bionics[bio_lockpick].power_cost;
    return;
   }
@@ -465,10 +466,10 @@ void player::activate_bionic(int b, game *g)
   diry += posy;
   if (g->m.ter(dirx, diry) == t_door_locked) {
    moves -= 40;
-   g->add_msg("You unlock the door.");
+   g->add_msg(_("You unlock the door."));
    g->m.ter(dirx, diry) = t_door_c;
   } else
-   g->add_msg("You can't unlock that %s.", g->m.tername(dirx, diry).c_str());
+   g->add_msg(_("You can't unlock that %s."), g->m.tername(dirx, diry).c_str());
   break;
 
  }
@@ -498,7 +499,7 @@ bool player::install_bionics(game *g, it_bionic* type)
  int skdec = int((pl_skill * 10) / 4) % 10;
 
 // Header text
- mvwprintz(w, 1,  1, c_white, "Installing bionics:");
+ mvwprintz(w, 1,  1, c_white, _("Installing bionics:"));
  mvwprintz(w, 1, 21, type->color, bio_name.c_str());
 
 // Dividing bars
@@ -520,18 +521,18 @@ bool player::install_bionics(game *g, it_bionic* type)
             bionics[id].name.c_str());
  }
 // Helper text
- mvwprintz(w, 3, 39, c_white,        "Difficulty of this module: %d",
+ mvwprintz(w, 3, 39, c_white,        _("Difficulty of this module: %d"),
            type->difficulty);
- mvwprintz(w, 4, 39, c_white,        "Your installation skill:   %d.%d",
+ mvwprintz(w, 4, 39, c_white,        _("Your installation skill:   %d.%d"),
            skint, skdec);
- mvwprintz(w, 5, 39, c_white,       "Installation requires high intelligence,");
- mvwprintz(w, 6, 39, c_white,       "and skill in electronics, first aid, and");
- mvwprintz(w, 7, 39, c_white,       "mechanics (in that order of importance).");
+ mvwprintz(w, 5, 39, c_white,       _("Installation requires high intelligence,"));
+ mvwprintz(w, 6, 39, c_white,       _("and skill in electronics, first aid, and"));
+ mvwprintz(w, 7, 39, c_white,       _("mechanics (in that order of importance)."));
 
  int chance_of_success = int((100 * pl_skill) /
                              (pl_skill + 4 * type->difficulty));
 
- mvwprintz(w, 9, 39, c_white,        "Chance of success:");
+ mvwprintz(w, 9, 39, c_white,        _("Chance of success:"));
 
  nc_color col_suc;
  if (chance_of_success >= 95)
@@ -547,17 +548,17 @@ bool player::install_bionics(game *g, it_bionic* type)
 
  mvwprintz(w, 9, 59, col_suc, "%d%%%%", chance_of_success);
 
- mvwprintz(w, 11, 39, c_white,       "Failure may result in crippling damage,");
- mvwprintz(w, 12, 39, c_white,       "loss of existing bionics, genetic damage");
- mvwprintz(w, 13, 39, c_white,       "or faulty installation.");
+ mvwprintz(w, 11, 39, c_white,       _("Failure may result in crippling damage,"));
+ mvwprintz(w, 12, 39, c_white,       _("loss of existing bionics, genetic damage"));
+ mvwprintz(w, 13, 39, c_white,       _("or faulty installation."));
  wrefresh(w);
 
  if (type->id == itm_bionics_battery) {	// No selection list; just confirm
-  mvwprintz(w, 3, 1, h_ltblue, "Battery Level +%d", BATTERY_AMOUNT);
-  mvwprintz(w_description, 0, 0, c_ltblue, "\
+  mvwprintz(w, 3, 1, h_ltblue, _("Battery Level +%d"), BATTERY_AMOUNT);
+  mvwprintz(w_description, 0, 0, c_ltblue, _("\
 Installing this bionic will increase your total battery capacity by %d.\n\
 Batteries are necessary for most bionics to function.  They also require a\n\
-charge mechanism, which must be installed from another CBM.", BATTERY_AMOUNT);
+charge mechanism, which must be installed from another CBM."), BATTERY_AMOUNT);
 
   InputEvent input;
   wrefresh(w_description);
@@ -571,7 +572,7 @@ charge mechanism, which must be installed from another CBM.", BATTERY_AMOUNT);
    practice("mechanics", (100 - chance_of_success) * 0.5);
    int success = chance_of_success - rng(1, 100);
    if (success > 0) {
-    g->add_msg("Successfully installed batteries.");
+    g->add_msg(_("Successfully installed batteries."));
     max_power_level += BATTERY_AMOUNT;
    } else
     bionics_install_failure(g, this, success);
@@ -625,7 +626,7 @@ charge mechanism, which must be installed from another CBM.", BATTERY_AMOUNT);
 
   }
   if (input == Confirm && has_bionic(id)) {
-   popup("You already have a %s!", bionics[id].name.c_str());
+   popup(_("You already have a %s!"), bionics[id].name.c_str());
    input = Nothing;
   }
  } while (input != Cancel && input != Confirm);
@@ -637,7 +638,7 @@ charge mechanism, which must be installed from another CBM.", BATTERY_AMOUNT);
   bionic_id id = type->options[selection];
   int success = chance_of_success - rng(1, 100);
   if (success > 0) {
-   g->add_msg("Successfully installed %s.", bionics[id].name.c_str());
+   g->add_msg(_("Successfully installed %s."), bionics[id].name.c_str());
    add_bionic(id);
   } else
    bionics_install_failure(g, this, success);
@@ -657,7 +658,7 @@ void bionics_install_failure(game *g, player *u, int success)
  success = abs(success) - rng(1, 10);
  int failure_level = 0;
  if (success <= 0) {
-  g->add_msg("The installation fails without incident.");
+  g->add_msg(_("The installation fails without incident."));
   return;
  }
 
@@ -670,11 +671,11 @@ void bionics_install_failure(game *g, player *u, int success)
  std::string fail_text;
 
  switch (rng(1, 5)) {
-  case 1: fail_text = "You flub the installation";	break;
-  case 2: fail_text = "You mess up the installation";	break;
-  case 3: fail_text = "The installation fails";		break;
-  case 4: fail_text = "The installation is a failure";	break;
-  case 5: fail_text = "You screw up the installation";	break;
+  case 1: fail_text = _("You flub the installation");	break;
+  case 2: fail_text = _("You mess up the installation");	break;
+  case 3: fail_text = _("The installation fails");		break;
+  case 4: fail_text = _("The installation is a failure");	break;
+  case 5: fail_text = _("You screw up the installation");	break;
  }
 
  if (fail_type == 3 && u->my_bionics.size() == 0)
@@ -683,19 +684,19 @@ void bionics_install_failure(game *g, player *u, int success)
  switch (fail_type) {
 
  case 1:
-  fail_text += ", causing great pain.";
+  fail_text += _(", causing great pain.");
   u->pain += rng(failure_level * 3, failure_level * 6);
   break;
 
  case 2:
-  fail_text += " and your body is damaged.";
+  fail_text += _(" and your body is damaged.");
   u->hurtall(rng(failure_level, failure_level * 2));
   break;
 
  case 3:
-  fail_text += " and ";
-  fail_text += (u->my_bionics.size() <= failure_level ? "all" : "some");
-  fail_text += " of your existing bionics are lost.";
+  fail_text += _(" and ");
+  fail_text += (u->my_bionics.size() <= failure_level ? _("all") : _("some"));
+  fail_text += _(" of your existing bionics are lost.");
   for (int i = 0; i < failure_level && u->my_bionics.size() > 0; i++) {
    int rem = rng(0, u->my_bionics.size() - 1);
    u->my_bionics.erase(u->my_bionics.begin() + rem);
@@ -703,7 +704,7 @@ void bionics_install_failure(game *g, player *u, int success)
   break;
 
  case 4:
-  fail_text += " and do damage to your genetics, causing mutation.";
+  fail_text += _(" and do damage to your genetics, causing mutation.");
   g->add_msg(fail_text.c_str()); // Failure text comes BEFORE mutation text
   while (failure_level > 0) {
    u->mutate(g);
@@ -714,7 +715,7 @@ void bionics_install_failure(game *g, player *u, int success)
 
  case 5:
  {
-  fail_text += ", causing a faulty installation.";
+  fail_text += _(", causing a faulty installation.");
   std::vector<bionic_id> valid;
   for (int i = max_bio_good + 1; i < max_bio; i++) {
    bionic_id id = bionic_id(i);
@@ -723,7 +724,7 @@ void bionics_install_failure(game *g, player *u, int success)
   }
   if (valid.size() == 0) {	// We've got all the bad bionics!
    if (u->max_power_level > 0) {
-    g->add_msg("You lose power capacity!");
+    g->add_msg(_("You lose power capacity!"));
     u->max_power_level = rng(0, u->max_power_level - 1);
    }
 // TODO: What if we can't lose power capacity?  No penalty?

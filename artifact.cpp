@@ -3,6 +3,7 @@
 #include "game.h"
 #include "artifact.h"
 #include "artifactdata.h"
+#include "i18n.h"
 
 std::vector<art_effect_passive> fill_good_passive();
 std::vector<art_effect_passive> fill_bad_passive();
@@ -50,9 +51,9 @@ itype* game::new_artifact()
   }
 
   std::stringstream description;
-  description << "This is the " << art->name << ".\n\
+  description << format(_("This is the %s.\n\
 It is the only one of its kind.\n\
-It may have unknown powers; use 'a' to activate them.";
+It may have unknown powers; use 'a' to activate them."), art->name.c_str());
   art->description = description.str();
 
 // Finally, pick some powers
@@ -169,9 +170,9 @@ It may have unknown powers; use 'a' to activate them.";
   art->warmth = info->warmth;
   art->storage = info->storage;
   std::stringstream description;
-  description << "This is the " << art->name << ".\n" <<
-                 (info->plural ? "They are the only ones of their kind." :
-                                 "It is the only one of its kind.");
+  description << format(_("This is the %s.\n"), art->name.c_str()) <<
+                 (info->plural ? _("They are the only ones of their kind.") :
+                                 _("It is the only one of its kind."));
 
 // Modify the armor further
   if (!one_in(4)) {
@@ -212,7 +213,7 @@ It may have unknown powers; use 'a' to activate them.";
     else
      art->storage = 0;
 
-    description << "\n" << (info->plural ? "They are " : "It is ") <<
+    description << "\n" << (info->plural ? _("They are ") : _("It is ")) <<
                    modinfo->name;
    }
   }
@@ -276,7 +277,7 @@ itype* game::new_natural_artifact(artifact_natural_property prop)
 
  art->name = property_data->name + " " + shape_data->name;
  std::stringstream desc;
- desc << "This " << shape_data->desc << " " << property_data->desc << ".";
+ desc << format(_("This %s %s."), shape_data->desc.c_str(), property_data->desc.c_str());
  art->description = desc.str();
 // Add line breaks to the description as necessary
  size_t pos = 76;
@@ -397,15 +398,12 @@ std::vector<art_effect_active> fill_bad_active()
 
 std::string artifact_name(std::string type)
 {
- std::stringstream ret;
- ret << type << " of ";
- std::string noun = artifact_noun[rng(0, NUM_ART_NOUNS - 1)];
- if (noun[0] == '+') {
-  ret << "the ";
-  noun = noun.substr(1); // Chop off '+'
- }
- ret << artifact_adj[rng(0, NUM_ART_ADJS - 1)] << " " << noun;
- return ret.str();
+  std::string noun = artifact_noun[rng(0, NUM_ART_NOUNS - 1)];
+  std::string adj = artifact_adj[rng(0, NUM_ART_ADJS - 1)];
+  return noun[0] == '+'
+    ? format(_("%s of the %s %s"), type.c_str(), adj.c_str(), noun.substr(1).c_str())
+    : format(_("%s of %s %s"), type.c_str(), adj.c_str(), noun.c_str())
+    ;
 }
 
 
@@ -436,14 +434,14 @@ void game::process_artifact(item *it, player *p, bool wielded)
      break;
     case ARTC_PAIN:
      if (turn.second == 0) {
-      add_msg("You suddenly feel sharp pain for no reason.");
+      add_msg(_("You suddenly feel sharp pain for no reason."));
       p->pain += 3 * rng(1, 3);
       it->charges++;
      }
      break;
     case ARTC_HP:
      if (turn.second == 0) {
-      add_msg("You feel your body decaying.");
+      add_msg(_("You feel your body decaying."));
       p->hurtall(1);
       it->charges++;
      }
@@ -484,7 +482,7 @@ void game::process_artifact(item *it, player *p, bool wielded)
    if (one_in(10)) {
     int x = p->posx + rng(-1, 1), y = p->posy + rng(-1, 1);
     if (m.add_field(this, x, y, fd_smoke, rng(1, 3)))
-     add_msg("The %s emits some smoke.", it->tname().c_str());
+     add_msg(_("The %s emits some smoke."), it->tname().c_str());
    }
    break;
 
@@ -518,8 +516,8 @@ void game::process_artifact(item *it, player *p, bool wielded)
    if (one_in(150)) { // Once every 15 minutes, on average
     p->add_disease(DI_EVIL, 300, this);
     if (!wielded && !it->is_armor())
-     add_msg("You have an urge to %s the %s.",
-             (it->is_armor() ? "wear" : "wield"), it->tname().c_str());
+     add_msg(_("You have an urge to %s the %s."),
+             (it->is_armor() ? _("wear") : _("wield")), it->tname().c_str());
    }
    break;
 
@@ -589,92 +587,92 @@ void game::add_artifact_messages(std::vector<art_effect_passive> effects)
     break; // No message
 
    case AEP_SNAKES:
-    add_msg("Your skin feels slithery.");
+    add_msg(_("Your skin feels slithery."));
     break;
 
    case AEP_INVISIBLE:
-    add_msg("You fade into invisibility!");
+    add_msg(_("You fade into invisibility!"));
     break;
 
    case AEP_CLAIRVOYANCE:
-    add_msg("You can see through walls!");
+    add_msg(_("You can see through walls!"));
     break;
 
    case AEP_STEALTH:
-    add_msg("Your steps stop making noise.");
+    add_msg(_("Your steps stop making noise."));
     break;
 
    case AEP_GLOW:
-    add_msg("A glow of light forms around you.");
+    add_msg(_("A glow of light forms around you."));
     break;
 
    case AEP_PSYSHIELD:
-    add_msg("Your mental state feels protected.");
+    add_msg(_("Your mental state feels protected."));
     break;
 
    case AEP_RESIST_ELECTRICITY:
-    add_msg("You feel insulated.");
+    add_msg(_("You feel insulated."));
     break;
 
    case AEP_CARRY_MORE:
-    add_msg("Your back feels strengthened.");
+    add_msg(_("Your back feels strengthened."));
     break;
 
    case AEP_HUNGER:
-    add_msg("You feel hungry.");
+    add_msg(_("You feel hungry."));
     break;
 
    case AEP_THIRST:
-    add_msg("You feel thirsty.");
+    add_msg(_("You feel thirsty."));
     break;
 
    case AEP_EVIL:
-    add_msg("You feel an evil presence...");
+    add_msg(_("You feel an evil presence..."));
     break;
 
    case AEP_SCHIZO:
-    add_msg("You feel a tickle of insanity.");
+    add_msg(_("You feel a tickle of insanity."));
     break;
 
    case AEP_RADIOACTIVE:
-    add_msg("Your skin prickles with radiation.");
+    add_msg(_("Your skin prickles with radiation."));
     break;
 
    case AEP_MUTAGENIC:
-    add_msg("You feel your genetic makeup degrading.");
+    add_msg(_("You feel your genetic makeup degrading."));
     break;
 
    case AEP_ATTENTION:
-    add_msg("You feel an otherworldly attention upon you...");
+    add_msg(_("You feel an otherworldly attention upon you..."));
     break;
 
    case AEP_FORCE_TELEPORT:
-    add_msg("You feel a force pulling you inwards.");
+    add_msg(_("You feel a force pulling you inwards."));
     break;
 
    case AEP_MOVEMENT_NOISE:
-    add_msg("You hear a rattling noise coming from inside yourself.");
+    add_msg(_("You hear a rattling noise coming from inside yourself."));
     break;
 
    case AEP_BAD_WEATHER:
-    add_msg("You feel storms coming.");
+    add_msg(_("You feel storms coming."));
     break;
   }
  }
 
  std::stringstream stat_info;
  if (net_str != 0)
-  stat_info << "Str " << (net_str > 0 ? "+" : "") << net_str << "! ";
+  stat_info << format(_("Str %s%d! "), (net_str > 0 ? "+" : ""), net_str);
  if (net_dex != 0)
-  stat_info << "Dex " << (net_dex > 0 ? "+" : "") << net_dex << "! ";
+  stat_info << format(_("Dex %s%d! "), (net_dex > 0 ? "+" : ""), net_dex);
  if (net_int != 0)
-  stat_info << "Int " << (net_int > 0 ? "+" : "") << net_int << "! ";
+  stat_info << format(_("Int %s%d! "), (net_int > 0 ? "+" : ""), net_int);
  if (net_per != 0)
-  stat_info << "Per " << (net_per > 0 ? "+" : "") << net_per << "! ";
+  stat_info << format(_("Per %s%d! "), (net_per > 0 ? "+" : ""), net_per);
 
  if (stat_info.str().length() > 0)
   add_msg(stat_info.str().c_str());
 
  if (net_speed != 0)
-  add_msg("Speed %s%d", (net_speed > 0 ? "+" : ""), net_speed);
+  add_msg(_("Speed %s%d"), (net_speed > 0 ? "+" : ""), net_speed);
 }

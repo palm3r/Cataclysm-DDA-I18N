@@ -1,13 +1,14 @@
 #include "gamemode.h"
 #include "output.h"
+#include "i18n.h"
 
 std::string special_game_name(special_game_id id)
 {
  switch (id) {
   case SGAME_NULL:
   case NUM_SPECIAL_GAMES:	return "nethack (this is a bug)";
-  case SGAME_TUTORIAL:		return "Tutorial";
-  case SGAME_DEFENSE:		return "Defense";
+  case SGAME_TUTORIAL:		return _("Tutorial");
+  case SGAME_DEFENSE:		return _("Defense");
   default:			return "Uncoded (this is a bug)";
  }
 }

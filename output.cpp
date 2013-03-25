@@ -13,6 +13,7 @@
 #include "keypress.h"
 #include "options.h"
 #include "cursesdef.h"
+#include "i18n.h"
 
 #define LINE_XOXO 4194424
 #define LINE_OXOX 4194417
@@ -342,7 +343,7 @@ bool query_yn(const char *mes, ...)
 
  wborder(w, LINE_XOXO, LINE_XOXO, LINE_OXOX, LINE_OXOX,
             LINE_OXXO, LINE_OOXX, LINE_XXOO, LINE_XOOX );
- mvwprintz(w, 1, 1, c_ltred, "%s (%s)", buff, (force_uc ? "Y/N - Case Sensitive" : "y/n"));
+ mvwprintz(w, 1, 1, c_ltred, "%s (%s)", buff, (force_uc ? _("Y/N - Case Sensitive") : "y/n"));
  wrefresh(w);
  char ch;
  do

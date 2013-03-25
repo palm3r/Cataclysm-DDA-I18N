@@ -4,6 +4,7 @@
 #include "game.h"
 #include "line.h"
 #include "debug.h"
+#include "i18n.h"
 
 #define dbg(x) dout((DebugLevel)(x),D_NPC) << __FILE__ << ":" << __LINE__ << ": "
 #define TARGET_PLAYER -2
@@ -174,7 +175,7 @@ void npc::execute_action(game *g, npc_action action, int target)
    debugmsg("NPC reload failed.");
   recoil = 6;
   if (g->u_see(posx, posy, linet))
-   g->add_msg("%s reloads %s %s.", name.c_str(), (male ? "his" : "her"),
+   g->add_msg(_("%s reloads %s %s."), name.c_str(), (male ? _("his") : _("her")),
               weapon.tname().c_str());
   } break;
 
@@ -184,7 +185,7 @@ void npc::execute_action(game *g, npc_action action, int target)
  */
   //add_disease(DI_LYING_DOWN, 300, g);
   if (is_friend() && g->u_see(posx, posy, linet))
-   say(g, "I'm going to sleep.");
+   say(g, _("I'm going to sleep."));
   break;
 
  case npc_pickup:
@@ -615,14 +616,14 @@ npc_action npc::address_player(game *g)
    return npc_talk_to_player; // Close enough to talk to you
   else {
    if (one_in(10))
-    say(g, "<lets_talk>");
+    say(g, _("<lets_talk>"));
    return npc_follow_player;
   }
  }
 
  if (attitude == NPCATT_MUG && g->sees_u(posx, posy, linet)) {
   if (one_in(3))
-   say(g, "Don't move a <swear> muscle...");
+   say(g, _("Don't move a <swear> muscle..."));
   return npc_mug_player;
  }
 
@@ -644,11 +645,11 @@ npc_action npc::address_player(game *g)
       !g->sees_u(posx, posy, linet)) {
    int intense = disease_intensity(DI_CATCH_UP);
    if (intense < 10) {
-    say(g, "<keep_up>");
+    say(g, _("<keep_up>"));
     add_disease(DI_CATCH_UP, 5, g, 1, 15);
     return npc_pause;
    } else if (intense == 10) {
-    say(g, "<im_leaving_you>");
+    say(g, _("<im_leaving_you>"));
     add_disease(DI_CATCH_UP, 5, g, 1, 15);
     return npc_pause;
    } else
@@ -978,7 +979,7 @@ void npc::move_to(game *g, int x, int y)
   //debugmsg("Bumped into a monster, %d, a %s",g->mon_at(x, y),m->name().c_str());
   melee_monster(g, g->mon_at(x, y));
  } else if (g->u.posx == x && g->u.posy == y) {
-  say(g, "<let_me_pass>");
+  say(g, _("<let_me_pass>"));
   moves -= 100;
  } else if (g->npc_at(x, y) != -1)
 // TODO: Determine if it's an enemy NPC (hit them), or a friendly in the way
@@ -1025,7 +1026,7 @@ void npc::avoid_friendly_fire(game *g, int target)
   tarx = g->z[target].posx;
   tary = g->z[target].posy;
   if (!one_in(3))
-   say(g, "<move> so I can shoot that %s!", g->z[target].name().c_str());
+   say(g, _("<move> so I can shoot that %s!"), g->z[target].name().c_str());
  } else {
   debugmsg("npc::avoid_friendly_fire() called with no target!");
   move_pause();
@@ -1210,7 +1211,7 @@ void npc::find_item(game *g)
  }
 
  if (fetching_item && is_following())
-  say(g, "Hold on, I want to pick up that %s.",
+  say(g, _("Hold on, I want to pick up that %s."),
       g->m.i_at(itx, ity)[index].tname().c_str());
 }
 
@@ -1260,28 +1261,28 @@ void npc::pick_up_item(game *g)
  if (u_see_me) {
   if (pickup.size() == 1) {
    if (u_see_items)
-    g->add_msg("%s picks up a %s.", name.c_str(),
+    g->add_msg(_("%s picks up a %s."), name.c_str(),
                (*items)[pickup[0]].tname().c_str());
    else
-    g->add_msg("%s picks something up.", name.c_str());
+    g->add_msg(_("%s picks something up."), name.c_str());
   } else if (pickup.size() == 2) {
    if (u_see_items)
-    g->add_msg("%s picks up a %s and a %s.", name.c_str(),
+    g->add_msg(_("%s picks up a %s and a %s."), name.c_str(),
                (*items)[pickup[0]].tname().c_str(),
                (*items)[pickup[1]].tname().c_str());
    else
-    g->add_msg("%s picks up a couple of items.", name.c_str());
+    g->add_msg(_("%s picks up a couple of items."), name.c_str());
   } else
-   g->add_msg("%s picks up several items.", name.c_str());
+   g->add_msg(_("%s picks up several items."), name.c_str());
  } else if (u_see_items) {
   if (pickup.size() == 1)
-   g->add_msg("Someone picks up a %s.", (*items)[pickup[0]].tname().c_str());
+   g->add_msg(_("Someone picks up a %s."), (*items)[pickup[0]].tname().c_str());
   else if (pickup.size() == 2)
-   g->add_msg("Someone picks up a %s and a %s",
+   g->add_msg(_("Someone picks up a %s and a %s"),
               (*items)[pickup[0]].tname().c_str(),
               (*items)[pickup[1]].tname().c_str());
   else
-   g->add_msg("Someone picks up several items.");
+   g->add_msg(_("Someone picks up several items."));
  }
 
  for (int i = 0; i < pickup.size(); i++) {
@@ -1381,7 +1382,7 @@ void npc::drop_items(game *g, int weight, int volume)
   if (num_items_dropped == 1)
    item_name << dropped.tname();
   else if (num_items_dropped == 2)
-   item_name << " and a " << dropped.tname();
+   item_name << format(_(" and a %s"), dropped.tname().c_str());
   g->m.add_item(posx, posy, dropped);
  }
 // Finally, describe the action if u can see it
@@ -1389,9 +1390,9 @@ void npc::drop_items(game *g, int weight, int volume)
  std::string item_name_str = item_name.str();
  if (g->u_see(posx, posy, linet)) {
   if (num_items_dropped >= 3)
-   g->add_msg("%s drops %d items.", name.c_str(), num_items_dropped);
+   g->add_msg(_("%s drops %d items."), name.c_str(), num_items_dropped);
   else
-   g->add_msg("%s drops a %s.", name.c_str(), item_name_str.c_str());
+   g->add_msg(_("%s drops a %s."), name.c_str(), item_name_str.c_str());
  }
  update_worst_item_value();
 }
@@ -1538,7 +1539,7 @@ void npc::alt_attack(game *g, int target)
     trajectory = line_to(posx, posy, tarx, tary, 0);
    moves -= 125;
    if (g->u_see(posx, posy, linet))
-    g->add_msg("%s throws a %s.", name.c_str(), used->tname().c_str());
+    g->add_msg(_("%s throws a %s."), name.c_str(), used->tname().c_str());
    g->throw_item(*this, tarx, tary, *used, trajectory);
    i_remn(index);
 
@@ -1590,7 +1591,7 @@ void npc::alt_attack(game *g, int target)
      trajectory = line_to(posx, posy, tarx, tary, 0);
     moves -= 125;
     if (g->u_see(posx, posy, linet))
-     g->add_msg("%s throws a %s.", name.c_str(), used->tname().c_str());
+     g->add_msg(_("%s throws a %s."), name.c_str(), used->tname().c_str());
     g->throw_item(*this, tarx, tary, *used, trajectory);
     i_remn(index);
    }
@@ -1655,15 +1656,15 @@ void npc::heal_player(game *g, player &patient)
   if (patient.is_npc()) {
    if (u_see_me) {
     if (u_see_patient)
-     g->add_msg("%s heals %s.",  name.c_str(), patient.name.c_str());
+     g->add_msg(_("%s heals %s."),  name.c_str(), patient.name.c_str());
     else
-     g->add_msg("%s heals someone.", name.c_str());
+     g->add_msg(_("%s heals someone."), name.c_str());
    } else if (u_see_patient)
-    g->add_msg("Someone heals %s.", patient.name.c_str());
+    g->add_msg(_("Someone heals %s."), patient.name.c_str());
   } else if (u_see_me)
-   g->add_msg("%s heals you.", name.c_str());
+   g->add_msg(_("%s heals you."), name.c_str());
   else
-   g->add_msg("Someone heals you.");
+   g->add_msg(_("Someone heals you."));
 
   int amount_healed;
   if (has_amount(itm_1st_aid, 1)) {
@@ -1690,9 +1691,9 @@ void npc::heal_player(game *g, player &patient)
        (fac_has_value(FACVAL_CHARITABLE) ?  5 : 0) +
        (fac_has_job  (FACJOB_DOCTORS)    ? 15 : 0) - op_of_u.fear * 3 <  25) {
     attitude = NPCATT_FOLLOW;
-    say(g, "That's all the healing I can do.");
+    say(g, _("That's all the healing I can do."));
    } else
-    say(g, "Hold still, I can heal you more.");
+    say(g, _("Hold still, I can heal you more."));
   }
  }
 }
@@ -1736,7 +1737,7 @@ void npc::heal_self(game *g)
  }
  int t;
  if (g->u_see(posx, posy, t))
-  g->add_msg("%s heals %sself.", name.c_str(), (male ? "him" : "her"));
+  g->add_msg(_("%s heals %sself."), name.c_str(), (male ? _("him") : _("her")));
  heal(worst, amount_healed);
  moves -= 250;
 }
@@ -1829,16 +1830,16 @@ void npc::mug_player(game *g, player &mark)
    if (mark.is_npc()) {
     if (u_see_me) {
      if (u_see_mark)
-      g->add_msg("%s takes %s's money!", name.c_str(), mark.name.c_str());
+      g->add_msg(_("%s takes %s's money!"), name.c_str(), mark.name.c_str());
      else
-      g->add_msg("%s takes someone's money!", name.c_str());
+      g->add_msg(_("%s takes someone's money!"), name.c_str());
     } else if (u_see_mark)
-     g->add_msg("Someone takes %s's money!", mark.name.c_str());
+     g->add_msg(_("Someone takes %s's money!"), mark.name.c_str());
    } else {
     if (u_see_me)
-     g->add_msg("%s takes your money!", name.c_str());
+     g->add_msg(_("%s takes your money!"), name.c_str());
     else
-     g->add_msg("Someone takes your money!");
+     g->add_msg(_("Someone takes your money!"));
    }
   } else { // We already have their money; take some goodies!
 // value_mod affects at what point we "take the money and run"
@@ -1862,7 +1863,7 @@ void npc::mug_player(game *g, player &mark)
    if (index == -1) { // Didn't find anything worthwhile!
     attitude = NPCATT_FLEE;
     if (!one_in(3))
-     say(g, "<done_mugging>");
+     say(g, _("<done_mugging>"));
     moves -= 100;
    } else {
     int t;
@@ -1872,18 +1873,18 @@ void npc::mug_player(game *g, player &mark)
     if (mark.is_npc()) {
      if (u_see_me) {
       if (u_see_mark)
-       g->add_msg("%s takes %s's %s.", name.c_str(), mark.name.c_str(),
+       g->add_msg(_("%s takes %s's %s."), name.c_str(), mark.name.c_str(),
                   stolen.tname().c_str());
       else
-       g->add_msg("%s takes something from somebody.", name.c_str());
+       g->add_msg(_("%s takes something from somebody."), name.c_str());
      } else if (u_see_mark)
-      g->add_msg("Someone takes %s's %s.", mark.name.c_str(),
+      g->add_msg(_("Someone takes %s's %s."), mark.name.c_str(),
                  stolen.tname().c_str());
     } else {
      if (u_see_me)
-      g->add_msg("%s takes your %s.", name.c_str(), stolen.tname().c_str());
+      g->add_msg(_("%s takes your %s."), name.c_str(), stolen.tname().c_str());
      else
-      g->add_msg("Someone takes your %s.", stolen.tname().c_str());
+      g->add_msg(_("Someone takes your %s."), stolen.tname().c_str());
     }
     i_add(stolen);
     moves -= 100;
@@ -1923,11 +1924,11 @@ void npc::look_for_player(game *g, player &sought)
   }
  }
  if (possibilities.size() == 0) { // We see all the spots we'd like to check!
-  say(g, "<wait>");
+  say(g, _("<wait>"));
   move_pause();
  } else {
   if (one_in(6))
-   say(g, "<wait>");
+   say(g, _("<wait>"));
   int index = rng(0, possibilities.size() - 1);
   update_path(g, possibilities[index].x, possibilities[index].y);
   move_to_next(g);
@@ -2049,32 +2050,32 @@ void npc::go_to_destination(game *g)
 std::string npc_action_name(npc_action action)
 {
  switch (action) {
-  case npc_undecided:		return "Undecided";
-  case npc_pause:		return "Pause";
-  case npc_reload:		return "Reload";
-  case npc_sleep:		return "Sleep";
-  case npc_pickup:		return "Pick up items";
-  case npc_escape_item:		return "Use escape item";
-  case npc_wield_melee:		return "Wield melee weapon";
-  case npc_wield_loaded_gun:	return "Wield loaded gun";
-  case npc_wield_empty_gun:	return "Wield empty gun";
-  case npc_heal:		return "Heal self";
-  case npc_use_painkiller:	return "Use painkillers";
-  case npc_eat:			return "Eat";
-  case npc_drop_items:		return "Drop items";
-  case npc_flee:		return "Flee";
-  case npc_melee:		return "Melee";
-  case npc_shoot:		return "Shoot";
-  case npc_shoot_burst:		return "Fire a burst";
-  case npc_alt_attack:		return "Use alternate attack";
-  case npc_look_for_player:	return "Look for player";
-  case npc_heal_player:		return "Heal player";
-  case npc_follow_player:	return "Follow player";
-  case npc_follow_embarked: return "Follow player (embarked)";
-  case npc_talk_to_player:	return "Talk to player";
-  case npc_mug_player:		return "Mug player";
-  case npc_goto_destination:	return "Go to destination";
-  case npc_avoid_friendly_fire:	return "Avoid friendly fire";
+  case npc_undecided:		return _("Undecided");
+  case npc_pause:		return _("Pause");
+  case npc_reload:		return _("Reload");
+  case npc_sleep:		return _("Sleep");
+  case npc_pickup:		return _("Pick up items");
+  case npc_escape_item:		return _("Use escape item");
+  case npc_wield_melee:		return _("Wield melee weapon");
+  case npc_wield_loaded_gun:	return _("Wield loaded gun");
+  case npc_wield_empty_gun:	return _("Wield empty gun");
+  case npc_heal:		return _("Heal self");
+  case npc_use_painkiller:	return _("Use painkillers");
+  case npc_eat:			return _("Eat");
+  case npc_drop_items:		return _("Drop items");
+  case npc_flee:		return _("Flee");
+  case npc_melee:		return _("Melee");
+  case npc_shoot:		return _("Shoot");
+  case npc_shoot_burst:		return _("Fire a burst");
+  case npc_alt_attack:		return _("Use alternate attack");
+  case npc_look_for_player:	return _("Look for player");
+  case npc_heal_player:		return _("Heal player");
+  case npc_follow_player:	return _("Follow player");
+  case npc_follow_embarked: return _("Follow player (embarked)");
+  case npc_talk_to_player:	return _("Talk to player");
+  case npc_mug_player:		return _("Mug player");
+  case npc_goto_destination:	return _("Go to destination");
+  case npc_avoid_friendly_fire:	return _("Avoid friendly fire");
   default: 			return "Unnamed action";
  }
 }

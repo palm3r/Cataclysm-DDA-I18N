@@ -7,6 +7,7 @@
 #include "crafting.h"
 #include "setvector.h"
 #include "inventory.h"
+#include "i18n.h"
 
 void draw_recipe_tabs(WINDOW *w, craft_cat tab);
 
@@ -1212,7 +1213,7 @@ void game::recraft()
 {
  if(u.lastrecipe == NULL)
  {
-  popup("Craft something first");
+  popup(_("Craft something first"));
  }
  else
  {
@@ -1228,7 +1229,7 @@ void game::try_and_make(recipe *making)
    if (u.has_watertight_container() || u.has_matching_liquid(itypes[making->result]->id)) {
      make_craft(making);
    } else {
-     popup("You don't have anything to store that liquid in!");
+     popup(_("You don't have anything to store that liquid in!"));
    }
   }
   else {
@@ -1237,7 +1238,7 @@ void game::try_and_make(recipe *making)
  }
  else
  {
-  popup("You can't do that!");
+  popup(_("You can't do that!"));
  }
 }
 bool game::can_make(recipe *r)
@@ -1309,7 +1310,7 @@ bool game::can_make(recipe *r)
 void game::craft()
 {
  if (u.morale_level() < MIN_MORALE_CRAFT) {	// See morale.h
-  add_msg("Your morale is too low to craft...");
+  add_msg(_("Your morale is too low to craft..."));
   return;
  }
 
@@ -1339,7 +1340,7 @@ void game::craft()
 
 // Clear the screen of recipe data, and draw it anew
   werase(w_data);
-  mvwprintz(w_data, 20, 5, c_white, "Press ? to describe object.  Press <ENTER> to attempt to craft object.");
+  mvwprintz(w_data, 20, 5, c_white, _("Press ? to describe object.  Press <ENTER> to attempt to craft object."));
   for (int i = 0; i < 80; i++) {
    mvwputch(w_data, 21, i, c_ltgray, LINE_OXOX);
 
@@ -1402,29 +1403,29 @@ void game::craft()
   }
   if (current.size() > 0) {
    nc_color col = (available[line] ? c_white : c_dkgray);
-   mvwprintz(w_data, 0, 30, col, "Primary skill: %s",
-             (current[line]->sk_primary == NULL ? "N/A" :
+   mvwprintz(w_data, 0, 30, col, _("Primary skill: %s"),
+             (current[line]->sk_primary == NULL ? _("N/A") :
               current[line]->sk_primary->name().c_str()));
-   mvwprintz(w_data, 1, 30, col, "Secondary skill: %s",
-             (current[line]->sk_secondary == NULL ? "N/A" :
+   mvwprintz(w_data, 1, 30, col, _("Secondary skill: %s"),
+             (current[line]->sk_secondary == NULL ? _("N/A") :
               current[line]->sk_secondary->name().c_str()));
-   mvwprintz(w_data, 2, 30, col, "Difficulty: %d", current[line]->difficulty);
+   mvwprintz(w_data, 2, 30, col, _("Difficulty: %d"), current[line]->difficulty);
    if (current[line]->sk_primary == NULL)
-    mvwprintz(w_data, 3, 30, col, "Your skill level: N/A");
+    mvwprintz(w_data, 3, 30, col, _("Your skill level: N/A"));
    else
-    mvwprintz(w_data, 3, 30, col, "Your skill level: %d",
+    mvwprintz(w_data, 3, 30, col, _("Your skill level: %d"),
               // Macs don't seem to like passing this as a class, so force it to int
               (int)u.skillLevel(current[line]->sk_primary));
    if (current[line]->time >= 1000)
-    mvwprintz(w_data, 4, 30, col, "Time to complete: %d minutes",
+    mvwprintz(w_data, 4, 30, col, _("Time to complete: %d minutes"),
               int(current[line]->time / 1000));
    else
-    mvwprintz(w_data, 4, 30, col, "Time to complete: %d turns",
+    mvwprintz(w_data, 4, 30, col, _("Time to complete: %d turns"),
               int(current[line]->time / 100));
-   mvwprintz(w_data, 5, 30, col, "Tools required:");
+   mvwprintz(w_data, 5, 30, col, _("Tools required:"));
    if (current[line]->tools[0].size() == 0) {
     mvwputch(w_data, 6, 30, col, '>');
-    mvwprintz(w_data, 6, 32, c_green, "NONE");
+    mvwprintz(w_data, 6, 32, c_green, _("NONE"));
     ypos = 6;
    } else {
     ypos = 5;
@@ -1447,7 +1448,7 @@ void game::craft()
       std::stringstream toolinfo;
       toolinfo << itypes[type]->name + " ";
       if (charges > 0)
-       toolinfo << "(" << charges << " charges) ";
+       toolinfo << format(_("(%d charges)"), charges);
       std::string toolname = toolinfo.str();
       if (xpos + toolname.length() >= 80) {
        xpos = 32;
@@ -1460,7 +1461,7 @@ void game::craft()
         xpos = 32;
         ypos++;
        }
-       mvwprintz(w_data, ypos, xpos, c_white, "OR ");
+       mvwprintz(w_data, ypos, xpos, c_white, _("OR "));
        xpos += 3;
       }
      }
@@ -1468,7 +1469,7 @@ void game::craft()
    }
  // Loop to print the required components
    ypos++;
-   mvwprintz(w_data, ypos, 30, col, "Components required:");
+   mvwprintz(w_data, ypos, 30, col, _("Components required:"));
    for (int i = 0; i < 5; i++) {
     if (current[line]->components[i].size() > 0) {
      ypos++;
@@ -1498,7 +1499,7 @@ void game::craft()
        ypos++;
        xpos = 32;
       }
-      mvwprintz(w_data, ypos, xpos, c_white, "OR ");
+      mvwprintz(w_data, ypos, xpos, c_white, _("OR "));
       xpos += 3;
      }
     }
@@ -1532,7 +1533,7 @@ void game::craft()
     break;
    case Confirm:
     if (!available[line])
-     popup("You can't do that!");
+     popup(_("You can't do that!"));
     else
     // is player making a liquid? Then need to check for valid container
     if (itypes[current[line]->result]->m1 == LIQUID)
@@ -1542,7 +1543,7 @@ void game::craft()
              done = true;
              break;
      } else {
-       popup("You don't have anything to store that liquid in!");
+       popup(_("You don't have anything to store that liquid in!"));
      }
     }
     else {
@@ -1578,14 +1579,14 @@ void draw_recipe_tabs(WINDOW *w, craft_cat tab)
  mvwputch(w, 2,  0, c_ltgray, LINE_OXXO); // |^
  mvwputch(w, 2, 79, c_ltgray, LINE_OOXX); // ^|
 
- draw_tab(w,  2, "WEAPONS", (tab == CC_WEAPON) ? true : false);
- draw_tab(w, 13, "AMMO",    (tab == CC_AMMO)   ? true : false);
- draw_tab(w, 21, "FOOD",    (tab == CC_FOOD)   ? true : false);
- draw_tab(w, 29, "DRINKS",  (tab == CC_DRINK)  ? true : false);
- draw_tab(w, 39, "CHEMS",   (tab == CC_CHEM)   ? true : false);
- draw_tab(w, 48, "ELECTRONICS", (tab == CC_ELECTRONIC) ? true : false);
- draw_tab(w, 63, "ARMOR",   (tab == CC_ARMOR)  ? true : false);
- draw_tab(w, 72, "MISC",    (tab == CC_MISC)   ? true : false);
+ draw_tab(w,  2, _("WEAPONS"), (tab == CC_WEAPON) ? true : false);
+ draw_tab(w, 13, _("AMMO"),    (tab == CC_AMMO)   ? true : false);
+ draw_tab(w, 21, _("FOOD"),    (tab == CC_FOOD)   ? true : false);
+ draw_tab(w, 29, _("DRINKS"),  (tab == CC_DRINK)  ? true : false);
+ draw_tab(w, 39, _("CHEMS"),   (tab == CC_CHEM)   ? true : false);
+ draw_tab(w, 48, _("ELECTRONICS"), (tab == CC_ELECTRONIC) ? true : false);
+ draw_tab(w, 63, _("ARMOR"),   (tab == CC_ARMOR)  ? true : false);
+ draw_tab(w, 72, _("MISC"),    (tab == CC_MISC)   ? true : false);
 
  wrefresh(w);
 }
@@ -1701,7 +1702,7 @@ void game::complete_craft()
 
 // Messed up badly; waste some components.
  if (making->difficulty != 0 && diff_roll > skill_roll * (1 + 0.1 * rng(1, 5))) {
-  add_msg("You fail to make the %s, and waste some materials.",
+  add_msg(_("You fail to make the %s, and waste some materials."),
           itypes[making->result]->name.c_str());
   for (int i = 0; i < 5; i++) {
    if (making->components[i].size() > 0) {
@@ -1717,7 +1718,7 @@ void game::complete_craft()
   return;
   // Messed up slightly; no components wasted.
  } else if (diff_roll > skill_roll) {
-  add_msg("You fail to make the %s, but don't waste any materials.",
+  add_msg(_("You fail to make the %s, but don't waste any materials."),
           itypes[making->result]->name.c_str());
   u.activity.type = ACT_NULL;
   return;
@@ -1754,11 +1755,11 @@ void game::complete_craft()
  else {
 // We might not have space for the item
   if (iter == 52 || u.volume_carried()+newit.volume() > u.volume_capacity()) {
-   add_msg("There's no room in your inventory for the %s, so you drop it.",
+   add_msg(_("There's no room in your inventory for the %s, so you drop it."),
              newit.tname().c_str());
    m.add_item(u.posx, u.posy, newit);
   } else if (u.weight_carried() + newit.volume() > u.weight_capacity()) {
-   add_msg("The %s is too heavy to carry, so you drop it.",
+   add_msg(_("The %s is too heavy to carry, so you drop it."),
            newit.tname().c_str());
    m.add_item(u.posx, u.posy, newit);
   } else {
@@ -1829,13 +1830,13 @@ void game::consume_items(std::vector<component> components)
   std::vector<std::string> options; // List for the menu_vec below
 // Populate options with the names of the items
   for (int i = 0; i < map_has.size(); i++) {
-   std::string tmpStr = itypes[map_has[i].type]->name + " (nearby)";
+   std::string tmpStr = itypes[map_has[i].type]->name + _(" (nearby)");
    options.push_back(tmpStr);
   }
   for (int i = 0; i < player_has.size(); i++)
    options.push_back(itypes[player_has[i].type]->name);
   for (int i = 0; i < mixed.size(); i++) {
-   std::string tmpStr = itypes[mixed[i].type]->name +" (on person & nearby)";
+   std::string tmpStr = itypes[mixed[i].type]->name +_(" (on person & nearby)");
    options.push_back(tmpStr);
   }
 
@@ -1843,7 +1844,7 @@ void game::consume_items(std::vector<component> components)
    return;                 // and the fire goes out.
 
 // Get the selection via a menu popup
-  int selection = menu_vec("Use which component?", options) - 1;
+  int selection = menu_vec(_("Use which component?"), options) - 1;
   if (selection < map_has.size())
    map_use.push_back(map_has[selection]);
   else if (selection < map_has.size() + player_has.size()) {
@@ -1922,7 +1923,7 @@ void game::consume_tools(std::vector<component> tools)
 // Populate the list
   std::vector<std::string> options;
   for (int i = 0; i < map_has.size(); i++) {
-   std::string tmpStr = itypes[map_has[i].type]->name + " (nearby)";
+   std::string tmpStr = itypes[map_has[i].type]->name + _(" (nearby)");
    options.push_back(tmpStr);
   }
   for (int i = 0; i < player_has.size(); i++)
@@ -1932,7 +1933,7 @@ void game::consume_tools(std::vector<component> tools)
    return;                 // and the fire goes out.
 
 // Get selection via a popup menu
-  int selection = menu_vec("Use which tool?", options) - 1;
+  int selection = menu_vec(_("Use which tool?"), options) - 1;
   if (selection < map_has.size())
    m.use_charges(point(u.posx, u.posy), PICKUP_RANGE,
                     map_has[selection].type, map_has[selection].count);
@@ -1945,19 +1946,19 @@ void game::consume_tools(std::vector<component> tools)
 
 void game::disassemble()
 {
-  char ch = inv("Disassemble item:");
+  char ch = inv(_("Disassemble item:"));
   if (ch == 27) {
-    add_msg("Never mind.");
+    add_msg(_("Never mind."));
     return;
   }
   if (!u.has_item(ch)) {
-    add_msg("You don't have item '%c'!", ch);
+    add_msg(_("You don't have item '%c'!"), ch);
     return;
   }
 
   item* dis_item = &u.i_at(ch);
 
-  if (OPTIONS[OPT_QUERY_DISASSEMBLE] && !(query_yn("Really disassemble your %s?", dis_item->tname(this).c_str())))
+  if (OPTIONS[OPT_QUERY_DISASSEMBLE] && !(query_yn(_("Really disassemble your %s?"), dis_item->tname(this).c_str())))
     return;
 
   for (int i = 0; i < recipes.size(); i++) {
@@ -2002,17 +2003,17 @@ void game::disassemble()
           {
             int req = recipes[i]->tools[j][0].count;
             if (recipes[i]->tools[j][0].type == itm_welder)
-                add_msg("You need a hack saw to disassemble this.");
+                add_msg(_("You need a hack saw to disassemble this."));
             else
             {
               if (req <= 0)
               {
-                add_msg("You need a %s to disassemble this.",
+                add_msg(_("You need a %s to disassemble this."),
                 itypes[recipes[i]->tools[j][0].type]->name.c_str());
               }
               else
               {
-                add_msg("You need a %s with %d charges to disassemble this.",
+                add_msg(_("You need a %s with %d charges to disassemble this."),
                 itypes[recipes[i]->tools[j][0].type]->name.c_str(), req);
               }
             }
@@ -2033,7 +2034,7 @@ void game::disassemble()
     }
   }
   // no recipe exists, or the item cannot be disassembled
-  add_msg("This item cannot be disassembled!");
+  add_msg(_("This item cannot be disassembled!"));
 }
 
 void game::complete_disassemble()
@@ -2042,7 +2043,7 @@ void game::complete_disassemble()
   recipe* dis = recipes[u.activity.index]; // Which recipe is it?
   item* dis_item = &u.i_at(u.activity.values[0]);
 
-  add_msg("You disassemble the item into its components.");
+  add_msg(_("You disassemble the item into its components."));
   // remove any batteries or ammo first
     if (dis_item->is_gun() && dis_item->curammo != NULL && dis_item->ammo_type() != AT_NULL)
     {
@@ -2114,14 +2115,14 @@ void game::complete_disassemble()
             if (dis->difficulty == 0 || comp_success)
               m.add_item(u.posx, u.posy, itypes[dis->components[j][0].type], 0, compcount);
             else
-              add_msg("You fail to recover a component.");
+              add_msg(_("You fail to recover a component."));
             compcount = 0;
           } else
           {
             if (dis->difficulty == 0 || comp_success)
               m.add_item(u.posx, u.posy, newit);
             else
-              add_msg("You fail to recover a component.");
+              add_msg(_("You fail to recover a component."));
             compcount--;
           }
         }

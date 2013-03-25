@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include "debug.h"
+#include "i18n.h"
 
 #define SGN(a) (((a)<0) ? -1 : 1)
 #define INBOUNDS(x, y) \
@@ -479,7 +480,7 @@ bool map::vehproceed(game* g){
       }
       // submerged wheels threshold is 2/3.
       if (num_wheels &&  (float)submerged_wheels / num_wheels > .666){
-         g->add_msg ("Your %s sank.", veh->name.c_str());
+         g->add_msg (_("Your %s sank."), veh->name.c_str());
          if (pl_ctrl)
             veh->unboard_all ();
          // destroy vehicle (sank to nowhere)
@@ -522,7 +523,7 @@ bool map::vehproceed(game* g){
       }
    }
    else if (pl_ctrl && rng(0, 4) > g->u.skillLevel("driving") && one_in(20)) {
-      g->add_msg("You fumble with the %s's controls.", veh->name.c_str());
+      g->add_msg(_("You fumble with the %s's controls."), veh->name.c_str());
       veh->turn (one_in(2) ? -15 : 15);
    }
    // eventually send it skidding if no control
@@ -573,7 +574,7 @@ bool map::vehproceed(game* g){
       // remaining times are normalized,
       veh_collision c = veh_veh_colls[0];
       vehicle* veh2 = (vehicle*) c.target;
-      g->add_msg("The %s's %s collides with the %s's %s",
+      g->add_msg(_("The %s's %s collides with the %s's %s"),
                  veh->name.c_str(),  veh->part_info(c.part).name.c_str(),
                 veh2->name.c_str(), veh2->part_info(c.target_part).name.c_str());
 
@@ -635,18 +636,12 @@ bool map::vehproceed(game* g){
          const int sb_bonus = psblt >= 0? veh->part_info(psblt).bonus : 0;
          bool throw_from_seat = throw_roll > (psg->str_cur + sb_bonus) * 3;
 
-         std::string psgname, psgverb;
-         if (psg == &g->u) {
-            psgname = "You";
-            psgverb = "were";
-         } else {
-            psgname = psg->name;
-            psgverb = "was";
-         }
+         std::string psgname = (psg == &g->u ? _("You") : psg->name);
          if (throw_from_seat) {
             if (psgname.length())
-               g->add_msg("%s %s hurled from the %s's seat by the power of impact!",
-                     psgname.c_str(), psgverb.c_str(), veh->name.c_str());
+               g->add_msg(P_("%s were hurled from the %s's seat by the power of impact!",
+                             "%s was hurled from the %s's seat by the power of impact!", psg != &g->u),
+                             psgname.c_str(), veh->name.c_str());
             g->m.unboard_vehicle(g, x + veh->parts[ppl[ps]].precalc_dx[0],
                   y + veh->parts[ppl[ps]].precalc_dy[0]);
             g->fling_player_or_monster(psg, 0, mdir.dir() + rng(0, 60) - 30,
@@ -657,8 +652,8 @@ bool map::vehproceed(game* g){
             const int lose_ctrl_roll = rng (0, imp);
             if (lose_ctrl_roll > psg->dex_cur * 2 + psg->skillLevel("driving") * 3) {
                if (psgname.length())
-                  g->add_msg ("%s lose%s control of the %s.", psgname.c_str(),
-                        (psg == &g->u ? "" : "s"), veh->name.c_str());
+                  g->add_msg (P_("%s lose control of the %s.", "%s loses control of the %s.", psg != &g->u), psgname.c_str(),
+                        veh->name.c_str());
                int turn_amount = (rng (1, 3) * sqrt (vel2) / 2) / 15;
                if (turn_amount < 1)
                   turn_amount = 1;
@@ -681,7 +676,7 @@ bool map::vehproceed(game* g){
          const int p = veh->external_parts[ep];
          if (veh->part_flag(p, vpf_wheel) && one_in(2))
             if (displace_water (x + veh->parts[p].precalc_dx[0], y + veh->parts[p].precalc_dy[0]) && pl_ctrl)
-               g->add_msg ("You hear a splash!");
+               g->add_msg (_("You hear a splash!"));
          veh->handle_trap(x + veh->parts[p].precalc_dx[0],
                y + veh->parts[p].precalc_dy[0], p);
       }
@@ -819,13 +814,13 @@ std::string map::features(const int x, const int y)
 // to take up one line.  So, make sure it does that.
  std::string ret;
  if (has_flag(bashable, x, y))
-  ret += "Smashable. ";	// 11 chars (running total)
+  ret += _("Smashable. ");	// 11 chars (running total)
  if (has_flag(diggable, x, y))
-  ret += "Diggable. ";	// 21 chars
+  ret += _("Diggable. ");	// 21 chars
  if (has_flag(rough, x, y))
-  ret += "Rough. ";	// 28 chars
+  ret += _("Rough. ");	// 28 chars
  if (has_flag(sharp, x, y))
-  ret += "Sharp. ";	// 35 chars
+  ret += _("Sharp. ");	// 35 chars
  return ret;
 }
 
@@ -1009,9 +1004,9 @@ bool map::bash(const int x, const int y, const int str, std::string &sound, int 
    // the check for active supresses molotovs smashing themselves with their own explosion
    if (i_at(x, y)[i].made_of(GLASS) && !i_at(x, y)[i].active && one_in(2)) {
    if (sound == "")
-    sound = "A " + i_at(x, y)[i].tname() + " shatters!  ";
+    sound = format(_("A %s shatters!  "), i_at(x, y)[i].tname().c_str());
    else
-    sound = "Some items shatter!  ";
+    sound = _("Some items shatter!  ");
    for (int j = 0; j < i_at(x, y)[i].contents.size(); j++)
     i_at(x, y).push_back(i_at(x, y)[i].contents[j]);
    i_rem(x, y, i);
@@ -1025,7 +1020,7 @@ bool map::bash(const int x, const int y, const int str, std::string &sound, int 
  if (veh) {
   veh->damage (vpart, str, 1);
   result = str;
-  sound += "crash!";
+  sound += _("crash!");
   return true;
  }
 
@@ -1036,12 +1031,12 @@ bool map::bash(const int x, const int y, const int str, std::string &sound, int 
   result = rng(0, 50);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 50)) {
-   sound += "clang!";
+   sound += _("clang!");
    ter(x, y) = t_chainfence_posts;
    add_item(x, y, (*itypes)[itm_wire], 0, rng(4, 10));
    return true;
   } else {
-   sound += "clang!";
+   sound += _("clang!");
    return true;
   }
   break;
@@ -1050,7 +1045,7 @@ bool map::bash(const int x, const int y, const int str, std::string &sound, int 
   result = rng(0, 120);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 120)) {
-   sound += "crunch!";
+   sound += _("crunch!");
    ter(x, y) = t_wall_wood_chipped;
    if(one_in(2))
     add_item(x, y, (*itypes)[itm_2x4], 0);
@@ -1058,7 +1053,7 @@ bool map::bash(const int x, const int y, const int str, std::string &sound, int 
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1067,14 +1062,14 @@ bool map::bash(const int x, const int y, const int str, std::string &sound, int 
   result = rng(0, 100);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 100)) {
-   sound += "crunch!";
+   sound += _("crunch!");
    ter(x, y) = t_wall_wood_broken;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(1, 4));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(1, 3));
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1083,14 +1078,14 @@ bool map::bash(const int x, const int y, const int str, std::string &sound, int 
   result = rng(0, 80);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 80)) {
-   sound += "crash!";
+   sound += _("crash!");
    ter(x, y) = t_dirt;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(2, 5));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(4, 10));
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1100,13 +1095,13 @@ case t_palisade_gate:
   result = rng(0, 120);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 120)) {
-   sound += "crunch!";
+   sound += _("crunch!");
    ter(x, y) = t_pit;
    if(one_in(2))
    add_item(x, y, (*itypes)[itm_splinter], 0, 20);
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1115,13 +1110,13 @@ case t_wall_log:
   result = rng(0, 120);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 120)) {
-   sound += "crunch!";
+   sound += _("crunch!");
    ter(x, y) = t_wall_log_chipped;
    if(one_in(2))
    add_item(x, y, (*itypes)[itm_splinter], 0, 3);
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1130,12 +1125,12 @@ case t_wall_log:
   result = rng(0, 100);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 100)) {
-   sound += "crunch!";
+   sound += _("crunch!");
    ter(x, y) = t_wall_log_broken;
    add_item(x, y, (*itypes)[itm_splinter], 0, 5);
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1144,12 +1139,12 @@ case t_wall_log:
   result = rng(0, 80);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 80)) {
-   sound += "crash!";
+   sound += _("crash!");
    ter(x, y) = t_dirt;
    add_item(x, y, (*itypes)[itm_splinter], 0, 5);
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1159,13 +1154,13 @@ case t_wall_log:
   result = rng(0, has_adjacent_furniture(x, y) ? 80 : 100);
   if (res) *res = result;
   if (str >= result && str >= rng(0, 80)) {
-   sound += "clang!";
+   sound += _("clang!");
    ter(x, y) = t_dirt;
    add_item(x, y, (*itypes)[itm_wire], 0, rng(8, 20));
    add_item(x, y, (*itypes)[itm_scrap], 0, rng(0, 12));
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1174,14 +1169,14 @@ case t_wall_log:
   result = rng(0, has_adjacent_furniture(x, y) ? 30 : 40);
   if (res) *res = result;
   if (str >= result) {
-   sound += "crash!";
+   sound += _("crash!");
    ter(x, y) = t_dirtfloor;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(1, 4));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(2, 12));
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "wham!";
+   sound += _("wham!");
    return true;
   }
   break;
@@ -1192,11 +1187,11 @@ case t_wall_log:
   result = rng(0, has_adjacent_furniture(x, y) ? 40 : 50);
   if (res) *res = result;
   if (str >= result) {
-   sound += "smash!";
+   sound += _("smash!");
    ter(x, y) = t_door_b;
    return true;
   } else {
-   sound += "whump!";
+   sound += _("whump!");
    return true;
   }
   break;
@@ -1205,14 +1200,14 @@ case t_wall_log:
   result = rng(0, has_adjacent_furniture(x, y) ? 30 : 40);
   if (res) *res = result;
   if (str >= result) {
-   sound += "crash!";
+   sound += _("crash!");
    ter(x, y) = t_door_frame;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(1, 6));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(2, 12));
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "wham!";
+   sound += _("wham!");
    return true;
   }
   break;
@@ -1223,13 +1218,13 @@ case t_wall_log:
   result = rng(0, 6);
   if (res) *res = result;
   if (str >= result) {
-   sound += "glass breaking!";
+   sound += _("glass breaking!");
    ter(x, y) = t_window_frame;
   add_item(x, y, (*itypes)[itm_sheet], 0, 1);
   add_item(x, y, (*itypes)[itm_stick], 0);
    return true;
   } else {
-   sound += "whack!";
+   sound += _("whack!");
    return true;
   }
   break;
@@ -1241,11 +1236,11 @@ case t_wall_log:
   result = rng(0, 6);
   if (res) *res = result;
   if (str >= result) {
-   sound += "glass breaking!";
+   sound += _("glass breaking!");
    ter(x, y) = t_window_frame;
    return true;
   } else {
-   sound += "whack!";
+   sound += _("whack!");
    return true;
   }
   break;
@@ -1254,14 +1249,14 @@ case t_wall_log:
   result = rng(0, has_adjacent_furniture(x, y) ? 50 : 60);
   if (res) *res = result;
   if (str >= result) {
-   sound += "crash!";
+   sound += _("crash!");
    ter(x, y) = t_door_frame;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(1, 6));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(2, 12));
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "wham!";
+   sound += _("wham!");
    return true;
   }
   break;
@@ -1270,14 +1265,14 @@ case t_wall_log:
   result = rng(0, 30);
   if (res) *res = result;
   if (str >= result) {
-   sound += "crash!";
+   sound += _("crash!");
    ter(x, y) = t_window_frame;
    const int num_boards = rng(0, 2) * rng(0, 1);
    for (int i = 0; i < num_boards; i++)
     add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "wham!";
+   sound += _("wham!");
    return true;
   }
   break;
@@ -1311,10 +1306,10 @@ case t_wall_log:
      ter(tentx + i, tenty + j) = t_dirt;
     }
 
-   sound += "rrrrip!";
+   sound += _("rrrrip!");
    return true;
   } else {
-   sound += "slap!";
+   sound += _("slap!");
    return true;
   }
   break;
@@ -1348,10 +1343,10 @@ case t_wall_log:
      ter(tentx + i, tenty + j) = t_dirt;
     }
 
-   sound += "rrrrip!";
+   sound += _("rrrrip!");
    return true;
   } else {
-   sound += "slap!";
+   sound += _("slap!");
    return true;
   }
   break;
@@ -1360,11 +1355,11 @@ case t_wall_log:
   result = dice(1, 6) - 2;
   if (res) *res = result;
   if (str >= result) {
-   sound += "rrrrip!";
+   sound += _("rrrrip!");
    ter(x, y) = t_dirt;
    return true;
   } else {
-   sound += "slap!";
+   sound += _("slap!");
    return true;
   }
   break;
@@ -1376,7 +1371,7 @@ case t_wall_log:
   result = rng(0, 30);
   if (res) *res = result;
   if (str >= result) {
-   sound += "metal screeching!";
+   sound += _("metal screeching!");
    ter(x, y) = t_metal;
    add_item(x, y, (*itypes)[itm_scrap], 0, rng(2, 8));
    const int num_boards = rng(0, 3);
@@ -1385,7 +1380,7 @@ case t_wall_log:
    add_item(x, y, (*itypes)[itm_pipe], 0);
    return true;
   } else {
-   sound += "clang!";
+   sound += _("clang!");
    return true;
   }
   break;
@@ -1396,11 +1391,11 @@ case t_wall_log:
   result = dice(8, 4) - 8;
   if (res) *res = result;
   if (str >= result) {
-   sound += "porcelain breaking!";
+   sound += _("porcelain breaking!");
    ter(x, y) = t_rubble;
    return true;
   } else {
-   sound += "whunk!";
+   sound += _("whunk!");
    return true;
   }
   break;
@@ -1413,14 +1408,14 @@ case t_wall_log:
   result = rng(0, 45);
   if (res) *res = result;
   if (str >= result) {
-   sound += "smash!";
+   sound += _("smash!");
    ter(x, y) = t_floor;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(2, 6));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(4, 12));
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "whump.";
+   sound += _("whump.");
    return true;
   }
   break;
@@ -1429,12 +1424,12 @@ case t_wall_log:
   result = rng(0, 10);
   if (res) *res = result;
   if (str >= result) {
-   sound += "crak";
+   sound += _("crak");
    ter(x, y) = t_dirt;
    add_item(x, y, (*itypes)[itm_spear_wood], 0, 1);
    return true;
   } else {
-   sound += "whump.";
+   sound += _("whump.");
    return true;
   }
   break;
@@ -1446,14 +1441,14 @@ case t_wall_log:
   result = rng(0, 30);
   if (res) *res = result;
   if (str >= result) {
-   sound += "smash!";
+   sound += _("smash!");
    ter(x, y) = t_floor;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(1, 3));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(2, 6));
    add_item(x, y, (*itypes)[itm_splinter], 0);
    return true;
   } else {
-   sound += "whump.";
+   sound += _("whump.");
    return true;
   }
   break;
@@ -1466,11 +1461,11 @@ case t_wall_log:
   result = rng(0, 20);
   if (res) *res = result;
   if (str >= result) {
-   sound += "glass breaking!";
+   sound += _("glass breaking!");
    ter(x, y) = t_floor;
    return true;
   } else {
-   sound += "whack!";
+   sound += _("whack!");
    return true;
   }
   break;
@@ -1480,11 +1475,11 @@ case t_wall_log:
   result = rng(60, 100);
   if (res) *res = result;
   if (str >= result) {
-   sound += "glass breaking!";
+   sound += _("glass breaking!");
    ter(x, y) = t_floor;
    return true;
   } else {
-   sound += "whack!";
+   sound += _("whack!");
    return true;
   }
   break;
@@ -1493,14 +1488,14 @@ case t_wall_log:
   result = rng(0, 50);
   if (res) *res = result;
   if (str >= result) {
-   sound += "crunch!";
+   sound += _("crunch!");
    ter(x, y) = t_underbrush;
    const int num_sticks = rng(0, 3);
    for (int i = 0; i < num_sticks; i++)
     add_item(x, y, (*itypes)[itm_stick], 0);
    return true;
   } else {
-   sound += "whack!";
+   sound += _("whack!");
    return true;
   }
   break;
@@ -1509,22 +1504,22 @@ case t_wall_log:
   result = rng(0, 30);
   if (res) *res = result;
   if (str >= result && !one_in(4)) {
-   sound += "crunch.";
+   sound += _("crunch.");
    ter(x, y) = t_dirt;
    return true;
   } else {
-   sound += "brush.";
+   sound += _("brush.");
    return true;
   }
   break;
 
  case t_shrub:
   if (str >= rng(0, 30) && str >= rng(0, 30) && str >= rng(0, 30) && one_in(2)){
-   sound += "crunch.";
+   sound += _("crunch.");
    ter(x, y) = t_underbrush;
    return true;
   } else {
-   sound += "brush.";
+   sound += _("brush.");
    return true;
   }
   break;
@@ -1533,11 +1528,11 @@ case t_wall_log:
   result = rng(0, 40);
   if (res) *res = result;
   if (str >= result) {
-   sound += "crunch!";
+   sound += _("crunch!");
    ter(x, y) = t_fungus;
    return true;
   } else {
-   sound += "whack!";
+   sound += _("whack!");
    return true;
   }
   break;
@@ -1546,11 +1541,11 @@ case t_wall_log:
   result = dice(2, 20);
   if (res) *res = result;
   if (str >= result) {
-   sound += "ker-rash!";
+   sound += _("ker-rash!");
    ter(x, y) = t_floor;
    return true;
   } else {
-   sound += "plunk.";
+   sound += _("plunk.");
    return true;
   }
  case t_crate_c:
@@ -1558,19 +1553,19 @@ case t_wall_log:
   result = dice(4, 20);
   if (res) *res = result;
   if (str >= result) {
-   sound += "smash";
+   sound += _("smash");
    ter(x, y) = t_dirt;
    add_item(x, y, (*itypes)[itm_2x4], 0, rng(1, 5));
    add_item(x, y, (*itypes)[itm_nail], 0, rng(2, 10));
    return true;
   } else {
-   sound += "wham!";
+   sound += _("wham!");
    return true;
   }
  }
  if (res) *res = result;
  if (move_cost(x, y) == 0) {
-  sound += "thump!";
+  sound += _("thump!");
   return true;
  }
  return smashed_web;// If we kick empty space, the action is cancelled
@@ -1625,7 +1620,7 @@ void map::destroy(game *g, const int x, const int y, const bool makesound)
   break;
 
  case t_floor:
- g->sound(x, y, 20, "SMASH!!");
+ g->sound(x, y, 20, _("SMASH!!"));
   for (int i = x - 2; i <= x + 2; i++) {
    for (int j = y - 2; j <= y + 2; j++) {
     if (move_cost(i, j) > 0 && one_in(5))
@@ -1658,7 +1653,7 @@ void map::destroy(game *g, const int x, const int y, const bool makesound)
  case t_concrete_h:
  case t_wall_v:
  case t_wall_h:
- g->sound(x, y, 20, "SMASH!!");
+ g->sound(x, y, 20, _("SMASH!!"));
   for (int i = x - 2; i <= x + 2; i++) {
    for (int j = y - 2; j <= y + 2; j++) {
     if (move_cost(i, j) > 0 && one_in(5))
@@ -1702,7 +1697,7 @@ void map::destroy(game *g, const int x, const int y, const bool makesound)
  }
 
  if (makesound)
-  g->sound(x, y, 40, "SMASH!!");
+  g->sound(x, y, 40, _("SMASH!!"));
 }
 
 void map::shoot(game *g, const int x, const int y, int &dam,
@@ -1712,7 +1707,7 @@ void map::shoot(game *g, const int x, const int y, int &dam,
   return;
 
  if (has_flag(alarmed, x, y) && !g->event_queued(EVENT_WANTED)) {
-  g->sound(g->u.posx, g->u.posy, 30, "An alarm sounds!");
+  g->sound(g->u.posx, g->u.posy, 30, _("An alarm sounds!"));
   g->add_event(EVENT_WANTED, int(g->turn) + 300, 0, g->levx, g->levy);
  }
 
@@ -1801,7 +1796,7 @@ void map::shoot(game *g, const int x, const int y, int &dam,
 
  case t_vat:
   if (dam >= 10) {
-   g->sound(x, y, 15, "ke-rash!");
+   g->sound(x, y, 15, _("ke-rash!"));
    ter(x, y) = t_floor;
   } else
    dam = 0;
@@ -2344,7 +2339,7 @@ void map::disarm_trap(game *g, const int x, const int y)
  while ((rng(5, 20) < g->u.per_cur || rng(1, 20) < g->u.dex_cur) && roll < 50)
   roll++;
  if (roll >= diff) {
-  g->add_msg("You disarm the trap!");
+  g->add_msg(_("You disarm the trap!"));
   std::vector<itype_id> comp = g->traps[tr_at(x, y)]->components;
   for (int i = 0; i < comp.size(); i++) {
    if (comp[i] != itm_null)
@@ -2354,12 +2349,12 @@ void map::disarm_trap(game *g, const int x, const int y)
   if(diff > 1.25 * skillLevel) // failure might have set off trap
     g->u.practice("traps", 1.5*(diff - skillLevel));
  } else if (roll >= diff * .8) {
-  g->add_msg("You fail to disarm the trap.");
+  g->add_msg(_("You fail to disarm the trap."));
   if(diff > 1.25 * skillLevel)
     g->u.practice("traps", 1.5*(diff - skillLevel));
  }
  else {
-  g->add_msg("You fail to disarm the trap, and you set it off!");
+  g->add_msg(_("You fail to disarm the trap, and you set it off!"));
   trap* tr = g->traps[tr_at(x, y)];
   trapfunc f;
   (f.*(tr->act))(g, x, y);
@@ -2411,7 +2406,7 @@ bool map::add_field(game *g, const int x, const int y,
  grid[nonant]->fld[lx][ly] = field(t, density, 0);
  if (g != NULL && lx == g->u.posx && ly == g->u.posy &&
      grid[nonant]->fld[lx][ly].is_dangerous()) {
-  g->cancel_activity_query("You're in a %s!",
+  g->cancel_activity_query(_("You're in a %s!"),
                            fieldlist[t].name[density - 1].c_str());
  }
  return true;

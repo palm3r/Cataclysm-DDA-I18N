@@ -1,6 +1,7 @@
 #include "keypress.h"
 #include "action.h"
 #include "game.h"
+#include "i18n.h"
 
 long input(long ch)
 {
@@ -108,7 +109,7 @@ void get_direction(game *g, int &x, int &y, char ch)
 
 std::string default_keymap_txt()
 {
- return "\
+ return _("\
 # This is the keymapping for Cataclysm.\n\
 # You can start a line with # to make it a comment--it will be ignored.\n\
 # Blank lines are ignored too.\n\
@@ -220,5 +221,5 @@ help ?\n\
 debug_mode ~\n\
 # debug Z\n\
 # debug_scent -\n\
-";
+");
 }

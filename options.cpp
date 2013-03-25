@@ -2,6 +2,7 @@
 #include "options.h"
 #include "output.h"
 #include "keypress.h"
+#include "i18n.h"
 
 #include <stdlib.h>
 #include <fstream>
@@ -27,16 +28,16 @@ void game::show_options()
  do {
   wborder(w_options_border, LINE_XOXO, LINE_XOXO, LINE_OXOX, LINE_OXOX,
                             LINE_OXXO, LINE_OOXX, LINE_XXOO, LINE_XOOX);
-  mvwprintz(w_options_border, 0, 36, c_ltred, " OPTIONS ");
+  mvwprintz(w_options_border, 0, 36, c_ltred, _(" OPTIONS "));
   wrefresh(w_options_border);
 
 // TODO: change instructions
   if (needs_refresh) {
     werase(w_options);
-    mvwprintz(w_options, 0, 40, c_white, "Use up/down keys to scroll through");
-    mvwprintz(w_options, 1, 40, c_white, "available options.");
-    mvwprintz(w_options, 2, 40, c_white, "Use left/right keys to toggle.");
-    mvwprintz(w_options, 3, 40, c_white, "Press ESC or q to return.             ");
+    mvwprintz(w_options, 0, 40, c_white, _("Use up/down keys to scroll through"));
+    mvwprintz(w_options, 1, 40, c_white, _("available options."));
+    mvwprintz(w_options, 2, 40, c_white, _("Use left/right keys to toggle."));
+    mvwprintz(w_options, 3, 40, c_white, _("Press ESC or q to return.             "));
 // highlight options for option descriptions
     std::string tmp = option_desc(option_key(offset + line));
     std::string out;
@@ -68,9 +69,9 @@ void game::show_options()
       {
         bool on = OPTIONS[ option_key(offset + i) ];
         if (i == line)
-          mvwprintz(w_options, i, 30, hilite(c_ltcyan), (on ? "True" : "False"));
+          mvwprintz(w_options, i, 30, hilite(c_ltcyan), (on ? _("True") : _("False")));
         else
-          mvwprintz(w_options, i, 30, (on ? c_ltgreen : c_ltred), (on ? "True" : "False"));
+          mvwprintz(w_options, i, 30, (on ? c_ltgreen : c_ltred), (on ? _("True") : _("False")));
       } else {
         char option_val = OPTIONS[ option_key(offset + i) ];
         if (i == line)
@@ -123,7 +124,7 @@ void game::show_options()
   }
  } while (ch != 'q' && ch != 'Q' && ch != KEY_ESCAPE);
 
- if (changed_options && query_yn("Save changes?"))
+ if (changed_options && query_yn(_("Save changes?")))
   save_options();
  werase(w_options);
 }
@@ -262,28 +263,28 @@ std::string option_string(option_key key)
 std::string option_desc(option_key key)
 {
  switch (key) {
-  case OPT_USE_CELSIUS:		return "If true, use C not F";
-  case OPT_USE_METRIC_SYS:	return "If true, use Km/h not mph";
-  case OPT_FORCE_YN:		return "If true, y/n prompts are case-sensitive\nand y and n are not accepted";
-  case OPT_NO_CBLINK:		return "If true, bright backgrounds are not\nused--some consoles are not compatible";
-  case OPT_24_HOUR:		return "12h/24h Time:\n0 - AM/PM\n1 - 24h military\n2 - 24h normal";
-  case OPT_SNAP_TO_TARGET:	return "If true, automatically follow the\ncrosshair when firing/throwing";
-  case OPT_SAFEMODE:		return "If true, safemode will be on after\nstarting a new game or loading";
-  case OPT_SAFEMODEPROXIMITY: return "If safemode is enabled,\ndistance to hostiles when safemode\nshould show a warning (0=Viewdistance)";
-  case OPT_AUTOSAFEMODE:	return "If true, auto-safemode will be on\nafter starting a new game or loading";
-  case OPT_AUTOSAFEMODETURNS: return "Number of turns after safemode\nis reenabled if no hostiles are\nin safemodeproximity distance";
-  case OPT_AUTOSAVE:    	return "If true, game will periodically\nsave the map";
-  case OPT_GRADUAL_NIGHT_LIGHT: return "If true will add nice gradual-lighting\n(should only make a difference @night)";
-  case OPT_QUERY_DISASSEMBLE: return "If true, will query before disassembling\nitems";
-  case OPT_DROP_EMPTY: return "Set to drop empty containers after use\n0 - don't drop any\n1 - all except watertight containers\n2 - all containers";
-  case OPT_SKILL_RUST: return "Set the level of skill rust\n0 - vanilla Cataclysm\n1 - capped at skill levels\n2 - none at all";
-  case OPT_DELETE_WORLD: return "Delete saves upon player death\n0 - no\n1 - yes\n2 - query";
-  case OPT_INITIAL_POINTS: return "Initial points available on character\ngeneration.  Default is 6";
-  case OPT_INITIAL_TIME: return "Initial starting time of day on character\ngeneration.  Default is 8:00";
-  case OPT_VIEWPORT_X: return "WINDOWS ONLY: Set the expansion of the viewport along\nthe X axis.  Must restart for changes\nto take effect.  Default is 12. POSIX\nsystems will use terminal size at startup.";
-  case OPT_VIEWPORT_Y: return "WINDOWS ONLY: Set the expansion of the viewport along\nthe Y axis.  Must restart for changes\nto take effect.  Default is 12. POSIX\nsystems will use terminal size at startup.";
-  case OPT_STATIC_SPAWN: return "Spawn zombies at game start instead of\nduring game. Must delete save directory\nafter changing for it to take effect.\nDefault is F";
-  case OPT_CLASSIC_ZOMBIES: return "Only spawn classic zombies and natural\nwildlife. Probably requires a reset of\nsave folder to take effect. Default is F";
+  case OPT_USE_CELSIUS:		return _("If true, use C not F");
+  case OPT_USE_METRIC_SYS:	return _("If true, use Km/h not mph");
+  case OPT_FORCE_YN:		return _("If true, y/n prompts are case-sensitive\nand y and n are not accepted");
+  case OPT_NO_CBLINK:		return _("If true, bright backgrounds are not\nused--some consoles are not compatible");
+  case OPT_24_HOUR:		return _("12h/24h Time:\n0 - AM/PM\n1 - 24h military\n2 - 24h normal");
+  case OPT_SNAP_TO_TARGET:	return _("If true, automatically follow the\ncrosshair when firing/throwing");
+  case OPT_SAFEMODE:		return _("If true, safemode will be on after\nstarting a new game or loading");
+  case OPT_SAFEMODEPROXIMITY: return _("If safemode is enabled,\ndistance to hostiles when safemode\nshould show a warning (0=Viewdistance)");
+  case OPT_AUTOSAFEMODE:	return _("If true, auto-safemode will be on\nafter starting a new game or loading");
+  case OPT_AUTOSAFEMODETURNS: return _("Number of turns after safemode\nis reenabled if no hostiles are\nin safemodeproximity distance");
+  case OPT_AUTOSAVE:    	return _("If true, game will periodically\nsave the map");
+  case OPT_GRADUAL_NIGHT_LIGHT: return _("If true will add nice gradual-lighting\n(should only make a difference @night)");
+  case OPT_QUERY_DISASSEMBLE: return _("If true, will query before disassembling\nitems");
+  case OPT_DROP_EMPTY: return _("Set to drop empty containers after use\n0 - don't drop any\n1 - all except watertight containers\n2 - all containers");
+  case OPT_SKILL_RUST: return _("Set the level of skill rust\n0 - vanilla Cataclysm\n1 - capped at skill levels\n2 - none at all");
+  case OPT_DELETE_WORLD: return _("Delete saves upon player death\n0 - no\n1 - yes\n2 - query");
+  case OPT_INITIAL_POINTS: return _("Initial points available on character\ngeneration.  Default is 6");
+  case OPT_INITIAL_TIME: return _("Initial starting time of day on character\ngeneration.  Default is 8:00");
+  case OPT_VIEWPORT_X: return _("WINDOWS ONLY: Set the expansion of the viewport along\nthe X axis.  Must restart for changes\nto take effect.  Default is 12. POSIX\nsystems will use terminal size at startup.");
+  case OPT_VIEWPORT_Y: return _("WINDOWS ONLY: Set the expansion of the viewport along\nthe Y axis.  Must restart for changes\nto take effect.  Default is 12. POSIX\nsystems will use terminal size at startup.");
+  case OPT_STATIC_SPAWN: return _("Spawn zombies at game start instead of\nduring game. Must delete save directory\nafter changing for it to take effect.\nDefault is F");
+  case OPT_CLASSIC_ZOMBIES: return _("Only spawn classic zombies and natural\nwildlife. Probably requires a reset of\nsave folder to take effect. Default is F");
   default:			return " ";
  }
  return "Big ol Bug";
@@ -292,28 +293,28 @@ std::string option_desc(option_key key)
 std::string option_name(option_key key)
 {
  switch (key) {
-  case OPT_USE_CELSIUS:		return "Use Celsius";
-  case OPT_USE_METRIC_SYS:	return "Use Metric System";
-  case OPT_FORCE_YN:		return "Force Y/N in prompts";
-  case OPT_NO_CBLINK:		return "No Bright Backgrounds";
-  case OPT_24_HOUR:		return "24 Hour Time";
-  case OPT_SNAP_TO_TARGET:	return "Snap to Target";
-  case OPT_SAFEMODE:		return "Safemode on by default";
-  case OPT_SAFEMODEPROXIMITY: return "Safemode proximity distance";
-  case OPT_AUTOSAFEMODE:	return "Auto-Safemode on by default";
-  case OPT_AUTOSAFEMODETURNS: return "Turns to reenable safemode";
-  case OPT_AUTOSAVE:    	return "Periodically Autosave";
-  case OPT_GRADUAL_NIGHT_LIGHT: return "Gradual night light";
-  case OPT_QUERY_DISASSEMBLE: return "Query on disassembly";
-  case OPT_DROP_EMPTY: return "Drop empty containers";
-  case OPT_SKILL_RUST: return "Skill Rust";
-  case OPT_DELETE_WORLD: return "Delete World";
-  case OPT_INITIAL_POINTS: return "Initial points";
-  case OPT_INITIAL_TIME: return "Initial time";
-  case OPT_VIEWPORT_X: return "Viewport width";
-  case OPT_VIEWPORT_Y: return "Viewport height";
-  case OPT_STATIC_SPAWN: return "Static spawn";
-  case OPT_CLASSIC_ZOMBIES: return "Classic zombies";
+  case OPT_USE_CELSIUS:		return _("Use Celsius");
+  case OPT_USE_METRIC_SYS:	return _("Use Metric System");
+  case OPT_FORCE_YN:		return _("Force Y/N in prompts");
+  case OPT_NO_CBLINK:		return _("No Bright Backgrounds");
+  case OPT_24_HOUR:		return _("24 Hour Time");
+  case OPT_SNAP_TO_TARGET:	return _("Snap to Target");
+  case OPT_SAFEMODE:		return _("Safemode on by default");
+  case OPT_SAFEMODEPROXIMITY: return _("Safemode proximity distance");
+  case OPT_AUTOSAFEMODE:	return _("Auto-Safemode on by default");
+  case OPT_AUTOSAFEMODETURNS: return _("Turns to reenable safemode");
+  case OPT_AUTOSAVE:    	return _("Periodically Autosave");
+  case OPT_GRADUAL_NIGHT_LIGHT: return _("Gradual night light");
+  case OPT_QUERY_DISASSEMBLE: return _("Query on disassembly");
+  case OPT_DROP_EMPTY: return _("Drop empty containers");
+  case OPT_SKILL_RUST: return _("Skill Rust");
+  case OPT_DELETE_WORLD: return _("Delete World");
+  case OPT_INITIAL_POINTS: return _("Initial points");
+  case OPT_INITIAL_TIME: return _("Initial time");
+  case OPT_VIEWPORT_X: return _("Viewport width");
+  case OPT_VIEWPORT_Y: return _("Viewport height");
+  case OPT_STATIC_SPAWN: return _("Static spawn");
+  case OPT_CLASSIC_ZOMBIES: return _("Classic zombies");
   default:			return "Unknown Option (BUG)";
  }
  return "Big ol Bug";
@@ -386,7 +387,7 @@ void create_default_options()
  if (!fout.is_open())
   return;
 
- fout << options_header() << "\n\
+ fout << options_header() << _("\n\
 # If true, use C not F\n\
 use_celsius F\n\
 # If true, use Km/h not mph\
@@ -434,13 +435,13 @@ viewport_y 12\n\
 static_spawn T\n\
 # Only spawn classic zombies and natural wildlife.  You must create a new world after changing\n\
 classic_zombies F\n\
-";
+");
  fout.close();
 }
 
 std::string options_header()
 {
- return "\
+ return _("\
 # This is the options file.  It works similarly to keymap.txt: the format is\n\
 # <option name> <option value>\n\
 # <option value> may be any number, positive or negative.  If you use a\n\
@@ -452,7 +453,7 @@ std::string options_header()
 # If you want to restore the default options, simply delete this file.\n\
 # A new options.txt will be created next time you play.\n\
 \n\
-";
+");
 }
 
 void save_options()

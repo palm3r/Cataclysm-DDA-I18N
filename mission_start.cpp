@@ -2,6 +2,7 @@
 #include "game.h"
 #include "name.h"
 #include <sstream>
+#include "i18n.h"
 
 /* These functions are responsible for making changes to the game at the moment
  * the mission is accepted by the player.  They are also responsible for
@@ -38,7 +39,7 @@ void mission_start::place_dog(game *g, mission *miss)
   return;
  }
  g->u.i_add( item(g->itypes[itm_dog_whistle], 0) );
- g->add_msg("%s gave you a dog whistle.", dev->name.c_str());
+ g->add_msg(_("%s gave you a dog whistle."), dev->name.c_str());
 
  miss->target = house;
 // Make it seen on our map
@@ -79,7 +80,7 @@ void mission_start::place_npc_software(game *g, mission *miss)
   return;
  }
  g->u.i_add( item(g->itypes[itm_usb_drive], 0) );
- g->add_msg("%s gave you a USB drive.", dev->name.c_str());
+ g->add_msg(_("%s gave you a USB drive."), dev->name.c_str());
 
  oter_id ter = ot_house_north;
 
@@ -194,7 +195,7 @@ void mission_start::place_npc_software(game *g, mission *miss)
  computer *tmpcomp = compmap.add_computer(comppoint.x, comppoint.y,
                                           compname.str(), 0);
  tmpcomp->mission_id = miss->uid;
- tmpcomp->add_option("Download Software", COMPACT_DOWNLOAD_SOFTWARE, 0);
+ tmpcomp->add_option(_("Download Software"), COMPACT_DOWNLOAD_SOFTWARE, 0);
 
  compmap.save(&(g->cur_om), int(g->turn), place.x * 2, place.y * 2, 0);
 }
@@ -204,7 +205,7 @@ void mission_start::reveal_hospital(game *g, mission *miss)
  npc* dev = g->find_npc(miss->npc_id);
  if (dev != NULL) {
   g->u.i_add( item(g->itypes[itm_vacutainer], 0) );
-  g->add_msg("%s gave you a vacutainer.", dev->name.c_str());
+  g->add_msg(_("%s gave you a vacutainer."), dev->name.c_str());
  }
  int dist = 0;
  point place = g->cur_om.find_closest(g->om_location(), ot_hospital, 1, dist,

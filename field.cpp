@@ -1,6 +1,7 @@
 #include "rng.h"
 #include "map.h"
 #include "game.h"
+#include "i18n.h"
 
 #define INBOUNDS(x, y) \
  (x >= 0 && x < SEEX * my_MAPSIZE && y >= 0 && y < SEEY * my_MAPSIZE)
@@ -557,7 +558,7 @@ bool map::process_fields_in_submap(game *g, int gridn)
        point newp = valid[rng(0, valid.size() - 1)];
        add_item(newp.x, newp.y, tmp);
        if (g->u.posx == newp.x && g->u.posy == newp.y) {
-        g->add_msg("A %s hits you!", tmp.tname().c_str());
+        g->add_msg(_("A %s hits you!"), tmp.tname().c_str());
         g->u.hit(g, random_body_part(), rng(0, 1), 6, 0);
        }
        int npcdex = g->npc_at(newp.x, newp.y),
@@ -568,7 +569,7 @@ bool map::process_fields_in_submap(game *g, int gridn)
         npc *p = &(g->active_npc[npcdex]);
         p->hit(g, random_body_part(), rng(0, 1), 6, 0);
         if (g->u_see(newp.x, newp.y, junk))
-         g->add_msg("A %s hits %s!", tmp.tname().c_str(), p->name.c_str());
+         g->add_msg(_("A %s hits %s!"), tmp.tname().c_str(), p->name.c_str());
        }
 
        if (mondex != -1) {
@@ -576,7 +577,7 @@ bool map::process_fields_in_submap(game *g, int gridn)
         monster *mon = &(g->z[mondex]);
         mon->hurt(6 - mon->armor_bash());
         if (g->u_see(newp.x, newp.y, junk))
-         g->add_msg("A %s hits the %s!", tmp.tname().c_str(),
+         g->add_msg(_("A %s hits the %s!"), tmp.tname().c_str(),
                                          mon->name().c_str());
        }
       }
@@ -691,7 +692,7 @@ void map::step_in_field(int x, int y, game *g)
 
   case fd_acid:
    if (cur->density == 3 && !inside) {
-    g->add_msg("The acid burns your legs and feet!");
+    g->add_msg(_("The acid burns your legs and feet!"));
     g->u.hit(g, bp_feet, 0, 0, rng(4, 10));
     g->u.hit(g, bp_feet, 1, 0, rng(4, 10));
     g->u.hit(g, bp_legs, 0, 0, rng(2,  8));
@@ -701,7 +702,7 @@ void map::step_in_field(int x, int y, game *g)
 
  case fd_sap:
   if( g->u.in_vehicle ) break;
-  g->add_msg("The sap sticks to you!");
+  g->add_msg(_("The sap sticks to you!"));
   g->u.add_disease(DI_SAP, cur->density * 2, g);
   if (cur->density == 1)
    remove_field(x, y);
@@ -718,18 +719,18 @@ void map::step_in_field(int x, int y, game *g)
        adjusted_intensity -= 1;
    if (!g->u.has_active_bionic(bio_heatsink)) {
     if (adjusted_intensity == 1) {
-     g->add_msg("You burn your legs and feet!");
+     g->add_msg(_("You burn your legs and feet!"));
      g->u.hit(g, bp_feet, 0, 0, rng(2, 6));
      g->u.hit(g, bp_feet, 1, 0, rng(2, 6));
      g->u.hit(g, bp_legs, 0, 0, rng(1, 4));
      g->u.hit(g, bp_legs, 1, 0, rng(1, 4));
     } else if (adjusted_intensity == 2) {
-     g->add_msg("You're burning up!");
+     g->add_msg(_("You're burning up!"));
      g->u.hit(g, bp_legs, 0, 0,  rng(2, 6));
      g->u.hit(g, bp_legs, 1, 0,  rng(2, 6));
      g->u.hit(g, bp_torso, 0, 4, rng(4, 9));
     } else if (adjusted_intensity == 3) {
-     g->add_msg("You're set ablaze!");
+     g->add_msg(_("You're set ablaze!"));
      g->u.hit(g, bp_legs, 0, 0, rng(2, 6));
      g->u.hit(g, bp_legs, 1, 0, rng(2, 6));
      g->u.hit(g, bp_torso, 0, 4, rng(4, 9));
@@ -764,7 +765,7 @@ void map::step_in_field(int x, int y, game *g)
   case fd_nuke_gas:
    g->u.radiation += rng(0, cur->density * (cur->density + 1));
    if (cur->density == 3) {
-    g->add_msg("This radioactive gas burns!");
+    g->add_msg(_("This radioactive gas burns!"));
     g->u.hurtall(rng(1, 3));
    }
    break;
@@ -772,22 +773,22 @@ void map::step_in_field(int x, int y, game *g)
   case fd_flame_burst:
    if (inside) break;
    if (!g->u.has_active_bionic(bio_heatsink)) {
-    g->add_msg("You're torched by flames!");
+    g->add_msg(_("You're torched by flames!"));
     g->u.hit(g, bp_legs, 0, 0,  rng(2, 6));
     g->u.hit(g, bp_legs, 1, 0,  rng(2, 6));
     g->u.hit(g, bp_torso, 0, 4, rng(4, 9));
    } else
-    g->add_msg("These flames do not burn you.");
+    g->add_msg(_("These flames do not burn you."));
    break;
 
   case fd_electricity:
    if (g->u.has_artifact_with(AEP_RESIST_ELECTRICITY))
-    g->add_msg("The electricity flows around you.");
+    g->add_msg(_("The electricity flows around you."));
    else {
-    g->add_msg("You're electrocuted!");
+    g->add_msg(_("You're electrocuted!"));
     g->u.hurtall(rng(1, cur->density));
     if (one_in(8 - cur->density) && !one_in(30 - g->u.str_cur)) {
-     g->add_msg("You're paralyzed!");
+     g->add_msg(_("You're paralyzed!"));
      g->u.moves -= rng(cur->density * 50, cur->density * 150);
     }
    }
@@ -795,7 +796,7 @@ void map::step_in_field(int x, int y, game *g)
 
   case fd_fatigue:
    if (rng(0, 2) < cur->density) {
-    g->add_msg("You're violently teleported!");
+    g->add_msg(_("You're violently teleported!"));
     g->u.hurtall(cur->density);
     g->teleport();
    }
@@ -969,7 +970,7 @@ void map::mon_in_field(int x, int y, game *g, monster *z)
      int mon_hit = g->mon_at(newposx, newposy), t;
      if (mon_hit != -1) {
       if (g->u_see(z, t))
-       g->add_msg("The %s teleports into a %s, killing them both!",
+       g->add_msg(_("The %s teleports into a %s, killing them both!"),
                   z->name().c_str(), g->z[mon_hit].name().c_str());
       g->explode_mon(mon_hit);
      } else {

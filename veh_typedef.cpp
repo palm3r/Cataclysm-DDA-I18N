@@ -1,5 +1,6 @@
 #include "vehicle.h"
 #include "game.h"
+#include "i18n.h"
 
 // GENERAL GUIDELINES
 // When adding a new vehicle, you MUST REMEMBER to insert it in the vhtype_id enum
@@ -39,7 +40,7 @@ void game::init_vehicles()
     if (pi < 0) debugmsg("init_vehicles: '%s' part '%s'(%d) can't be installed to %d,%d", veh->name.c_str(), vpart_list[id].name.c_str(), veh->parts.size(), mdx, mdy); }
 
     //        name
-    VEHICLE ("Bicycle");
+    VEHICLE (_("Bicycle"));
     //    o
     //    #
     //    o
@@ -54,7 +55,7 @@ void game::init_vehicles()
     PART (-1, 0,    vp_cargo_box);
 
     //        name
-    VEHICLE ("Motorcycle Chassis");
+    VEHICLE (_("Motorcycle Chassis"));
     //    o
     //    ^
     //    #
@@ -67,7 +68,7 @@ void game::init_vehicles()
     PART (1, 0,     vp_fuel_tank_gas);
     PART (-1, 0,    vp_wheel);
     //        name
-    VEHICLE ("Motorcycle");
+    VEHICLE (_("Motorcycle"));
     //    o
     //    ^
     //    #
@@ -86,7 +87,7 @@ void game::init_vehicles()
     PART (-1, 0,    vp_cargo_box);
 
     //        name
-    VEHICLE ("Quad Bike");
+    VEHICLE (_("Quad Bike"));
     //   0^0
     //    #
     //   0H0
@@ -109,7 +110,7 @@ void game::init_vehicles()
     PART (-1, 1,    vp_wheel_motorbike);
 
         //        name
-    VEHICLE ("Quad Bike Chassis");
+    VEHICLE (_("Quad Bike Chassis"));
     //   0^0
     //    #
     //   0H0
@@ -124,7 +125,7 @@ void game::init_vehicles()
     PART (-1, 1,    vp_wheel_motorbike);
 
     //        name
-    VEHICLE ("Car");
+    VEHICLE (_("Car"));
     //   o--o
     //   |""|
     //   +##+
@@ -183,7 +184,7 @@ void game::init_vehicles()
     PART (-3, 2,     vp_wheel);
 
     //        name
-    VEHICLE ("Car Chassis");
+    VEHICLE (_("Car Chassis"));
     //   o--o
     //   |""|
     //   +##+
@@ -213,7 +214,7 @@ void game::init_vehicles()
     PART (-3, -1,    vp_wheel);
     PART (-3, 2,     vp_wheel);
     //        name
-    VEHICLE ("Flatbed Truck");
+    VEHICLE (_("Flatbed Truck"));
     // 0-^-0
     // |"""|
     // +###+
@@ -281,7 +282,7 @@ void game::init_vehicles()
     PART (-3, -2,   vp_wheel_wide);
     PART (-3, 2,    vp_wheel_wide);
 
-	VEHICLE ("Semi Truck");
+	VEHICLE (_("Semi Truck"));
 	// semitrucksleeper
     // |=^^=|
     // O-HH-O
@@ -395,7 +396,7 @@ void game::init_vehicles()
 	PART (5, 2, vp_frame_u);
 	PART (5, -3, vp_frame_y);
 
-	VEHICLE ("Truck Trailer");
+	VEHICLE (_("Truck Trailer"));
 	// trucktrailer
     // |----|
     // |-++-|
@@ -480,7 +481,7 @@ void game::init_vehicles()
 	PART (5, 2, vp_board_u);
 	PART (5, -3, vp_board_y);
 
-        VEHICLE ("Wagon");
+        VEHICLE (_("Wagon"));
     // HHH
     // HHH
     // HHH
@@ -495,7 +496,7 @@ void game::init_vehicles()
         PART (-1, 1, vp_frame_v2);
         PART (-1, -1, vp_frame_v2);
 
-	VEHICLE ("Beetle");
+	VEHICLE (_("Beetle"));
 	// vwbug
     // oHHo
     // |--|
@@ -538,7 +539,7 @@ void game::init_vehicles()
 	PART (2, -1, vp_wheel);
 	PART (2, 2, vp_wheel);
 
-	VEHICLE ("Bubble Car");
+	VEHICLE (_("Bubble Car"));
     //  |-|
     // |o#o|
     // |###|
@@ -603,7 +604,7 @@ void game::init_vehicles()
 	PART (-2, -1, vp_frame_b);
 	PART (-2, -1, vp_window);
 
-	VEHICLE ("Golf Cart");
+	VEHICLE (_("Golf Cart"));
 	// Yamaha golf cart
     // oo
     // --
@@ -627,7 +628,7 @@ void game::init_vehicles()
 	PART (-1, 0, vp_wheel);
 	PART (-1, 1, vp_wheel);
 
-	VEHICLE ("Scooter");
+	VEHICLE (_("Scooter"));
 	// Vespa scooter
     // o
     // ^
@@ -645,7 +646,7 @@ void game::init_vehicles()
 
 	PART (-1, 0, vp_wheel);
 
-	VEHICLE ("Military Cargo Truck");
+	VEHICLE (_("Military Cargo Truck"));
 	// Army M35A2 2.5 ton cargo truck
     // |^^^|
     // O-H-O
@@ -762,7 +763,7 @@ void game::init_vehicles()
 	PART (-4, -2, vp_frame_v);
 	PART (-4, 2, vp_frame_v);
 
-	VEHICLE ("Schoolbus");
+	VEHICLE (_("Schoolbus"));
 	// Schoolbus
 	// O=^=O
 	// """""

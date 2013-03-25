@@ -2,6 +2,7 @@
 #include <sstream>
 
 #include "basecamp.h"
+#include "i18n.h"
 
 basecamp::basecamp()
 	: name()
@@ -19,7 +20,7 @@ basecamp::basecamp(std::string const& name_, int const posx_, int const posy_)
 
 std::string basecamp::board_name() const
 {
-	return name + " Board";
+	return name + _(" Board");
 }
 
 std::string basecamp::save_data() const

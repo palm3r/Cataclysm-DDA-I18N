@@ -1,6 +1,5 @@
 #include "i18n.h"
 #include "cfgxx.h"
-#include <sstream>
 
 #include "artifactdata.h"
 #include "bionics.h"
@@ -12,6 +11,12 @@
 #include "veh_type.h"
 #include "weather_data.h"
 #include "inventory_ui.h"
+#include "mapdata.h"
+#include "moraledata.h"
+
+#include <sstream>
+#include <cstdio>
+#include <cstdarg>
 
 #define FOR_BEGIN(array, index) \
   for (int (index) = 0; (index) < (sizeof((array)) / sizeof((array[0]))); (index)++) {
@@ -20,7 +25,8 @@
   }
 
 #define TRANSLATE(str) \
-  (str) = gettext((str).c_str())
+  if (!str.empty()) \
+    (str) = gettext((str).c_str())
 
 void i18n_init()
 {
@@ -390,5 +396,61 @@ void i18n_init()
     string cat = const_cast<string &>(CATEGORIES[i]);
     TRANSLATE(cat);
   FOR_END()
+
+  FOR_BEGIN(terlist, i)
+    ter_t& terrain = const_cast<ter_t&>(terlist[i]);
+    TRANSLATE(terrain.name);
+  FOR_END()
+
+  FOR_BEGIN(fieldlist, i)
+    field_t& field = const_cast<field_t&>(fieldlist[i]);
+    for (int j = 0; j < 3; j++) {
+      TRANSLATE(field.name[j]);
+    }
+  FOR_END()
+
+  FOR_BEGIN(morale_data, i)
+    string& morale = const_cast<string&>(morale_data[i]);
+    TRANSLATE(morale);
+  FOR_END()
+}
+
+std::string format(const std::string& fmt, va_list ap)
+{
+  const int N = 1024;
+  char buffer[N];
+#if defined(_MSC_VER)
+  vsnprintf_s(buffer, N, _TRUNCATE, fmt.c_str(), ap);
+#else
+  vsnprintf(buffer, N, fmt.c_str(), ap);
+#endif
+  return std::string(buffer);
+}
+
+std::string format(const std::string& fmt, ...)
+{
+  va_list ap;
+  va_start(ap, fmt);
+  std::string str = format(fmt, ap);
+  va_end(ap);
+  return str;
+}
+
+std::string &replace(std::string &str, const std::string &pattern, const std::string &replacement)
+{
+  std::string::size_type start = 0;
+  std::string::size_type pos = std::string::npos;
+  while ((pos = str.find(pattern, start)) != std::string::npos) {
+    str.replace(pos, pattern.length(), replacement);
+    start = pos + replacement.length();
+  }
+  return str;
+}
+
+std::string &trim(std::string &source, const std::string &pattern)
+{
+  source.erase(0, source.find_first_not_of(pattern));
+  source.erase(source.find_last_not_of(pattern) + 1);
+  return source;
 }
 

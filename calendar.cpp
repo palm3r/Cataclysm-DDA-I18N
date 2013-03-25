@@ -2,6 +2,7 @@
 #include "calendar.h"
 #include "output.h"
 #include "options.h"
+#include "i18n.h"
 
 calendar::calendar()
 {
@@ -348,39 +349,28 @@ int calendar::sunlight()
 
 std::string calendar::print_time(bool twentyfour)
 {
- std::stringstream ret;
- if (twentyfour) {
-  ret << hour << ":";
-  if (minute < 10)
-   ret << "0";
-  ret << minute;
- } else {
-  if (OPTIONS[OPT_24_HOUR] == 1) {
-   int hours = hour % 24;
-   if (hours < 10)
-    ret << "0";
-   ret << hours;
-  } else if (OPTIONS[OPT_24_HOUR] == 2) {
-   int hours = hour % 24;
-   ret << hours << ":";
-  }else {
-   int hours = hour % 12;
-   if (hours == 0)
-    hours = 12;
-   ret << hours << ":";
+  std::string fmt = _("%d:%02d%s");
+  int h = hour, m = minute;
+  std::string ampm;
+  if (!twentyfour) {
+    if (OPTIONS[OPT_24_HOUR] == 1) {
+      fmt = _("%02d%02d");
+      h %= 24;
+    } else if (OPTIONS[OPT_24_HOUR] == 2) {
+      h %= 24;
+    } else {
+      h %= 12;
+      if (h == 0)
+        h = 12;
+    }
+    if (OPTIONS[OPT_24_HOUR] == 0) {
+      if (hour < 12)
+        ampm = _(" AM");
+      else
+        ampm = _(" PM");
+    }
   }
-  if (minute < 10)
-   ret << "0";
-  ret << minute;
-  if (OPTIONS[OPT_24_HOUR] == 0) {
-   if (hour < 12)
-    ret << " AM";
-   else
-    ret << " PM";
-  }
- }
-
- return ret.str();
+  return format(fmt.c_str(), h, m, ampm.c_str());
 }
 
 std::string calendar::textify_period()
@@ -392,25 +382,25 @@ std::string calendar::textify_period()
 // Describe the biggest time period, as "<am> <tx>s", am = amount, tx = name
  if (year > 0) {
   am = year;
-  tx = "year";
+  tx = P_("year", "years", am > 1);
  } else if (season > 0) {
   am = season;
-  tx = "season";
+  tx = P_("season", "seasons", am > 1);
  } else if (day > 0) {
   am = day;
-  tx = "day";
+  tx = P_("day", "days", am > 1);
  } else if (hour > 0) {
   am = hour;
-  tx = "hour";
+  tx = P_("hour", "hours", am > 1);
  } else if (minute >= 5) {
   am = minute;
-  tx = "minute";
+  tx = P_("minute", "minutes", am > 1);
  } else {
   am = second / 6 + minute * 10;
-  tx = "turn";
+  tx = P_("turn", "turns", am > 1);
  }
 
- ret << am << " " << tx << (am > 1 ? "s" : "");
+ ret << am << " " << tx;
 
  return ret.str();
 }

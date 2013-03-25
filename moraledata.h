@@ -3,36 +3,37 @@
 
 #include <string>
 #include "morale.h"
+#include "i18n.h"
 
-std::string morale_data[NUM_MORALE_TYPES] = {
+const std::string morale_data[NUM_MORALE_TYPES] = {
 "This is a bug",
-"Enjoyed %i",
-"Music",
-"Marloss Bliss",
-"Good Feeling",
+N_("Enjoyed %i"),
+N_("Music"),
+N_("Marloss Bliss"),
+N_("Good Feeling"),
 
-"Nicotine Craving",
-"Caffeine Craving",
-"Alcohol Craving",
-"Opiate Craving",
-"Speed Craving",
-"Cocaine Craving",
-"Crack Cocaine Craving",
+N_("Nicotine Craving"),
+N_("Caffeine Craving"),
+N_("Alcohol Craving"),
+N_("Opiate Craving"),
+N_("Speed Craving"),
+N_("Cocaine Craving"),
+N_("Crack Cocaine Craving"),
 
-"Disliked %i",
-"Ate Human Flesh",
-"Ate Meat",
-"Wet",
-"Cold",
-"Hot",
-"Bad Feeling",
-"Killed Innocent",
-"Killed Friend",
-"Guilty about Killing",
+N_("Disliked %i"),
+N_("Ate Human Flesh"),
+N_("Ate Meat"),
+N_("Wet"),
+N_("Cold"),
+N_("Hot"),
+N_("Bad Feeling"),
+N_("Killed Innocent"),
+N_("Killed Friend"),
+N_("Guilty about Killing"),
 
-"Moodswing",
-"Read %i",
-"Heard Disturbing Scream"
+N_("Moodswing"),
+N_("Read %i"),
+N_("Heard Disturbing Scream")
 };
 
 #endif

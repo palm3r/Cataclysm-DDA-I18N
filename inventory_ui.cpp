@@ -5,11 +5,8 @@
 #include <vector>
 #include <map>
 #include <sstream>
-
-const int iCategorieNum = 11;
-std::string CATEGORIES[iCategorieNum] =
- {"GROUND:", "FIREARMS:", "AMMUNITION:", "CLOTHING:", "FOOD/DRINKS:",
-  "TOOLS:", "BOOKS:", "WEAPONS:", "MODS/BIONICS", "MEDICINE/DRUGS", "OTHER:"};
+#include "i18n.h"
+#include "inventory_ui.h"
 
 std::vector<int> find_firsts(inventory &inv)
 {
@@ -57,7 +54,7 @@ void print_inv_statics(game *g, WINDOW* w_inv, std::string title,
  mvwprintw(w_inv, 0, 0, title.c_str());
 
 // Print weight
- mvwprintw(w_inv, 0, 45, "Weight: ");
+ mvwprintw(w_inv, 0, 45, _("Weight: "));
  if (g->u.weight_carried() >= g->u.weight_capacity() * .25)
   wprintz(w_inv, c_red, "%d", g->u.weight_carried());
  else
@@ -65,7 +62,7 @@ void print_inv_statics(game *g, WINDOW* w_inv, std::string title,
  wprintz(w_inv, c_ltgray, "/%d", int(g->u.weight_capacity() * .25));//, g->u.weight_capacity());
 
 // Print volume
- mvwprintw(w_inv, 0, 62, "Volume: ");
+ mvwprintw(w_inv, 0, 62, _("Volume: "));
  if (g->u.volume_carried() > g->u.volume_capacity() - 2)
   wprintz(w_inv, c_red, "%d", g->u.volume_carried());
  else
@@ -74,7 +71,7 @@ void print_inv_statics(game *g, WINDOW* w_inv, std::string title,
 
 // Print our weapon
  int n_items = 0;
- mvwprintz(w_inv, 2, 45, c_magenta, "WEAPON:");
+ mvwprintz(w_inv, 2, 45, c_magenta, _("WEAPON:"));
  int dropping_weapon = false;
  for (int i = 0; i < dropped_items.size() && !dropping_weapon; i++) {
   if (dropped_items[i] == g->u.weapon.invlet)
@@ -96,7 +93,7 @@ void print_inv_statics(game *g, WINDOW* w_inv, std::string title,
   mvwprintz(w_inv, 3, 45, c_ltgray, g->u.weapname().c_str());
 // Print worn items
  if (g->u.worn.size() > 0)
-  mvwprintz(w_inv, 5, 45, c_magenta, "ITEMS WORN:");
+  mvwprintz(w_inv, 5, 45, c_magenta, _("ITEMS WORN:"));
  for (int i = 0; i < g->u.worn.size(); i++) {
   n_items++;
   bool dropping_armor = false;
@@ -117,7 +114,7 @@ void print_inv_statics(game *g, WINDOW* w_inv, std::string title,
    n_items += ((g->u.inv.index_by_letter(ch) == -1) ? 0 : 1);
  for(int ch='A'; ch <= 'Z'; ++ch)
    n_items += ((g->u.inv.index_by_letter(ch) == -1) ? 0 : 1);
- mvwprintw(w_inv, 1, 62, "Items:  %d/52 ", n_items);
+ mvwprintw(w_inv, 1, 62, _("Items:  %d/52 "), n_items);
 }
 
 // Display current inventory.
@@ -175,9 +172,9 @@ char game::inv(std::string title)
    cur_line++;
   }
   if (start > 0)
-   mvwprintw(w_inv, maxitems + 4, 0, "< Go Back");
+   mvwprintw(w_inv, maxitems + 4, 0, _("< Go Back"));
   if (cur_it < u.inv.size())
-   mvwprintw(w_inv, maxitems + 4, 12, "> More items");
+   mvwprintw(w_inv, maxitems + 4, 12, _("> More items"));
   wrefresh(w_inv);
   ch = getch();
  } while (ch == '<' || ch == '>');
@@ -297,9 +294,9 @@ char game::inv_type(std::string title, int inv_item_type)
 //   cur_line++;
   }
   if (start > 0)
-   mvwprintw(w_inv, maxitems + 4, 0, "< Go Back");
+   mvwprintw(w_inv, maxitems + 4, 0, _("< Go Back"));
   if (cur_it < reduced_inv.size())
-   mvwprintw(w_inv, maxitems + 4, 12, "> More items");
+   mvwprintw(w_inv, maxitems + 4, 12, _("> More items"));
   wrefresh(w_inv);
   ch = getch();
  } while (ch == '<' || ch == '>');
@@ -322,7 +319,7 @@ std::vector<item> game::multidrop()
  int count = 0; // The current count
  std::vector<char> weapon_and_armor; // Always single, not counted
  bool warned_about_bionic = false; // Printed add_msg re: dropping bionics
- print_inv_statics(this, w_inv, "Multidrop:", weapon_and_armor);
+ print_inv_statics(this, w_inv, _("Multidrop:"), weapon_and_armor);
 // Gun, ammo, weapon, armor, food, tool, book, other
  std::vector<int> firsts = find_firsts(u.inv);
 
@@ -375,9 +372,9 @@ std::vector<item> game::multidrop()
    cur_line++;
   }
   if (start > 0)
-   mvwprintw(w_inv, maxitems + 4, 0, "< Go Back");
+   mvwprintw(w_inv, maxitems + 4, 0, _("< Go Back"));
   if (cur_it < u.inv.size())
-   mvwprintw(w_inv, maxitems + 4, 12, "> More items");
+   mvwprintw(w_inv, maxitems + 4, 12, _("> More items"));
   wrefresh(w_inv);
   ch = getch();
   if (ch >= '0' && ch <= '9') {
@@ -392,18 +389,18 @@ std::vector<item> game::multidrop()
      if (weapon_and_armor[i] == ch) {
       weapon_and_armor.erase(weapon_and_armor.begin() + i);
       found = true;
-      print_inv_statics(this, w_inv, "Multidrop:", weapon_and_armor);
+      print_inv_statics(this, w_inv, _("Multidrop:"), weapon_and_armor);
      }
     }
     if (!found) {
      if (ch == u.weapon.invlet && u.weapon.type->id > num_items &&
          u.weapon.type->id < num_all_items) {
       if (!warned_about_bionic)
-       add_msg("You cannot drop your %s.", u.weapon.tname(this).c_str());
+       add_msg(_("You cannot drop your %s."), u.weapon.tname(this).c_str());
       warned_about_bionic = true;
      } else {
       weapon_and_armor.push_back(ch);
-      print_inv_statics(this, w_inv, "Multidrop:", weapon_and_armor);
+      print_inv_statics(this, w_inv, _("Multidrop:"), weapon_and_armor);
      }
     }
    } else {
@@ -492,7 +489,7 @@ void game::compare(int iCompareX, int iCompareY)
   examx = iCompareX;
   examy = iCompareY;
  } else {
-  mvwprintw(w_terrain, 0, 0, "Compare where? (Direction button)");
+  mvwprintw(w_terrain, 0, 0, _("Compare where? (Direction button)"));
   wrefresh(w_terrain);
 
   ch = input();
@@ -503,7 +500,7 @@ void game::compare(int iCompareX, int iCompareY)
    ch = '.';
   get_direction(this, examx, examy, ch);
   if (examx == -2 || examy == -2) {
-   add_msg("Invalid direction.");
+   add_msg(_("Invalid direction."));
    return;
   }
  }
@@ -533,7 +530,7 @@ void game::compare(int iCompareX, int iCompareY)
  for (int i = 0; i < u.inv.size() + groundsize; i++)
   compare[i] = 0;
  std::vector<char> weapon_and_armor; // Always single, not counted
- print_inv_statics(this, w_inv, "Compare:", weapon_and_armor);
+ print_inv_statics(this, w_inv, _("Compare:"), weapon_and_armor);
 // Gun, ammo, weapon, armor, food, tool, book, other
  std::vector<int> first = find_firsts(u.inv);
  std::vector<int> firsts;
@@ -599,9 +596,9 @@ void game::compare(int iCompareX, int iCompareY)
    cur_line++;
   }
   if (start > 0)
-   mvwprintw(w_inv, maxitems + 4, 0, "< Go Back");
+   mvwprintw(w_inv, maxitems + 4, 0, _("< Go Back"));
   if (cur_it < u.inv.size() + groundsize)
-   mvwprintw(w_inv, maxitems + 4, 12, "> More items");
+   mvwprintw(w_inv, maxitems + 4, 12, _("> More items"));
   wrefresh(w_inv);
   ch = getch();
   if (u.has_item(ch)) {
@@ -613,7 +610,7 @@ void game::compare(int iCompareX, int iCompareY)
       weapon_and_armor.erase(weapon_and_armor.begin() + i);
       found = true;
       bFirst = false;
-      print_inv_statics(this, w_inv, "Compare:", weapon_and_armor);
+      print_inv_statics(this, w_inv, _("Compare:"), weapon_and_armor);
      }
     }
     if (!found) {
@@ -624,7 +621,7 @@ void game::compare(int iCompareX, int iCompareY)
       if (!bFirst)
       {
        weapon_and_armor.push_back(ch);
-       print_inv_statics(this, w_inv, "Compare:", weapon_and_armor);
+       print_inv_statics(this, w_inv, _("Compare:"), weapon_and_armor);
        bFirst = true;
        cLastCh = ch;
       } else {
@@ -702,7 +699,7 @@ void game::compare(int iCompareX, int iCompareY)
    compare_split_screen_popup((TERMX-VIEW_OFFSET_X*2)/2, (TERMX-VIEW_OFFSET_X*2)/2, TERMY-VIEW_OFFSET_Y*2, sItemCh, vItemCh, vItemLastCh);
 
    wclear(w_inv);
-   print_inv_statics(this, w_inv, "Compare:", weapon_and_armor);
+   print_inv_statics(this, w_inv, _("Compare:"), weapon_and_armor);
    bShowCompare = false;
   }
  } while (ch != '\n' && ch != KEY_ESCAPE && ch != ' ');

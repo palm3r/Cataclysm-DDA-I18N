@@ -7,12 +7,12 @@ logg.txt
 bindist/
 cataclysmdda-*
 
+install/
+build*/
+*~
+*.sublime-project
+*.sublime-workspace
 GPATH
 GRTAGS
 GSYMS
 GTAGS
-build*/
-/tags
-*~
-*.sublime-project
-*.sublime-workspace

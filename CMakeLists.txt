@@ -7,7 +7,8 @@ cmake_minimum_required(VERSION 2.8)
 project (cataclysm)
 
 option (I18N "Enable I18N build" on)
-set (CMAKE_BUILD_TYPE Debug)
+option (CONFIG "Build config" Debug)
+set (CMAKE_BUILD_TYPE ${CONFIG})
 set (VERSION_MAJOR 0)
 set (VERSION_MINOR 3)
 set (USE_BOOST no)
@@ -119,15 +120,17 @@ if (I18N)
     DEPENDS po_dir_target
     COMMENT "Generating ${pot_target}"
     )
+  install (FILES ${pot_path} DESTINATION ./lang)
 
   add_custom_target (msgmerge
-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgmerge.sh ${po_dir_path}
+    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgmerge.sh ${PROJECT_NAME} ${po_dir_path}
     DEPENDS xgettext
     )
 
   add_custom_target (lang ALL
-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgfmt.sh ${po_dir_path} ${mo_dir_path} ${PROJECT_NAME}
+    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgfmt.sh ${PROJECT_NAME} ${po_dir_path} ${mo_dir_path}
     DEPENDS msgmerge
     )
+  install (DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lang DESTINATION .)
 endif ()
 
