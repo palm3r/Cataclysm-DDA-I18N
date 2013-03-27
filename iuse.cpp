@@ -1207,7 +1207,7 @@ void iuse::radio_on(game *g, player *p, item *it, bool t)
    segments.push_back(message);
    int index = g->turn % (segments.size());
    std::stringstream messtream;
-   messtream << format(_("radio: %s"), segments[index].c_str());
+   messtream << i18n::format(_("radio: %s"), segments[index].c_str());
    message = messtream.str();
   }
   point p = g->find_item(it);
@@ -1634,7 +1634,7 @@ void iuse::set_trap(game *g, player *p, item *it, bool t)
   practice = (buried ? 7 : 4);
   break;
  case itm_board_trap:
-  message << format(_("You set the board trap on the %s, nails facing up."),
+  message << i18n::format(_("You set the board trap on the %s, nails facing up."),
                     g->m.tername(posx, posy).c_str());
   type = tr_nailboard;
   practice = 2;
@@ -3305,7 +3305,7 @@ void iuse::pda_flashlight(game *g, player *p, item *it, bool t)
 void iuse::mcg_note(game *g, player *p, item *it, bool t)
 {
  std::stringstream message;
- message << format(_("Dear %s:\n"), it->name.c_str());
+ message << i18n::format(_("Dear %s:\n"), it->name.c_str());
 /*
  faction* fac = NULL;
  direction dir = NORTH;

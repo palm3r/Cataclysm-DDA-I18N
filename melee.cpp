@@ -128,7 +128,7 @@ int player::hit_mon(game *g, monster *z, bool allow_grab) // defaults to true
  std::string You  = (is_u ? _("You")  : name);
  std::string your = (is_u ? _("your") : (male ? _("his") : _("her")));
  std::string verb = _("hit");
- std::string target = format(_("the %s"), z->name().c_str());
+ std::string target = i18n::format(_("the %s"), z->name().c_str());
 
 // If !allow_grab, then we already grabbed them--meaning their dodge is hampered
  int mondodge = (allow_grab ? z->dodge_roll() : z->dodge_roll() / 3);
@@ -274,7 +274,7 @@ void player::hit_player(game *g, player &p, bool allow_grab)
  else
   bp_hit = bp_arms;
 
- std::string target = (p.is_npc() ? format(_("%s's "), p.name.c_str()) : _("your "));
+ std::string target = (p.is_npc() ? i18n::format(_("%s's "), p.name.c_str()) : _("your "));
  target += body_part_name(bp_hit, side);
 
  bool critical_hit = scored_crit(target_dodge);
@@ -776,7 +776,7 @@ void player::perform_technique(technique_id technique, game *g, monster *z,
 {
  bool mon = (z != NULL);
  std::string You = (is_npc() ? name : _("You"));
- std::string target = (mon ? format(_("the %s"), z->name().c_str()) :
+ std::string target = (mon ? i18n::format(_("the %s"), z->name().c_str()) :
                        (p->is_npc() ? p->name : _("you")));
  int tarx = (mon ? z->posx : p->posx), tary = (mon ? z->posy : p->posy);
 
@@ -959,7 +959,7 @@ void player::perform_defensive_technique(
  bool mon = (z != NULL);
  std::string You = (is_npc() ? name : _("You"));
  std::string your = (is_npc() ? (male ? _("his") : _("her")) : _("your"));
- std::string target = (mon ? format(_("the %s"), z->name().c_str()) : p->name);
+ std::string target = (mon ? i18n::format(_("the %s"), z->name().c_str()) : p->name);
  bool u_see = (!is_npc() || g->u_see(posx, posy, junk));
 
  switch (technique) {
@@ -1095,12 +1095,12 @@ void player::melee_special_effects(game *g, monster *z, player *p, bool crit,
  bool is_u = (!is_npc());
  bool can_see = (is_u || g->u_see(posx, posy, junk));
  std::string You = (is_u ? _("You") : name);
- std::string Your = (is_u ? _("Your") : format(_("%s's"), name.c_str()));
- std::string your = (is_u ? _("your") : format(_("%s's"), name.c_str()));
- std::string target = (mon ? format(_("the %s"), z->name().c_str()) :
+ std::string Your = (is_u ? _("Your") : i18n::format(_("%s's"), name.c_str()));
+ std::string your = (is_u ? _("your") : i18n::format(_("%s's"), name.c_str()));
+ std::string target = (mon ? i18n::format(_("the %s"), z->name().c_str()) :
                        (p->is_npc() ? p->name : _("you")));
- std::string target_possessive = (mon ? format(_("the %s's"), z->name().c_str()) :
-                                  (p->is_npc() ? format(_("%s's"), p->name.c_str()) : your));
+ std::string target_possessive = (mon ? i18n::format(_("the %s's"), z->name().c_str()) :
+                                  (p->is_npc() ? i18n::format(_("%s's"), p->name.c_str()) : your));
  int tarposx = (mon ? z->posx : p->posx), tarposy = (mon ? z->posy : p->posy);
 
 // Bashing effecs
@@ -1343,14 +1343,14 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
  bool is_u = (!is_npc());// Affects how we'll display messages
  std::string You  = (is_u ? _("You")  : name);
  std::string your = (is_u ? _("your") : (male ? _("his") : _("her")));
- std::string target = (mon ? format(_("the %s"), z->name().c_str()) : p->name);
+ std::string target = (mon ? i18n::format(_("the %s"), z->name().c_str()) : p->name);
 
  std::stringstream text;
 
  if (has_trait(PF_FANGS) && !wearing_something_on(bp_mouth) &&
      one_in(20 - dex_cur - skillLevel("unarmed"))) {
   special_attack tmp;
-  text << format(P_("%s sink %s fangs into %s!", "%s sinks %s fangs into %s!", !is_u),
+  text << i18n::format(P_("%s sink %s fangs into %s!", "%s sinks %s fangs into %s!", !is_u),
                  You.c_str(), your.c_str(), target.c_str());
   tmp.text = text.str();
   tmp.stab = 20;
@@ -1359,7 +1359,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_MANDIBLES) && one_in(22 - dex_cur - skillLevel("unarmed"))) {
   special_attack tmp;
-  text << format(P_("%s slice %s with %s mandibles!", "%s slices %s with %s mandibles!", !is_u),
+  text << i18n::format(P_("%s slice %s with %s mandibles!", "%s slices %s with %s mandibles!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.cut = 12;
@@ -1368,7 +1368,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_BEAK) && one_in(15 - dex_cur - skillLevel("unarmed"))) {
   special_attack tmp;
-  text << format(P_("%s peck %s!", "%s pecks %s!", !is_u),
+  text << i18n::format(P_("%s peck %s!", "%s pecks %s!", !is_u),
                  You.c_str(), target.c_str());
   tmp.text = text.str();
   tmp.stab = 15;
@@ -1377,7 +1377,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_HOOVES) && one_in(25 - dex_cur - 2 * skillLevel("unarmed"))) {
   special_attack tmp;
-  text << format(P_("%s kick %s with %s hooves!", "%s kicks %s with %s hooves!", !is_u),
+  text << i18n::format(P_("%s kick %s with %s hooves!", "%s kicks %s with %s hooves!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.bash = str_cur * 3;
@@ -1388,7 +1388,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_HORNS) && one_in(20 - dex_cur - skillLevel("unarmed"))) {
   special_attack tmp;
-  text << format(P_("%s headbutt %s with %s horns!", "%s headbutts %s with %s horns!", !is_u),
+  text << i18n::format(P_("%s headbutt %s with %s horns!", "%s headbutts %s with %s horns!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.bash = 3;
@@ -1398,7 +1398,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_HORNS_CURLED) && one_in(20 - dex_cur - skillLevel("unarmed"))) {
   special_attack tmp;
-  text << format(P_("%s headbutt %s with %s curled horns!", "%s headbutts %s with %s curled horns!", !is_u),
+  text << i18n::format(P_("%s headbutt %s with %s curled horns!", "%s headbutts %s with %s curled horns!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.bash = 14;
@@ -1407,7 +1407,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_HORNS_POINTED) && one_in(22 - dex_cur - skillLevel("unarmed"))){
   special_attack tmp;
-  text << format(P_("%s stab %s with %s pointed horns!", "%s stabs %s with %s pointed horns!", !is_u),
+  text << i18n::format(P_("%s stab %s with %s pointed horns!", "%s stabs %s with %s pointed horns!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.stab = 24;
@@ -1416,7 +1416,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_ANTLERS) && one_in(20 - dex_cur - skillLevel("unarmed"))) {
   special_attack tmp;
-  text << format(P_("%s butt %s with %s antlers!", "%s butts %s with %s antlers!", !is_u),
+  text << i18n::format(P_("%s butt %s with %s antlers!", "%s butts %s with %s antlers!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.bash = 4;
@@ -1425,7 +1425,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_TAIL_STING) && one_in(3) && one_in(10 - dex_cur)) {
   special_attack tmp;
-  text << format(P_("%s sting %s with %s tail!", "%s stings %s with %s tail!", !is_u),
+  text << i18n::format(P_("%s sting %s with %s tail!", "%s stings %s with %s tail!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.stab = 20;
@@ -1434,7 +1434,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
 
  if (has_trait(PF_TAIL_CLUB) && one_in(3) && one_in(10 - dex_cur)) {
   special_attack tmp;
-  text << format(P_("%s hit %s with %s tail!", "%s hits %s with %s tail!", !is_u),
+  text << i18n::format(P_("%s hit %s with %s tail!", "%s hits %s with %s tail!", !is_u),
                  You.c_str(), target.c_str(), your.c_str());
   tmp.text = text.str();
   tmp.bash = 18;
@@ -1455,7 +1455,7 @@ std::vector<special_attack> player::mutation_attacks(monster *z, player *p)
    if (one_in(18 - dex_cur - skillLevel("unarmed"))) {
     special_attack tmp;
     text.str("");
-    text << format(P_("%s slap %s with %s tentacle!", "%s slaps %s with %s tentacle!", !is_u),
+    text << i18n::format(P_("%s slap %s with %s tentacle!", "%s slaps %s with %s tentacle!", !is_u),
                    You.c_str(), target.c_str(), your.c_str());
     tmp.text = text.str();
     tmp.bash = str_cur / 2;
@@ -1472,34 +1472,34 @@ std::string melee_verb(technique_id tech, std::string your, player &p,
 {
  if (tech != TEC_NULL && p.weapon.is_style() &&
      p.weapon.style_data(tech).name != "")
-  return format(_("%s's"), p.weapon.style_data(tech).name.c_str());
+  return i18n::format(_("%s's"), p.weapon.style_data(tech).name.c_str());
 
  std::stringstream ret;
 
  switch (tech) {
 
   case TEC_SWEEP:
-   ret << format(P_("sweep %s %s at", "sweeps %s %s at", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
+   ret << i18n::format(P_("sweep %s %s at", "sweeps %s %s at", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
    break;
 
   case TEC_PRECISE:
-   ret << format(P_("jab %s %s at", "jabs %s %s at", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
+   ret << i18n::format(P_("jab %s %s at", "jabs %s %s at", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
    break;
 
   case TEC_BRUTAL:
-   ret << format(P_("slam %s %s against", "slams %s %s against", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
+   ret << i18n::format(P_("slam %s %s against", "slams %s %s against", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
    break;
 
   case TEC_GRAB:
-   ret << format(P_("wrap %s %s around", "wraps %s %s around", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
+   ret << i18n::format(P_("wrap %s %s around", "wraps %s %s around", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
    break;
 
   case TEC_WIDE:
-   ret << format(P_("swing %s %s wide at", "swings %s %s wide at", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
+   ret << i18n::format(P_("swing %s %s wide at", "swings %s %s wide at", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
    break;
 
   case TEC_THROW:
-   ret << format(P_("use %s %s to toss", "uses %s %s to toss", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
+   ret << i18n::format(P_("use %s %s to toss", "uses %s %s to toss", p.is_npc()), your.c_str(), p.weapon.tname().c_str());
    break;
 
   default: // No tech, so check our damage levels

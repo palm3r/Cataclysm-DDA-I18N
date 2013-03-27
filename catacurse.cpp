@@ -327,14 +327,14 @@ fin.open("data\\FONTDATA");
  int nResults = AddFontResourceExA("data\\termfont",FR_PRIVATE,NULL);
    if (nResults>0){
     font = CreateFont(fontheight, fontwidth, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
-                      ANSI_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,
+                      DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,
                       PROOF_QUALITY, FF_MODERN, typeface_c);   //Create our font
 
   } else {
       MessageBox(WindowHandle, "Failed to load default font, using FixedSys.",
                 NULL, NULL);
        font = CreateFont(fontheight, fontwidth, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
-                      ANSI_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,
+                      DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,
                       PROOF_QUALITY, FF_MODERN, "FixedSys");   //Create our font
    }
     //FixedSys will be user-changable at some point in time??

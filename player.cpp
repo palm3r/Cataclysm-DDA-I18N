@@ -1116,15 +1116,11 @@ Strength - 4;    Dexterity - 4;    Intelligence - 4;    Dexterity - 4"));
  wrefresh(w_tip);
 
 // First!  Default STATS screen.
- mvwprintz(w_stats, 0, 10, c_ltgray, _("STATS"));
- mvwprintz(w_stats, 2,  2, c_ltgray, _("Strength:%s(%d)"),
-           (str_max < 10 ? "         " : "        "), str_max);
- mvwprintz(w_stats, 3,  2, c_ltgray, _("Dexterity:%s(%d)"),
-           (dex_max < 10 ? "        "  : "       "),  dex_max);
- mvwprintz(w_stats, 4,  2, c_ltgray, _("Intelligence:%s(%d)"),
-           (int_max < 10 ? "     "     : "    "),     int_max);
- mvwprintz(w_stats, 5,  2, c_ltgray, _("Perception:%s(%d)"),
-           (per_max < 10 ? "       "   : "      "),   per_max);
+ mvwprintz(w_stats, 0, 0, c_ltgray, _("          STATS           "));
+ mvwprintz(w_stats, 2,  2, c_ltgray, _("Strength:        (%2d)"), str_max);
+ mvwprintz(w_stats, 3,  2, c_ltgray, _("Dexterity:       (%2d)"), dex_max);
+ mvwprintz(w_stats, 4,  2, c_ltgray, _("Intelligence:    (%2d)"), int_max);
+ mvwprintz(w_stats, 5,  2, c_ltgray, _("Perception:      (%2d)"), per_max);
 
  nc_color status = c_white;
 
@@ -1191,7 +1187,7 @@ Strength - 4;    Dexterity - 4;    Intelligence - 4;    Dexterity - 4"));
  body_part aBodyPart[] = {bp_head, bp_eyes, bp_mouth, bp_torso, bp_arms, bp_hands, bp_legs, bp_feet};
  int iEnc, iLayers, iArmorEnc, iWarmth;
 
- mvwprintz(w_encumb, 0, 7, c_ltgray, _("ENCUMBERANCE"));
+ mvwprintz(w_encumb, 0, 0, c_ltgray, _("       ENCUMBERANCE       "));
  for (int i=0; i < 8; i++) {
   iEnc = iLayers = iArmorEnc = iWarmth = 0;
   iEnc = encumb(aBodyPart[i], iLayers, iArmorEnc, iWarmth);
@@ -1204,7 +1200,7 @@ Strength - 4;    Dexterity - 4;    Intelligence - 4;    Dexterity - 4"));
  wrefresh(w_encumb);
 
 // Next, draw traits.
- mvwprintz(w_traits, 0, 10, c_ltgray, _("TRAITS"));
+ mvwprintz(w_traits, 0, 0, c_ltgray, _("          TRAITS          "));
  for (int i = 0; i < traitslist.size() && i < trait_win_size_y; i++) {
   if (traits[traitslist[i]].points > 0)
    status = c_ltgreen;
@@ -1216,7 +1212,7 @@ Strength - 4;    Dexterity - 4;    Intelligence - 4;    Dexterity - 4"));
  wrefresh(w_traits);
 
 // Next, draw effects.
- mvwprintz(w_effects, 0, 8, c_ltgray, _("EFFECTS"));
+ mvwprintz(w_effects, 0, 0, c_ltgray, _("        EFFECTS           "));
  for (int i = 0; i < effect_name.size() && i < effect_win_size_y; i++) {
   mvwprintz(w_effects, i+1, 1, c_ltgray, effect_name[i].c_str());
  }
@@ -1225,7 +1221,7 @@ Strength - 4;    Dexterity - 4;    Intelligence - 4;    Dexterity - 4"));
 // Next, draw skills.
  line = 1;
  std::vector <skill> skillslist;
- mvwprintz(w_skills, 0, 11, c_ltgray, _("SKILLS"));
+ mvwprintz(w_skills, 0, 0, c_ltgray, _("           SKILLS         "));
  for (std::vector<Skill*>::iterator aSkill = Skill::skills.begin()++; aSkill != Skill::skills.end(); ++aSkill) {
   int i = (*aSkill)->id();
 
@@ -1879,15 +1875,15 @@ if (temp_cur[bp_torso] > BODYTEMP_SCORCHING)
  else if (morale_cur <= -10)
   col_morale = c_red;
  if (morale_cur >= 100)
-  mvwprintz(w, 3, 0 + dmor, col_morale, _(":D"));
+  mvwprintz(w, 3, 10 + dmor, col_morale, ":D");
  else if (morale_cur >= 10)
-  mvwprintz(w, 3, 0 + dmor, col_morale, _(":)"));
+  mvwprintz(w, 3, 10 + dmor, col_morale, ":)");
  else if (morale_cur > -10)
-  mvwprintz(w, 3, 0 + dmor, col_morale, _(":|"));
+  mvwprintz(w, 3, 10 + dmor, col_morale, ":|");
  else if (morale_cur > -100)
-  mvwprintz(w, 3, 0 + dmor, col_morale, _("):"));
+  mvwprintz(w, 3, 10 + dmor, col_morale, "):");
  else
-  mvwprintz(w, 3, 0 + dmor, col_morale, _("D:"));
+  mvwprintz(w, 3, 10 + dmor, col_morale, "D:");
 
  if (in_vehicle && veh) {
   veh->print_fuel_indicator (w, 3, 49);

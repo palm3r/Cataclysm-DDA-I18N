@@ -51,7 +51,7 @@ itype* game::new_artifact()
   }
 
   std::stringstream description;
-  description << format(_("This is the %s.\n\
+  description << i18n::format(_("This is the %s.\n\
 It is the only one of its kind.\n\
 It may have unknown powers; use 'a' to activate them."), art->name.c_str());
   art->description = description.str();
@@ -170,7 +170,7 @@ It may have unknown powers; use 'a' to activate them."), art->name.c_str());
   art->warmth = info->warmth;
   art->storage = info->storage;
   std::stringstream description;
-  description << format(_("This is the %s.\n"), art->name.c_str()) <<
+  description << i18n::format(_("This is the %s.\n"), art->name.c_str()) <<
                  (info->plural ? _("They are the only ones of their kind.") :
                                  _("It is the only one of its kind."));
 
@@ -277,7 +277,7 @@ itype* game::new_natural_artifact(artifact_natural_property prop)
 
  art->name = property_data->name + " " + shape_data->name;
  std::stringstream desc;
- desc << format(_("This %s %s."), shape_data->desc.c_str(), property_data->desc.c_str());
+ desc << i18n::format(_("This %s %s."), shape_data->desc.c_str(), property_data->desc.c_str());
  art->description = desc.str();
 // Add line breaks to the description as necessary
  size_t pos = 76;
@@ -401,8 +401,8 @@ std::string artifact_name(std::string type)
   std::string noun = artifact_noun[rng(0, NUM_ART_NOUNS - 1)];
   std::string adj = artifact_adj[rng(0, NUM_ART_ADJS - 1)];
   return noun[0] == '+'
-    ? format(_("%s of the %s %s"), type.c_str(), adj.c_str(), noun.substr(1).c_str())
-    : format(_("%s of %s %s"), type.c_str(), adj.c_str(), noun.c_str())
+    ? i18n::format(_("%s of the %s %s"), type.c_str(), adj.c_str(), noun.substr(1).c_str())
+    : i18n::format(_("%s of %s %s"), type.c_str(), adj.c_str(), noun.c_str())
     ;
 }
 
@@ -662,13 +662,13 @@ void game::add_artifact_messages(std::vector<art_effect_passive> effects)
 
  std::stringstream stat_info;
  if (net_str != 0)
-  stat_info << format(_("Str %s%d! "), (net_str > 0 ? "+" : ""), net_str);
+  stat_info << i18n::format(_("Str %s%d! "), (net_str > 0 ? "+" : ""), net_str);
  if (net_dex != 0)
-  stat_info << format(_("Dex %s%d! "), (net_dex > 0 ? "+" : ""), net_dex);
+  stat_info << i18n::format(_("Dex %s%d! "), (net_dex > 0 ? "+" : ""), net_dex);
  if (net_int != 0)
-  stat_info << format(_("Int %s%d! "), (net_int > 0 ? "+" : ""), net_int);
+  stat_info << i18n::format(_("Int %s%d! "), (net_int > 0 ? "+" : ""), net_int);
  if (net_per != 0)
-  stat_info << format(_("Per %s%d! "), (net_per > 0 ? "+" : ""), net_per);
+  stat_info << i18n::format(_("Per %s%d! "), (net_per > 0 ? "+" : ""), net_per);
 
  if (stat_info.str().length() > 0)
   add_msg(stat_info.str().c_str());

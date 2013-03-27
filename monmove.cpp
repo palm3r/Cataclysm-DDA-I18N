@@ -474,8 +474,8 @@ void monster::hit_player(game *g, player &p, bool can_grab)
  bool u_see = (!is_npc || g->u_see(p.posx, p.posy, junk));
  std::string you  = (is_npc ? p.name : _("you"));
  std::string You  = (is_npc ? p.name : _("You"));
- std::string your = (is_npc ? format(_("%s's"), p.name.c_str()) : _("your"));
- std::string Your = (is_npc ? format(_("%s's"), p.name.c_str()) : _("Your"));
+ std::string your = (is_npc ? i18n::format(_("%s's"), p.name.c_str()) : _("your"));
+ std::string Your = (is_npc ? i18n::format(_("%s's"), p.name.c_str()) : _("Your"));
  body_part bphit;
  int side = rng(0, 1);
  int dam = hit(g, p, bphit), cut = type->melee_cut, stab = 0;

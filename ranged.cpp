@@ -434,7 +434,7 @@ void game::throw_item(player &p, int tarx, int tary, item &thrown,
    if (rng(0, 100) < 20 + skillLevel * 12 &&
        thrown.type->melee_cut > 0) {
     if (!p.is_npc()) {
-     message += format(_(" You cut the %s!"), z[mon_at(tx, ty)].name().c_str());
+     message += i18n::format(_(" You cut the %s!"), z[mon_at(tx, ty)].name().c_str());
     }
     if (thrown.type->melee_cut > z[mon_at(tx, ty)].armor_cut())
      dam += (thrown.type->melee_cut - z[mon_at(tx, ty)].armor_cut());

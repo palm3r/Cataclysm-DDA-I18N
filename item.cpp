@@ -5,6 +5,7 @@
 #include "game.h"
 #include <sstream>
 #include "cursesdef.h"
+#include "i18n.h"
 
 bool is_flammable(material m);
 
@@ -756,7 +757,7 @@ std::string item::tname(game *g)
   //if(is_engine()){
   if(type->bigness_aspect == BIGNESS_ENGINE_DISPLACEMENT){ //liters, e.g. "3.21-Liter V8 engine"
    ret.precision(4);
-   ret << format(_("%f-Liter "), (float)bigness/100);
+   ret << i18n::format(_("%f-Liter "), (float)bigness/100);
   }
   else if(type->bigness_aspect == BIGNESS_WHEEL_DIAMETER) { //inches, e.g. "20" wheel"
    ret << bigness << "\" ";
@@ -770,8 +771,8 @@ std::string item::tname(game *g)
 
  if (typeId() == itm_corpse) {
   ret << (name != ""
-    ? format(_("%s corpse of %s"), corpse->name.c_str(), name.c_str())
-    : format(_("%s corpse"), corpse->name.c_str()));
+    ? i18n::format(_("%s corpse of %s"), corpse->name.c_str(), name.c_str())
+    : i18n::format(_("%s corpse"), corpse->name.c_str()));
   return ret.str();
  } else if (typeId() == itm_blood) {
   if (corpse == NULL || corpse->id == mon_null)
@@ -786,9 +787,9 @@ std::string item::tname(game *g)
   for (int i = 0; i < contents.size(); i++)
    ret << "+";
  } else if (contents.size() == 1)
-  ret << format(_("%s of %s"), type->name.c_str(), contents[0].tname().c_str());
+  ret << i18n::format(_("%s of %s"), type->name.c_str(), contents[0].tname().c_str());
  else if (contents.size() > 0)
-  ret << format(_("%s, full"), type->name.c_str());
+  ret << i18n::format(_("%s, full"), type->name.c_str());
  else
   ret << type->name;
 

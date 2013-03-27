@@ -349,7 +349,7 @@ int calendar::sunlight()
 
 std::string calendar::print_time(bool twentyfour)
 {
-  std::string fmt = _("%d:%02d%s");
+  std::string fmt = _("%d:%02d %s");
   int h = hour, m = minute;
   std::string ampm;
   if (!twentyfour) {
@@ -365,12 +365,12 @@ std::string calendar::print_time(bool twentyfour)
     }
     if (OPTIONS[OPT_24_HOUR] == 0) {
       if (hour < 12)
-        ampm = _(" AM");
+        ampm = _("AM");
       else
-        ampm = _(" PM");
+        ampm = _("PM");
     }
   }
-  return format(fmt.c_str(), h, m, ampm.c_str());
+  return i18n::format(fmt.c_str(), h, m, ampm.c_str());
 }
 
 std::string calendar::textify_period()

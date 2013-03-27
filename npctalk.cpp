@@ -281,7 +281,7 @@ std::string dynamic_line(talk_topic topic, game *g, npc *p)
    int fullmiles = (miles - miles % 100) / 100; // Left of the decimal point
    if (fullmiles > 0)
     response << fullmiles;
-   response << format(_(".%d miles."), miles);
+   response << i18n::format(_(".%d miles."), miles);
   } else
    response << dist << _(" feet.");
   return response.str();
@@ -316,8 +316,8 @@ std::string dynamic_line(talk_topic topic, game *g, npc *p)
     grenades = _("%s will not use grenades.");
   }
   std::string who = p->male ? _("He") : _("She");
-  status << " " << format(firearms.c_str(), who.c_str());
-  status << " " << format(grenades.c_str(), who.c_str());
+  status << " " << i18n::format(firearms.c_str(), who.c_str());
+  status << " " << i18n::format(grenades.c_str(), who.c_str());
   return status.str();
  }
 
@@ -375,7 +375,7 @@ std::string dynamic_line(talk_topic topic, game *g, npc *p)
      case NC_NINJA:
       if (!p->styles.empty()) {
        std::stringstream ret;
-       ret << format(_("I am a wandering master of %s."),
+       ret << i18n::format(_("I am a wandering master of %s."),
                      g->itypes[p->styles[0]]->name.c_str());
        return ret.str();
       } else
@@ -745,7 +745,7 @@ std::vector<talk_response> gen_responses(talk_topic topic, game *g, npc *p)
  case TALK_TRAIN: {
   if (g->u.backlog.type == ACT_TRAIN) {
    std::stringstream resume;
-   resume << format(_("Yes, let's resume training %s"),
+   resume << i18n::format(_("Yes, let's resume training %s"),
              (g->u.backlog.index > 0 ?
               skill_name(g->u.backlog.index).c_str() :
               g->itypes[ 0 - g->u.backlog.index ]->name.c_str()));
@@ -768,7 +768,7 @@ std::vector<talk_response> gen_responses(talk_topic topic, game *g, npc *p)
    std::stringstream skilltext;
    skill trained = trainable[i];
 
-   skilltext << format(_("%s: %d -> %d (cost %d)"), skill_name(trained).c_str(),
+   skilltext << i18n::format(_("%s: %d -> %d (cost %d)"), skill_name(trained).c_str(),
                        g->u.sklevel[trained], g->u.sklevel[trained] + 1,
                        200 * (g->u.sklevel[trained] + 1));
    SELECT_TEMP( skilltext.str(), trainable[i] );
@@ -1542,7 +1542,7 @@ void parse_tags(std::string &phrase, player *u, npc *me)
     phrase.replace(fa, l, u->weapon.tname());
    else if (tag == "<mywp>") {
     if (me->weapon.type->id == 0)
-     phrase.replace(fa, l, "fists");
+     phrase.replace(fa, l, _("fists"));
     else
      phrase.replace(fa, l, me->weapon.tname());
    } else if (tag == "<ammo>") {
@@ -1554,9 +1554,9 @@ void parse_tags(std::string &phrase, player *u, npc *me)
     }
    } else if (tag == "<punc>") {
     switch (rng(0, 2)) {
-     case 0: phrase.replace(fa, l, ".");   break;
-     case 1: phrase.replace(fa, l, "..."); break;
-     case 2: phrase.replace(fa, l, "!");   break;
+     case 0: phrase.replace(fa, l, _("."));   break;
+     case 1: phrase.replace(fa, l, _("...")); break;
+     case 2: phrase.replace(fa, l, _("!"));   break;
     }
    } else if (tag != "") {
     debugmsg("Bad tag. '%s' (%d - %d)", tag.c_str(), fa, fb);

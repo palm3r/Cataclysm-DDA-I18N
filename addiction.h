@@ -193,7 +193,7 @@ Risk of delirium tremens");
   return _("You may find it difficult to sleep without medication.");
 
  case ADD_PKILLER:
-  return format(_("Strength -%d;   Perception - 1;   Dexterity - 1;\n\
+  return i18n::format(_("Strength -%d;   Perception - 1;   Dexterity - 1;\n\
 Depression and physical pain to some degree.  Frequent cravings.  Vomiting."), strpen);
 
  case ADD_SPEED:

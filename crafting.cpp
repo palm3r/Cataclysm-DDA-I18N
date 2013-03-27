@@ -1448,7 +1448,7 @@ void game::craft()
       std::stringstream toolinfo;
       toolinfo << itypes[type]->name + " ";
       if (charges > 0)
-       toolinfo << format(_("(%d charges)"), charges);
+       toolinfo << i18n::format(_("(%d charges)"), charges);
       std::string toolname = toolinfo.str();
       if (xpos + toolname.length() >= 80) {
        xpos = 32;

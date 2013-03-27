@@ -13,22 +13,30 @@
 #include "inventory_ui.h"
 #include "mapdata.h"
 #include "moraledata.h"
+#include "skill.h"
 
+#include <vector>
 #include <sstream>
 #include <cstdio>
 #include <cstdarg>
 
 #define FOR_BEGIN(array, index) \
-  for (int (index) = 0; (index) < (sizeof((array)) / sizeof((array[0]))); (index)++) {
+  for (int (index) = 0; (index) < (sizeof((array)) / sizeof((array)[0])); (index)++) {
 
 #define FOR_END() \
   }
 
-#define TRANSLATE(str) \
-  if (!str.empty()) \
-    (str) = gettext((str).c_str())
+#define TRANSLATE(array, index) \
+  if (!array[(index)].empty()) { \
+    const_cast<string&>(array[(index)]) = gettext(array[(index)].c_str()); \
+  }
 
-void i18n_init()
+#define TRANSLATE_MEMBER(array, index, member) \
+  if (!array[(index)].member.empty()) { \
+    const_cast<string&>(array[(index)].member) = gettext(array[(index)].member.c_str()); \
+  }
+
+void i18n::init()
 {
   using namespace std;
   cfgxx::config config("data/i18n.ini");
@@ -42,7 +50,7 @@ void i18n_init()
   {
     ostringstream ss;
     ss << "LANG=" << locale;
-    putenv((char*)ss.str().c_str());
+    putenv((char *)ss.str().c_str());
   }
   setlocale(LC_ALL, "");
   bindtextdomain(PROJECT_NAME, LOCALEDIR);
@@ -54,368 +62,306 @@ void i18n_init()
 
   // artifact data (shape)
   FOR_BEGIN(artifact_shape_data, i)
-    artifact_shape_datum &shape =
-      const_cast<artifact_shape_datum &>(artifact_shape_data[i]);
-    TRANSLATE(shape.name);
-    TRANSLATE(shape.desc);
+    TRANSLATE_MEMBER(artifact_shape_data, i, name);
+    TRANSLATE_MEMBER(artifact_shape_data, i, desc);
   FOR_END()
-  
+
   // artifact data (property)
   FOR_BEGIN(artifact_property_data, i)
-    artifact_property_datum &property =
-      const_cast<artifact_property_datum &>(artifact_property_data[i]);
-    TRANSLATE(property.name);
-    TRANSLATE(property.desc);
+    TRANSLATE_MEMBER(artifact_property_data, i, name);
+    TRANSLATE_MEMBER(artifact_property_data, i, desc);
   FOR_END()
 
   // artifact data (form)
   FOR_BEGIN(artifact_tool_form_data, i)
-    artifact_tool_form_datum &form =
-      const_cast<artifact_tool_form_datum &>(artifact_tool_form_data[i]);
-    TRANSLATE(form.name);
+    TRANSLATE_MEMBER(artifact_tool_form_data, i, name);
   FOR_END()
 
   // artifact data (weapon)
   FOR_BEGIN(artifact_weapon_data, i)
-    artifact_weapon_datum &weapon =
-      const_cast<artifact_weapon_datum &>(
-        artifact_weapon_data[i]);
-    TRANSLATE(weapon.adjective);
+    TRANSLATE_MEMBER(artifact_weapon_data, i, adjective);
   FOR_END()
 
   // artifact data (armor)
   FOR_BEGIN(artifact_armor_form_data, i)
-    artifact_armor_form_datum &armor =
-      const_cast<artifact_armor_form_datum &>(artifact_armor_form_data[i]);
-    TRANSLATE(armor.name);
+    TRANSLATE_MEMBER(artifact_armor_form_data, i, name);
   FOR_END()
 
   // artifact data (mod)
   FOR_BEGIN(artifact_armor_mod_data, i)
-    artifact_armor_form_datum &mod =
-      const_cast<artifact_armor_form_datum &>(artifact_armor_mod_data[i]);
-    TRANSLATE(mod.name);
+    TRANSLATE_MEMBER(artifact_armor_mod_data, i, name);
   FOR_END()
 
   // artifact data (adjective)
   FOR_BEGIN(artifact_adj, i)
-    string &adjective = const_cast<string &>(artifact_adj[i]);
-    TRANSLATE(adjective);
+    TRANSLATE(artifact_adj, i);
   FOR_END()
 
   // artifact data (noun)
   FOR_BEGIN(artifact_noun, i)
-    string &noun = const_cast<string &>(artifact_noun[i]);
-    TRANSLATE(noun);
+    TRANSLATE(artifact_noun, i);
   FOR_END()
 
   // bionics
   FOR_BEGIN(bionics, i)
-    bionic_data &bd = const_cast<bionic_data &>(bionics[i]);
-    TRANSLATE(bd.name);
-    TRANSLATE(bd.description);
+    TRANSLATE_MEMBER(bionics, i, name);
+    TRANSLATE_MEMBER(bionics, i, description);
   FOR_END()
 
   // dialogues (trial)
   FOR_BEGIN(talk_trial_text, i)
-    string &str = const_cast<string &>(talk_trial_text[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_trial_text, i);
   FOR_END()
 
   // dialogues (needs)
   FOR_BEGIN(talk_needs, i)
-    string *pstr = const_cast<string *>(talk_needs[i]);
-    for (int j = 0; j < 5; j++) {
-      if (!pstr[j].empty()) {
-        TRANSLATE(pstr[j]);
-      }
-    }
+    FOR_BEGIN(talk_needs[i], j)
+      TRANSLATE(talk_needs[i], j);
+    FOR_END()
   FOR_END()
 
   // dialogues (okay)
   FOR_BEGIN(talk_okay, i)
-    string &str = const_cast<string &>(talk_okay[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_okay, i);
   FOR_END()
 
   // dialogues (no)
   FOR_BEGIN(talk_no, i)
-    string &str = const_cast<string &>(talk_no[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_no, i);
   FOR_END()
 
   // dialogues (bad names)
   FOR_BEGIN(talk_bad_names, i)
-    string &str = const_cast<string &>(talk_bad_names[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_bad_names, i);
   FOR_END()
 
   // dialogues (good names)
   FOR_BEGIN(talk_good_names, i)
-    string &str = const_cast<string &>(talk_good_names[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_good_names, i);
   FOR_END()
 
   // dialogues (swear)
   FOR_BEGIN(talk_swear, i)
-    string &str = const_cast<string &>(talk_swear[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_swear, i);
   FOR_END()
 
   // dialogues (interjection)
   FOR_BEGIN(talk_swear_interjection, i)
-    string &str = const_cast<string &>(talk_swear_interjection[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_swear_interjection, i);
   FOR_END()
 
   // dialogues (fuck you)
   FOR_BEGIN(talk_fuck_you, i)
-    string &str = const_cast<string &>(talk_fuck_you[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_fuck_you, i);
   FOR_END()
 
   // dialogues (very)
   FOR_BEGIN(talk_very, i)
-    string &str = const_cast<string &>(talk_very[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_very, i);
   FOR_END()
 
   // dialogues (really)
   FOR_BEGIN(talk_really, i)
-    string &str = const_cast<string &>(talk_really[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_really, i);
   FOR_END()
 
   // dialogues (happy)
   FOR_BEGIN(talk_happy, i)
-    string &str = const_cast<string &>(talk_happy[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_happy, i);
   FOR_END()
 
   // dialogues (sad)
   FOR_BEGIN(talk_sad, i)
-    string &str = const_cast<string &>(talk_sad[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_sad, i);
   FOR_END()
 
   // dialogues (greeting)
   FOR_BEGIN(talk_greeting_gen, i)
-    string &str = const_cast<string &>(talk_greeting_gen[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_greeting_gen, i);
   FOR_END()
 
   // dialogues (ill die)
   FOR_BEGIN(talk_ill_die, i)
-    string &str = const_cast<string &>(talk_ill_die[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_ill_die, i);
   FOR_END()
 
   // dialogues (kill you)
   FOR_BEGIN(talk_ill_kill_you, i)
-    string &str = const_cast<string &>(talk_ill_kill_you[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_ill_kill_you, i);
   FOR_END()
 
   // dialogues (drop weapon)
   FOR_BEGIN(talk_drop_weapon, i)
-    string &str = const_cast<string &>(talk_drop_weapon[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_drop_weapon, i);
   FOR_END()
 
   // dialogues (hands up)
   FOR_BEGIN(talk_hands_up, i)
-    string &str = const_cast<string &>(talk_hands_up[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_hands_up, i);
   FOR_END()
 
   // dialogues (no faction)
   FOR_BEGIN(talk_no_faction, i)
-    string &str = const_cast<string &>(talk_no_faction[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_no_faction, i);
   FOR_END()
 
   // dialogues (come here)
   FOR_BEGIN(talk_come_here, i)
-    string &str = const_cast<string &>(talk_come_here[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_come_here, i);
   FOR_END()
 
   // dialogues (keep up)
   FOR_BEGIN(talk_keep_up, i)
-    string &str = const_cast<string &>(talk_keep_up[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_keep_up, i);
   FOR_END()
 
   // dialogues (wait)
   FOR_BEGIN(talk_wait, i)
-    string &str = const_cast<string &>(talk_wait[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_wait, i);
   FOR_END()
 
   // dialogues (let me pass)
   FOR_BEGIN(talk_let_me_pass, i)
-    string &str = const_cast<string &>(talk_let_me_pass[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_let_me_pass, i);
   FOR_END()
 
   // dialogues (move)
   FOR_BEGIN(talk_move, i)
-    string &str = const_cast<string &>(talk_move[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_move, i);
   FOR_END()
 
   // dialogues (done mugging)
   FOR_BEGIN(talk_done_mugging, i)
-    string &str = const_cast<string &>(talk_done_mugging[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_done_mugging, i);
   FOR_END()
 
   // dialogues (leaving)
   FOR_BEGIN(talk_leaving, i)
-    string &str = const_cast<string &>(talk_leaving[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_leaving, i);
   FOR_END()
 
   // dialogues (catch up)
   FOR_BEGIN(talk_catch_up, i)
-    string &str = const_cast<string &>(talk_catch_up[i]);
-    TRANSLATE(str);
+    TRANSLATE(talk_catch_up, i);
   FOR_END()
 
   // faction (adjective positive)
   FOR_BEGIN(faction_adj_pos, i)
-    string& str = const_cast<string&>(faction_adj_pos[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_adj_pos, i);
   FOR_END()
 
   // faction (adjective neutral)
   FOR_BEGIN(faction_adj_neu, i)
-    string& str = const_cast<string&>(faction_adj_neu[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_adj_neu, i);
   FOR_END()
 
   // faction (adjective bad)
   FOR_BEGIN(faction_adj_bad, i)
-    string& str = const_cast<string&>(faction_adj_bad[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_adj_bad, i);
   FOR_END()
 
   // faction (noun strong)
   FOR_BEGIN(faction_noun_strong, i)
-    string& str = const_cast<string&>(faction_noun_strong[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_noun_strong, i);
   FOR_END()
 
   // faction (noun sneak)
   FOR_BEGIN(faction_noun_sneak, i)
-    string& str = const_cast<string&>(faction_noun_sneak[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_noun_sneak, i);
   FOR_END()
 
   // faction (noun crime)
   FOR_BEGIN(faction_noun_crime, i)
-    string& str = const_cast<string&>(faction_noun_crime[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_noun_crime, i);
   FOR_END()
 
   // faction (noun cult)
   FOR_BEGIN(faction_noun_cult, i)
-    string& str = const_cast<string&>(faction_noun_cult[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_noun_cult, i);
   FOR_END()
 
   // faction (noun none)
   FOR_BEGIN(faction_noun_none, i)
-    string& str = const_cast<string&>(faction_noun_none[i]);
-    TRANSLATE(str);
+    TRANSLATE(faction_noun_none, i);
   FOR_END()
 
   // faction (goal)
   FOR_BEGIN(facgoal_data, i)
-    faction_value_datum& fac = const_cast<faction_value_datum&>(facgoal_data[i]);
-    TRANSLATE(fac.name);
+  TRANSLATE_MEMBER(facgoal_data, i, name);
   FOR_END()
 
   // faction (job)
   FOR_BEGIN(facjob_data, i)
-    faction_value_datum& fac = const_cast<faction_value_datum&>(facjob_data[i]);
-    TRANSLATE(fac.name);
+  TRANSLATE_MEMBER(facjob_data, i, name);
   FOR_END()
 
   // faction (val?)
   FOR_BEGIN(facval_data, i)
-    faction_value_datum& fac = const_cast<faction_value_datum&>(facval_data[i]);
-    TRANSLATE(fac.name);
+  TRANSLATE_MEMBER(facval_data, i, name);
   FOR_END()
 
   // oterlist
   FOR_BEGIN(oterlist, i)
-    oter_t &o = const_cast<oter_t &>(oterlist[i]);
-    TRANSLATE(o.name);
+  TRANSLATE_MEMBER(oterlist, i, name);
   FOR_END()
 
   // pltype_name
   FOR_BEGIN(pltype_name, i)
-    string &name = const_cast<string &>(pltype_name[i]);
-    TRANSLATE(name);
+    TRANSLATE(pltype_name, i);
   FOR_END()
 
   // pltype_desc
   FOR_BEGIN(pltype_desc, i)
-    string &desc = const_cast<string &>(pltype_desc[i]);
-    TRANSLATE(desc);
+    TRANSLATE(pltype_desc, i);
   FOR_END()
 
   // traits
   FOR_BEGIN(traits, i)
-    trait &t = const_cast<trait &>(traits[i]);
-    TRANSLATE(t.name);
-    TRANSLATE(t.description);
+    TRANSLATE_MEMBER(traits, i, name);
+    TRANSLATE_MEMBER(traits, i, description);
   FOR_END()
 
   // tutorial texts
   FOR_BEGIN(tut_text, i)
-    string &tutorial = const_cast<string &>(tut_text[i]);
-    TRANSLATE(tutorial);
+    TRANSLATE(tut_text, i);
   FOR_END()
 
   // vehicle parts
   FOR_BEGIN(vpart_list, i)
-    vpart_info &part = const_cast<vpart_info &>(vpart_list[i]);
-    TRANSLATE(part.name);
+  TRANSLATE_MEMBER(vpart_list, i, name);
   FOR_END()
 
   // weather data
   FOR_BEGIN(weather_data, i)
-    weather_datum &weather = const_cast<weather_datum &>(weather_data[i]);
-    TRANSLATE(weather.name);
+  TRANSLATE_MEMBER(weather_data, i, name);
   FOR_END()
 
   // inventory_ui.h
   FOR_BEGIN(CATEGORIES, i)
-    string cat = const_cast<string &>(CATEGORIES[i]);
-    TRANSLATE(cat);
+    TRANSLATE(CATEGORIES, i);
   FOR_END()
 
   FOR_BEGIN(terlist, i)
-    ter_t& terrain = const_cast<ter_t&>(terlist[i]);
-    TRANSLATE(terrain.name);
+    TRANSLATE_MEMBER(terlist, i, name);
   FOR_END()
 
   FOR_BEGIN(fieldlist, i)
-    field_t& field = const_cast<field_t&>(fieldlist[i]);
-    for (int j = 0; j < 3; j++) {
-      TRANSLATE(field.name[j]);
-    }
+    FOR_BEGIN(fieldlist[i].name, j)
+      TRANSLATE(fieldlist[i].name, j);
+    FOR_END()
   FOR_END()
 
   FOR_BEGIN(morale_data, i)
-    string& morale = const_cast<string&>(morale_data[i]);
-    TRANSLATE(morale);
+    TRANSLATE(morale_data, i);
   FOR_END()
+
+  for (std::vector<Skill*>::iterator it = Skill::skills.begin(); it != Skill::skills.end(); it++) {
+    (*it)->name(gettext((*it)->name().c_str()));
+    (*it)->description(gettext((*it)->description().c_str()));
+  }
 }
 
-std::string format(const std::string& fmt, va_list ap)
+std::string _format(const std::string &fmt, va_list ap)
 {
   const int N = 1024;
   char buffer[N];
@@ -427,30 +373,77 @@ std::string format(const std::string& fmt, va_list ap)
   return std::string(buffer);
 }
 
-std::string format(const std::string& fmt, ...)
+std::string i18n::format(const std::string &fmt, ...)
 {
   va_list ap;
   va_start(ap, fmt);
-  std::string str = format(fmt, ap);
+  std::string str = _format(fmt, ap);
   va_end(ap);
   return str;
 }
 
-std::string &replace(std::string &str, const std::string &pattern, const std::string &replacement)
+std::string &i18n::replace(std::string &str, const std::string &pattern, const std::string &replacement)
 {
   std::string::size_type start = 0;
   std::string::size_type pos = std::string::npos;
-  while ((pos = str.find(pattern, start)) != std::string::npos) {
+  while ((pos = str.find(pattern, start)) != std::string::npos)
+  {
     str.replace(pos, pattern.length(), replacement);
     start = pos + replacement.length();
   }
   return str;
 }
 
-std::string &trim(std::string &source, const std::string &pattern)
+std::string &i18n::trim(std::string &source, const std::string &pattern)
 {
   source.erase(0, source.find_first_not_of(pattern));
   source.erase(source.find_last_not_of(pattern) + 1);
   return source;
 }
 
+std::string _wordwrap(const std::string &str, int width, bool space)
+{
+  std::setlocale(LC_ALL, "");
+  std::ostringstream ss;
+  for (size_t i = 0; i < str.length(); )
+  {
+    std::string buffer;
+    int j = 0;
+    while (i + j < str.length())
+    {
+      int len = mblen(str.data() + i + j, MB_CUR_MAX);
+      if (width <= buffer.length())
+        break;
+      buffer += str.substr(i + j, len);
+      j += len;
+    }
+    if (str.length() <= i + j)
+    {
+      i18n::replace(buffer, "\n", space ? " " : "");
+      ss << buffer;
+      i += j;
+    }
+    else
+    {
+      size_t sp = space ? buffer.rfind(' ') : std::string::npos;
+      if (str[i + j] == ' ' || sp == std::string::npos)
+      {
+        i18n::replace(buffer, "\n", space ? " " : "");
+        ss << buffer + '\n';
+        i += j;
+      }
+      else
+      {
+        i18n::replace(buffer, "\n", space ? " " : "");
+        ss << buffer.substr(0, sp) + '\n';
+        i += sp + 1;
+      }
+    }
+  }
+  return ss.str();
+}
+
+std::string i18n::wordwrap(const std::string &str, int width)
+{
+  return _wordwrap(str, width, str.find(' ') != std::string::npos);
+}

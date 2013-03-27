@@ -50,6 +50,9 @@ class Skill {
   std::string name() { return _name; }
   std::string description() { return _description; }
 
+  void name(const std::string& n) { _name = n; }
+  void description(const std::string& d) { _description = d; }
+
   bool operator==(const Skill& b) const { return this->_ident == b._ident; }
   bool operator< (const Skill& b) const { return this->_ident <  b._ident; } // Only here for the benefit of std::map<Skill,T>
 

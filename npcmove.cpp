@@ -1382,7 +1382,7 @@ void npc::drop_items(game *g, int weight, int volume)
   if (num_items_dropped == 1)
    item_name << dropped.tname();
   else if (num_items_dropped == 2)
-   item_name << format(_(" and a %s"), dropped.tname().c_str());
+   item_name << i18n::format(_(" and a %s"), dropped.tname().c_str());
   g->m.add_item(posx, posy, dropped);
  }
 // Finally, describe the action if u can see it

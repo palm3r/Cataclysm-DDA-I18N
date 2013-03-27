@@ -4275,7 +4275,7 @@ color, STEEL, PLASTIC, 10, 18, 8, 0, 0, 0, difficulty, __VA_ARGS__))
 
 #define BIO_SINGLE(bionic,rarity,price,color,difficulty) \
      BIO(std::string(_("CBM: "))+bionics[bionic].name,rarity,price,color,difficulty, \
-           word_rewrap(bionics[bionic].description, 50), bionic, NULL) \
+           i18n::wordwrap(bionics[bionic].description, 50), bionic, NULL) \
 
 //  Name                     RAR PRICE    COLOR   DIFFICULTY
 BIO(_("CBM: Internal Battery"),	24, 3800,	c_green,	 1, _("\

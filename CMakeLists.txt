@@ -6,19 +6,14 @@ cmake_minimum_required(VERSION 2.8)
 
 project (cataclysm)
 
-option (I18N "Enable I18N build" on)
-option (CONFIG "Build config" Debug)
-set (CMAKE_BUILD_TYPE ${CONFIG})
+if (NOT CMAKE_BUILD_TYPE)
+  set (CMAKE_BUILD_TYPE Debug)
+endif ()
 set (VERSION_MAJOR 0)
 set (VERSION_MINOR 3)
 set (USE_BOOST no)
 
-if (I18N)
-  set (PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}-i18n)
-  add_definitions (-DI18N)
-else ()
-  set (PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR})
-endif ()
+set (PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}-i18n)
 
 if (NOT MSVC)
   set (CMAKE_C_FLAGS                  "")
@@ -37,7 +32,7 @@ message (STATUS "${PROJECT_NAME} ${PROJECT_VERSION} (${CMAKE_BUILD_TYPE})")
 set (CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/install)
 
 ##
-## Cataclysm
+## MAIN
 ##
 
 file (GLOB cataclysm_sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
@@ -48,16 +43,13 @@ if (WIN32)
 else ()
   add_executable (${PROJECT_NAME} ${cataclysm_sources})
 endif ()
+
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX} DESTINATION .)
 
 if (WIN32)
   target_link_libraries (${PROJECT_NAME} intl)
 else ()
-  if (I18N)
-    target_link_libraries (${PROJECT_NAME} ncursesw)
-  else ()
-    target_link_libraries (${PROJECT_NAME} ncurses)
-  endif ()
+  target_link_libraries (${PROJECT_NAME} ncursesw)
 endif()
 
 add_custom_command (TARGET ${PROJECT_NAME} POST_BUILD
@@ -78,7 +70,7 @@ set_target_properties (${PROJECT_NAME} PROPERTIES
 
 if (MINGW)
   set_target_properties (${PROJECT_NAME} PROPERTIES
-    LINK_FLAGS "-static-libgcc -static-libstdc++"
+    LINK_FLAGS "${LINK_FLAGS} -static-libgcc -static-libstdc++"
     )
 endif ()
 
@@ -97,40 +89,38 @@ endif ()
 ## LANGUAGES
 ##
 
-if (I18N)
-  set (lang_dir "lang")
-  add_definitions (-DLOCALEDIR="./${lang_dir}")
+set (lang_dir "lang")
+add_definitions (-DLOCALEDIR="./${lang_dir}")
 
-  set (po_dir_path ${CMAKE_CURRENT_SOURCE_DIR}/${lang_dir})
-  set (mo_dir_path ${CMAKE_CURRENT_BINARY_DIR}/${lang_dir})
+set (po_dir_path ${CMAKE_CURRENT_SOURCE_DIR}/${lang_dir})
+set (mo_dir_path ${CMAKE_CURRENT_BINARY_DIR}/${lang_dir})
 
-  set (pot_target ${PROJECT_NAME}.pot)
-  set (pot_path ${po_dir_path}/${pot_target})
+set (pot_target ${PROJECT_NAME}.pot)
+set (pot_path ${po_dir_path}/${pot_target})
 
-  add_custom_target (po_dir_target
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${po_dir_path}
-    )
+add_custom_target (po_dir_target
+  COMMAND ${CMAKE_COMMAND} -E make_directory ${po_dir_path}
+  )
 
-  set (XGETTEXT xgettext -k_ -kN_ -kP_:1,2 -F --force-po --add-comments=I18N:
-    --package-name=${PROJECT_NAME} --package-version=${PROJECT_VERSION})
-  add_custom_target (xgettext ALL
-    COMMAND ${XGETTEXT} -o ${pot_path} ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/*.h
-    DEPENDS ${cataclysm_sources}
-    DEPENDS ${cataclysm_headers}
-    DEPENDS po_dir_target
-    COMMENT "Generating ${pot_target}"
-    )
-  install (FILES ${pot_path} DESTINATION ./lang)
+set (XGETTEXT xgettext -k_ -kN_ -kP_:1,2 -F --force-po --add-comments=I18N:
+  --package-name=${PROJECT_NAME} --package-version=${PROJECT_VERSION})
+add_custom_target (xgettext ALL
+  COMMAND ${XGETTEXT} -o ${pot_path} ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/*.h
+  DEPENDS ${cataclysm_sources}
+  DEPENDS ${cataclysm_headers}
+  DEPENDS po_dir_target
+  COMMENT "Generating ${pot_target}"
+  )
+install (FILES ${pot_path} DESTINATION ./lang)
 
-  add_custom_target (msgmerge
-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgmerge.sh ${PROJECT_NAME} ${po_dir_path}
-    DEPENDS xgettext
-    )
+add_custom_target (msgmerge
+  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgmerge.sh ${PROJECT_NAME} ${po_dir_path}
+  DEPENDS xgettext
+  )
 
-  add_custom_target (lang ALL
-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgfmt.sh ${PROJECT_NAME} ${po_dir_path} ${mo_dir_path}
-    DEPENDS msgmerge
-    )
-  install (DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lang DESTINATION .)
-endif ()
+add_custom_target (lang ALL
+  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/msgfmt.sh ${PROJECT_NAME} ${po_dir_path} ${mo_dir_path}
+  DEPENDS msgmerge
+  )
+install (DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lang DESTINATION .)
 

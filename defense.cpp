@@ -1290,7 +1290,7 @@ void defense_game::spawn_wave_monster(game *g, mtype *type)
 std::string defense_game::special_wave_message(std::string name)
 {
  std::stringstream ret;
- ret << format(_("Wave %d: "), current_wave);
+ ret << i18n::format(_("Wave %d: "), current_wave);
  name[0] += 'A' - 'a'; // Capitalize
 
  for (int i = 2; i < name.size(); i++) {
@@ -1299,15 +1299,15 @@ std::string defense_game::special_wave_message(std::string name)
  }
 
  switch (rng(1, 6)) {
-  case 1: ret << format(_("%s Invasion!"), name.c_str()); break;
-  case 2: ret << format(_("Attack of the %ss!"), name.c_str()); break;
-  case 3: ret << format(_("%s Attack!"), name.c_str()); break;
-  case 4: ret << format(_("%ss from Hell!"), name.c_str()); break;
-  case 5: ret << format(_("Beware! %s!"), name.c_str()); break;
-  case 6: ret << format(_("The Day of the %s!"), name.c_str()); break;
-  case 7: ret << format(_("%s Party!"), name.c_str()); break;
-  case 8: ret << format(_("Revenge of the %ss!"), name.c_str()); break;
-  case 9: ret << format(_("Rise of the %ss!"), name.c_str()); break;
+  case 1: ret << i18n::format(_("%s Invasion!"), name.c_str()); break;
+  case 2: ret << i18n::format(_("Attack of the %ss!"), name.c_str()); break;
+  case 3: ret << i18n::format(_("%s Attack!"), name.c_str()); break;
+  case 4: ret << i18n::format(_("%ss from Hell!"), name.c_str()); break;
+  case 5: ret << i18n::format(_("Beware! %s!"), name.c_str()); break;
+  case 6: ret << i18n::format(_("The Day of the %s!"), name.c_str()); break;
+  case 7: ret << i18n::format(_("%s Party!"), name.c_str()); break;
+  case 8: ret << i18n::format(_("Revenge of the %ss!"), name.c_str()); break;
+  case 9: ret << i18n::format(_("Rise of the %ss!"), name.c_str()); break;
  }
 
  return ret.str();

@@ -1497,7 +1497,7 @@ void npc::say(game *g, std::string line, ...)
   g->add_msg(_("%s says, \"%s\""), name.c_str(), line.c_str());
   g->sound(posx, posy, 16, "");
  } else {
-  std::string sound = format(_("%s saying, \"%s\""), name.c_str(), line.c_str());
+  std::string sound = i18n::format(_("%s saying, \"%s\""), name.c_str(), line.c_str());
   g->sound(posx, posy, 16, sound);
  }
 }
@@ -1879,7 +1879,7 @@ void npc::print_info(WINDOW* w)
 std::string npc::short_description()
 {
  std::stringstream ret;
- ret << format(_("Wielding %s;   "), weapon.tname().c_str());
+ ret << i18n::format(_("Wielding %s;   "), weapon.tname().c_str());
  ret << _("Wearing: ");
  for (int i = 0; i < worn.size(); i++) {
   if (i > 0)
@@ -1908,7 +1908,7 @@ std::string npc::opinion_text()
  else
   ret << _("Completely trusting");
 
- ret << format(_(" (Trust %d); "), op_of_u.trust);
+ ret << i18n::format(_(" (Trust %d); "), op_of_u.trust);
 
  if (op_of_u.fear <= -10)
   ret << _("Thinks you're laughably harmless");
@@ -1925,7 +1925,7 @@ std::string npc::opinion_text()
  else
   ret << _("Terrified");
 
- ret << format(_(" (Fear %d); "), op_of_u.fear);
+ ret << i18n::format(_(" (Fear %d); "), op_of_u.fear);
 
  if (op_of_u.value <= -10)
   ret << _("Considers you a major liability");
@@ -1942,7 +1942,7 @@ std::string npc::opinion_text()
  else
   ret << _("Best Friends Forever!");
 
- ret << format(_(" (Value %d); "), op_of_u.value);
+ ret << i18n::format(_(" (Value %d); "), op_of_u.value);
 
  if (op_of_u.anger <= -10)
   ret << _("You can do no wrong!");
@@ -1959,7 +1959,7 @@ std::string npc::opinion_text()
  else
   ret << _("About to kill you");
 
- ret << format(_(" (Anger %d)"), op_of_u.anger);
+ ret << i18n::format(_(" (Anger %d)"), op_of_u.anger);
 
  return ret.str();
 }

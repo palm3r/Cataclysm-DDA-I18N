@@ -583,7 +583,7 @@ void vehicle::print_part_desc (void *w, int y1, int width, int p, int hl)
         if (part_flag(pl[i], vpf_variable_size)){
            if (part_flag(pl[i], vpf_engine)){ //bigness == liters
               nom.precision(4);
-              nom << format(_("%f-Liter "), (float)(parts[pl[i]].bigness) / 100);
+              nom << i18n::format(_("%f-Liter "), (float)(parts[pl[i]].bigness) / 100);
            }
            else if (part_flag(pl[i], vpf_wheel)){ //bigness == inches
               nom << (parts[pl[i]].bigness) << "\" ";

@@ -749,7 +749,7 @@ void game::update_weather()
  if (weather != old_weather && weather_data[weather].dangerous &&
      levz >= 0 && m.is_outside(u.posx, u.posy)) {
   std::stringstream weather_text;
-  weather_text << format(_("The weather changed to %s!"), weather_data[weather].name.c_str());
+  weather_text << i18n::format(_("The weather changed to %s!"), weather_data[weather].name.c_str());
   cancel_activity_query(weather_text.str().c_str());
  }
 
@@ -1257,7 +1257,7 @@ bool game::handle_action()
    char cMenu = ' ';
    do {
     const std::string sSpaces = "                              ";
-    char chItem = inv();
+    char chItem = inv(_("Inventory:"));
     cMenu = '+';
     has = u.has_item(chItem);
 
@@ -1521,7 +1521,7 @@ bool game::handle_action()
    break;
 
   case ACTION_FACTIONS:
-   list_factions();
+   list_factions(_("FACTIONS:"));
    break;
 
   case ACTION_MORALE:
@@ -2143,20 +2143,20 @@ z.size(), events.size());
     data << npc_class_name(p->myclass) << "; " <<
             npc_attitude_name(p->attitude) << std::endl;
     if (p->has_destination())
-     data << format(_("Destination: %d:%d(%s)"), p->goalx, p->goaly,
+     data << i18n::format(_("Destination: %d:%d(%s)"), p->goalx, p->goaly,
                     oterlist[cur_om.ter(p->goalx, p->goaly, p->goalz)].name.c_str()) << std::endl;
     else
      data << _("No destination.") << std::endl;
-    data << format(_("Trust: %d"), p->op_of_u.trust)
-         << format(_(" Fear: %d"), p->op_of_u.fear)
-         << format(_(" Value: %d"), p->op_of_u.value)
-         << format(_(" Anger: %d"), p->op_of_u.anger)
-         << format(_(" Owed: %d"), p->op_of_u.owed)
+    data << i18n::format(_("Trust: %d"), p->op_of_u.trust)
+         << i18n::format(_(" Fear: %d"), p->op_of_u.fear)
+         << i18n::format(_(" Value: %d"), p->op_of_u.value)
+         << i18n::format(_(" Anger: %d"), p->op_of_u.anger)
+         << i18n::format(_(" Owed: %d"), p->op_of_u.owed)
          << std::endl;
-    data << format(_("Aggression: %d"), int(p->personality.aggression))
-         << format(_(" Bravery: %d"), int(p->personality.bravery))
-         << format(_(" Collector: %d"), int(p->personality.collector))
-         << format(_(" Altruism: %d"), int(p->personality.altruism))
+    data << i18n::format(_("Aggression: %d"), int(p->personality.aggression))
+         << i18n::format(_(" Bravery: %d"), int(p->personality.bravery))
+         << i18n::format(_(" Collector: %d"), int(p->personality.collector))
+         << i18n::format(_(" Altruism: %d"), int(p->personality.altruism))
          << std::endl;
     for (std::vector<Skill*>::iterator aSkill = Skill::skills.begin()++; aSkill != Skill::skills.end(); ++aSkill) {
       data << (*aSkill)->name() << ": " << p->skillLevel(*aSkill) << std::endl;
@@ -5919,7 +5919,7 @@ bool game::handle_liquid(item &liquid, bool from_ground, bool infinite)
   }
 
   std::stringstream text;
-  text << format(_("Container for %s"), liquid.tname(this).c_str());
+  text << i18n::format(_("Container for %s"), liquid.tname(this).c_str());
   char ch = inv_type(text.str().c_str(), IC_CONTAINER);
   if (!u.has_item(ch)) {
     // No container selected (escaped, ...), ask to pour
@@ -8243,7 +8243,7 @@ void game::gameover()
  erase();
  gamemode->game_over(this);
  mvprintw(0, 35, _("GAME OVER"));
- inv();
+ inv(_("Inventory:"));
 }
 
 bool game::game_quit()

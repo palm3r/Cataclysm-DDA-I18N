@@ -1542,11 +1542,11 @@ Strength - 1;     Dexterity - 4;    Speed - 25");
   strpen = int(dis.duration / 50);
   stream << _("You feal nauseated and rat-like.\n");
   if (intpen > 0)
-   stream << format(_("Intelligence - %d;   "), intpen);
+   stream << i18n::format(_("Intelligence - %d;   "), intpen);
   if (perpen > 0)
-   stream << format(_("Perception - %d;   "), perpen);
+   stream << i18n::format(_("Perception - %d;   "), perpen);
   if (strpen > 0)
-   stream << format(_("Strength - %d;   "), strpen);
+   stream << i18n::format(_("Strength - %d;   "), strpen);
   return stream.str();
 
  case DI_DRUNK:
@@ -1555,15 +1555,15 @@ Strength - 1;     Dexterity - 4;    Speed - 25");
   intpen = int(dis.duration /  700);
   strpen = int(dis.duration / 1500);
   if (strpen > 0)
-   stream << format(_("Strength - %d;    "), strpen);
+   stream << i18n::format(_("Strength - %d;    "), strpen);
   else if (dis.duration <= 600)
    stream << _("Strength + 1;    ");
   if (dexpen > 0)
-   stream << format(_("Dexterity - %d;    "), dexpen);
+   stream << i18n::format(_("Dexterity - %d;    "), dexpen);
   if (intpen > 0)
-   stream << format(_("Intelligence - %d;    "), intpen);
+   stream << i18n::format(_("Intelligence - %d;    "), intpen);
   if (perpen > 0)
-   stream << format(_("Perception - %d"), perpen);
+   stream << i18n::format(_("Perception - %d"), perpen);
 
   return stream.str();
 
@@ -1591,7 +1591,7 @@ Speed +80;   Strength + 5;   Dexterity + 3;   Intelligence - 8;   Perception + 1
 Strength - 2;     Dexterity - 1;     Intelligence - 1;     Perception - 1");
 
  case DI_ASTHMA:
-  stream<< format(_("Speed - %d%%;     Strength - 2;     Dexterity - 3"),
+  stream<< i18n::format(_("Speed - %d%%;     Strength - 2;     Dexterity - 3"),
                   int(dis.duration / 5));
   return stream.str();
 
@@ -1611,23 +1611,23 @@ Speed -40;   Strength - 3;   Dexterity - 2;   Intelligence - 2");
 You're stuck in a pit.  Sight distance is limited and you have to climb out.");
 
  case DI_ATTACK_BOOST:
-  stream << format(_("To-hit bonus + %d"), dis.intensity);
+  stream << i18n::format(_("To-hit bonus + %d"), dis.intensity);
   return stream.str();
 
  case DI_DAMAGE_BOOST:
-  stream << format(_("Damage bonus + %d"), dis.intensity);
+  stream << i18n::format(_("Damage bonus + %d"), dis.intensity);
   return stream.str();
 
  case DI_DODGE_BOOST:
-  stream << format(_("Dodge bonus + %d"), dis.intensity);
+  stream << i18n::format(_("Dodge bonus + %d"), dis.intensity);
   return stream.str();
 
  case DI_ARMOR_BOOST:
-  stream << format(_("Armor bonus + %d"), dis.intensity);
+  stream << i18n::format(_("Armor bonus + %d"), dis.intensity);
   return stream.str();
 
  case DI_SPEED_BOOST:
-  stream << format(_("Attack speed + %d"), dis.intensity);
+  stream << i18n::format(_("Attack speed + %d"), dis.intensity);
   return stream.str();
 
  case DI_VIPER_COMBO:

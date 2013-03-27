@@ -387,7 +387,7 @@ void create_default_options()
  if (!fout.is_open())
   return;
 
- fout << options_header() << _("\n\
+ fout << options_header() << "\n\
 # If true, use C not F\n\
 use_celsius F\n\
 # If true, use Km/h not mph\
@@ -435,13 +435,13 @@ viewport_y 12\n\
 static_spawn T\n\
 # Only spawn classic zombies and natural wildlife.  You must create a new world after changing\n\
 classic_zombies F\n\
-");
+";
  fout.close();
 }
 
 std::string options_header()
 {
- return _("\
+ return "\
 # This is the options file.  It works similarly to keymap.txt: the format is\n\
 # <option name> <option value>\n\
 # <option value> may be any number, positive or negative.  If you use a\n\
@@ -453,7 +453,7 @@ std::string options_header()
 # If you want to restore the default options, simply delete this file.\n\
 # A new options.txt will be created next time you play.\n\
 \n\
-");
+";
 }
 
 void save_options()

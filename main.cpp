@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
    argc--; argv++;
  }
 
- i18n_init();
+ i18n::init();
 
 // ncurses stuff
  load_options(); // For getting size options
