@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cataclysm 0.3-i18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 06:52+0900\n"
+"POT-Creation-Date: 2013-03-29 02:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10434,35 +10434,6 @@ msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/item.cpp:1872
 msgid "Defense disarm"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:35
-msgid "A dead body."
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:35
-msgid "corpse"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:39
-msgid "nearby fire"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:40
-msgid "Some fire - if you are reading this it's a bug!"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:44
-msgid "integrated toolset"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:45
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:50
-msgid "A fake item. If you are reading this it's a bug!"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:49
-msgid "something to smoke that from, and a lighter"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:68

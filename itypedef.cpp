@@ -32,22 +32,22 @@ void game::init_itypes ()
   new itype(0, 0, 0, "none", "", '#', c_white, MNULL, MNULL, 0, 0, 0, 0, 0, 0));
 // Corpse - a special item
  itypes.push_back(
-  new itype(1, 0, 0, _("corpse"), _("A dead body."), '%', c_white, MNULL, MNULL, 0, 0,
+  new itype(1, 0, 0, "corpse", "A dead body.", '%', c_white, MNULL, MNULL, 0, 0,
             0, 0, 1, 0));
 // Fire - only appears in crafting recipes
  itypes.push_back(
-  new itype(2, 0, 0, _("nearby fire"),
-            _("Some fire - if you are reading this it's a bug!"),
+  new itype(2, 0, 0, "nearby fire",
+            "Some fire - if you are reading this it's a bug!",
             '$', c_red, MNULL, MNULL, 0, 0, 0, 0, 0, 0));
 // Integrated toolset - ditto
  itypes.push_back(
-  new itype(3, 0, 0, _("integrated toolset"),
-            _("A fake item. If you are reading this it's a bug!"),
+  new itype(3, 0, 0, "integrated toolset",
+            "A fake item. If you are reading this it's a bug!",
             '$', c_red, MNULL, MNULL, 0, 0, 0, 0, 0, 0));
 // For smoking crack or meth
  itypes.push_back(
-  new itype(4, 0, 0, _("something to smoke that from, and a lighter"),
-            _("A fake item. If you are reading this it's a bug!"),
+  new itype(4, 0, 0, "something to smoke that from, and a lighter",
+            "A fake item. If you are reading this it's a bug!",
             '$', c_red, MNULL, MNULL, 0, 0, 0, 0, 0, 0));
  int index = 4;
 
