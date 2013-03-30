@@ -193,12 +193,12 @@ void faction::randomize()
 
  if (one_in(4)) {
   do
-   name = _("The ") + noun + _(" of ") + invent_name();
+   name = i18n::format(_("The %s of %s"), noun.c_str(), invent_name().c_str());
   while (name.length() > MAX_FAC_NAME_SIZE);
  }
  else if (one_in(2)) {
   do
-   name = _("The ") + invent_adj() + " " + noun;
+   name = i18n::format(_("The %s %s"), invent_adj().c_str(), noun.c_str());
   while (name.length() > MAX_FAC_NAME_SIZE);
  }
  else {
@@ -210,9 +210,10 @@ void faction::randomize()
     adj = faction_adj_bad[rng(0, 14)];
    else
     adj = faction_adj_neu[rng(0, 14)];
-   name = _("The ") + adj + " " + noun;
    if (one_in(4))
-    name += _(" of ") + invent_name();
+     name = i18n::format(_("The %s %s of %s"), adj.c_str(), noun.c_str(), invent_name().c_str());
+   else
+     name = i18n::format(_("The %s %s"), adj.c_str(), noun.c_str());
   } while (name.length() > MAX_FAC_NAME_SIZE);
  }
 }
@@ -302,28 +303,30 @@ facval_data[v].name.c_str());
 
 std::string faction::describe()
 {
- std::string ret = name + _(" have the ultimate goal of ") +
-                   facgoal_data[goal].name + _(". Their primary concern is ") +
-                   facjob_data[job1].name;
- if (job2 == FACJOB_NULL)
-  ret += _(".");
- else
-  ret += _(", but they are also involved in ") + facjob_data[job2].name + _(".");
- if (values != 0) {
-  ret += _(" They are known for ");
+  std::string ret = job2 == FACJOB_NULL
+    ?  i18n::format(_("%s have the ultimate goal of %s. Their primary concern is %s."),
+                    name.c_str(), facgoal_data[goal].name.c_str(), facjob_data[job1].name.c_str())
+    :  i18n::format(_("%s have the ultimate goal of %s. Their primary concern is %s, but they are also involved in %s."),
+                    name.c_str(), facgoal_data[goal].name.c_str(), facjob_data[job1].name.c_str(),
+                    facjob_data[job2].name.c_str());
+  std::vector<std::string> v;
   for (int i = 0; i < NUM_FACVALS; i++) {
-   if (has_value(faction_value(i)))
-    ret += facval_data[i].name + _(", ");
+    if (has_value(faction_value(i))) {
+      v.push_back(facval_data[i].name);
+    }
   }
- }
- size_t pos = ret.find_last_of(_(","));
- if (pos != std::string::npos) {
-  ret.replace(pos, 2, _("."));
-  pos = ret.find_last_of(_(","));
-  if (pos != std::string::npos)
-   ret.replace(pos, 2, _(", and "));
- }
- return ret;
+  if (!v.empty()) {
+    std::ostringstream ss;
+    //std::copy(v.begin(), v.end(), std::ostream_iterator<std::string>(ss, _(", ")));
+    for (int i = 0; i < v.size(); i++) {
+      if (i > 0) {
+        ss << (i == (v.size() - 1)) ? _(", and ") : _(", ");
+      }
+      ss << v[i];
+    }
+    ret += i18n::format(_(" They are known for %s."), ss.str().c_str());
+  }
+  return ret;
 }
 
 int faction::response_time(game *g)

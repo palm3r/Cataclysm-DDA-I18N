@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cataclysm 0.3-i18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-29 02:29+0900\n"
+"POT-Creation-Date: 2013-03-31 01:12+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -505,156 +505,152 @@ msgid "This is the %s.\n"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:174
-msgid "They are the only ones of their kind."
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:175
 msgid "It is the only one of its kind."
-msgstr ""
+msgid_plural "They are the only ones of their kind."
+msgstr[0] ""
+msgstr[1] ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:216
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:215
 msgid "It is "
-msgstr ""
+msgid_plural "They are "
+msgstr[0] ""
+msgstr[1] ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:216
-msgid "They are "
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:280
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:279
 #, c-format
 msgid "This %s %s."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:404
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:403
 #, c-format
 msgid "%s of the %s %s"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:405
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:404
 #, c-format
 msgid "%s of %s %s"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:437
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:436
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/player.cpp:2880
 msgid "You suddenly feel sharp pain for no reason."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:444
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:443
 msgid "You feel your body decaying."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:485
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:484
 #, c-format
 msgid "The %s emits some smoke."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:519
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:518
 #, c-format
 msgid "You have an urge to %s the %s."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:520
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:519
 msgid "wear"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:520
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:519
 msgid "wield"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:590
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:589
 msgid "Your skin feels slithery."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:594
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:593
 msgid "You fade into invisibility!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:598
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:597
 msgid "You can see through walls!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:602
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:601
 msgid "Your steps stop making noise."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:606
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:605
 msgid "A glow of light forms around you."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:610
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:609
 msgid "Your mental state feels protected."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:614
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:613
 msgid "You feel insulated."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:618
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:617
 msgid "Your back feels strengthened."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:622
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:621
 msgid "You feel hungry."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:626
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:625
 msgid "You feel thirsty."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:630
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:629
 msgid "You feel an evil presence..."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:634
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:633
 msgid "You feel a tickle of insanity."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:638
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:637
 msgid "Your skin prickles with radiation."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:642
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:641
 msgid "You feel your genetic makeup degrading."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:646
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:645
 msgid "You feel an otherworldly attention upon you..."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:650
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:649
 msgid "You feel a force pulling you inwards."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:654
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:653
 msgid "You hear a rattling noise coming from inside yourself."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:658
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:657
 msgid "You feel storms coming."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:665
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:664
 #, c-format
 msgid "Str %s%d! "
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:667
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:666
 #, c-format
 msgid "Dex %s%d! "
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:669
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:668
 #, c-format
 msgid "Int %s%d! "
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:671
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:670
 #, c-format
 msgid "Per %s%d! "
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:677
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/artifact.cpp:676
 #, c-format
 msgid "Speed %s%d"
 msgstr ""
@@ -2967,12 +2963,12 @@ msgid "Craft something first"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1232
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1546
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1548
 msgid "You don't have anything to store that liquid in!"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1241
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1536
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1538
 msgid "You can't do that!"
 msgstr ""
 
@@ -3031,95 +3027,95 @@ msgstr ""
 msgid "NONE"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1451
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1438
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1480
+msgid "OR "
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1452
 #, c-format
 msgid "(%d charges)"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1464
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1502
-msgid "OR "
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1472
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1473
 msgid "Components required:"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1582
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1584
 msgid "WEAPONS"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1583
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1585
 msgid "AMMO"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1584
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1586
 msgid "FOOD"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1585
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1587
 msgid "DRINKS"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1586
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1588
 msgid "CHEMS"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1587
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1589
 msgid "ELECTRONICS"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1588
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1590
 msgid "ARMOR"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1589
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1591
 msgid "MISC"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1705
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1707
 #, c-format
 msgid "You fail to make the %s, and waste some materials."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1721
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1723
 #, c-format
 msgid "You fail to make the %s, but don't waste any materials."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1758
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1760
 #, c-format
 msgid "There's no room in your inventory for the %s, so you drop it."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1762
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1764
 #, c-format
 msgid "The %s is too heavy to carry, so you drop it."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1833
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1926
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1835
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1928
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/veh_interact.cpp:682
 msgid " (nearby)"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1839
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1841
 msgid " (on person & nearby)"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1847
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1849
 msgid "Use which component?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1936
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1938
 msgid "Use which tool?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1949
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1951
 msgid "Disassemble item:"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1951
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1953
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4153
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4199
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:5769
@@ -3140,41 +3136,41 @@ msgstr ""
 msgid "Never mind."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1955
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1957
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:6717
 #, c-format
 msgid "You don't have item '%c'!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1961
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:1963
 #, c-format
 msgid "Really disassemble your %s?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2006
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2008
 msgid "You need a hack saw to disassemble this."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2011
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2013
 #, c-format
 msgid "You need a %s to disassemble this."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2016
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2018
 #, c-format
 msgid "You need a %s with %d charges to disassemble this."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2037
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2039
 msgid "This item cannot be disassembled!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2046
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2048
 msgid "You disassemble the item into its components."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2118
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2125
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2120
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/crafting.cpp:2127
 msgid "You fail to recover a component."
 msgstr ""
 
@@ -4823,9 +4819,6 @@ msgid "You cough heavily."
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/disease.cpp:346
-msgid "a hacking cough."
-msgstr ""
-
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/disease.cpp:362
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/disease.cpp:411
 msgid "a hacking cough"
@@ -5413,10 +5406,6 @@ msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/disease.cpp:1309
 msgid "Viper Strike Unlocked!"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/disease.cpp:1310
-msgid "VIPER BUG!!!!"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/disease.cpp:1313
@@ -6058,7 +6047,7 @@ msgid "Metal"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/facdata.cpp:12
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:536
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:539
 msgid "Mighty"
 msgstr ""
 
@@ -6083,7 +6072,7 @@ msgid "Colossal"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/facdata.cpp:13
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:538
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:541
 msgid "Famous"
 msgstr ""
 
@@ -6603,167 +6592,155 @@ msgid "their cruelty"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:196
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:215
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/item.cpp:583
-msgid " of "
+#, c-format
+msgid "The %s of %s"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:196
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:201
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:213
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/monattack.cpp:1165
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/monattack.cpp:1204
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/vehicle.cpp:1947
-msgid "The "
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:216
+#, c-format
+msgid "The %s %s"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:222
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:214
+#, c-format
+msgid "The %s %s of %s"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:223
 msgid "The army"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:305
-msgid " have the ultimate goal of "
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:306
-msgid ". Their primary concern is "
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:307
+#, c-format
+msgid "%s have the ultimate goal of %s. Their primary concern is %s."
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:309
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:311
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:321
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7389
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1557
-msgid "."
+#, c-format
+msgid ""
+"%s have the ultimate goal of %s. Their primary concern is %s, but they are "
+"also involved in %s."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:311
-msgid ", but they are also involved in "
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:313
-msgid " They are known for "
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:316
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:323
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4604
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7385
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7388
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npc.cpp:1861
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npc.cpp:1886
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1557
 msgid ", "
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:319
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:322
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4608
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:5264
-msgid ","
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:324
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:323
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4606
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7387
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7388
 msgid ", and "
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:496
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:327
+#, c-format
+msgid " They are known for %s."
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:499
 msgid "Archenemy"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:498
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:501
 msgid "Wanted Dead"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:500
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:503
 msgid "Enemy of the People"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:502
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:505
 msgid "Wanted Criminal"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:504
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:507
 msgid "Not Welcome"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:506
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:509
 msgid "Pariah"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:508
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:511
 msgid "Disliked"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:510
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:513
 msgid "Hero"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:512
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:515
 msgid "Idol"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:514
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:517
 msgid "Beloved"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:516
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:519
 msgid "Highly Valued"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:518
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:521
 msgid "Valued"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:520
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:523
 msgid "Well-Liked"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:522
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:525
 msgid "Liked"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:524
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:558
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:527
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:561
 msgid "Neutral"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:532
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:535
 msgid "Legendary"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:534
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:537
 msgid "Unchallenged"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:540
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:543
 msgid "Well-Known"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:542
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:545
 msgid "Spoken Of"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:546
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:549
 msgid "Worthless Scum"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:548
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:551
 msgid "Vermin"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:550
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:553
 msgid "Despicable"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:552
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:555
 msgid "Parasite"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:554
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:557
 msgid "Leech"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:556
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/faction.cpp:559
 msgid "Laughingstock"
 msgstr ""
 
@@ -6976,8 +6953,89 @@ msgid "Monster spotted--safe mode is on! (Press '!' to turn it off.)"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1260
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8246
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8248
 msgid "Inventory:"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1270
+msgid "a"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1270
+msgid "ctivate"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1271
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:5385
+msgid "R"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1271
+msgid "ead"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1272
+msgid "E"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1272
+msgid "at"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1273
+msgid "W"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1273
+msgid "ear"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1274
+msgid "ield"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1274
+msgid "w"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1275
+msgid "hrow"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1275
+msgid "t"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1276
+msgid "T"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1276
+msgid "ake off"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1277
+msgid "d"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1277
+msgid "rop"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1278
+msgid "U"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1278
+msgid "nload"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1279
+msgid "eload"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1279
+msgid "r"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:1425
@@ -7659,6 +7717,11 @@ msgstr ""
 msgid "It contains "
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4608
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:5264
+msgid ","
+msgstr ""
+
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4610
 msgid "It contains many items,"
 msgstr ""
@@ -8073,10 +8136,6 @@ msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:5350
 msgid "Filter:"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:5385
-msgid "R"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:5386
@@ -8684,7 +8743,7 @@ msgid "You emit a rattling sound."
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7298
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7438
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7440
 msgid "The water puts out the flames!"
 msgstr ""
 
@@ -8702,202 +8761,204 @@ msgstr ""
 msgid "You displace the %s."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7381
-msgid "You see here "
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7392
+#, c-format
+msgid "You see here %s."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7392
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7394
 msgid "There are many items here."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7398
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7400
 #, c-format
 msgid "You open the %s's %s."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7404
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7406
 msgid "Dive into the water?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7406
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7408
 msgid "You start swimming.  Press '>' to dive underwater."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7413
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7415
 #, c-format
 msgid "You bump into a %s!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7419
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7421
 msgid "That door is locked!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7445
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7447
 msgid " like a rock"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7445
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7447
 #, c-format
 msgid "You sink%s!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7452
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7454
 msgid "You need to breathe! (Press '<' to surface.)"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7454
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7456
 msgid "You need to breathe but you can't swim!  Get to dry land, quick!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7488
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7490
 msgid "You are"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7490
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7493
-msgid " is"
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7492
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7495
+#, c-format
+msgid "%s is"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7530
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7532
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/vehicle.cpp:1333
 #, c-format
 msgid "You hear a %s"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7538
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7540
 #, c-format
 msgid "%s slammed against the %s for %d damage!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7579
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7581
 #, c-format
 msgid "You fall on the ground for %d damage."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7581
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7583
 msgid "You fall on the ground."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7585
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7587
 msgid "You fall into water."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7594
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7596
 msgid "You are already underwater!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7599
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7601
 msgid "You dive underwater!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7603
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7605
 msgid "You surface."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7605
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7607
 msgid "You can't surface!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7614
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7616
 msgid "You can't go down here!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7616
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7618
 msgid "You can't go up here!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7647
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7649
 msgid "Halfway down, the way down becomes blocked off."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7650
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7652
 msgid "There is a sheer drop halfway down. Climb your rope down?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7655
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7657
 msgid "There is a sheer drop halfway down.  Jump?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7695
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7697
 msgid "AUTO: goes down"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7698
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7700
 msgid "AUTO: goes up"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7723
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7725
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/trapfunc.cpp:480
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/trapfunc.cpp:512
 msgid "You flap your wings and flutter down gracefully."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7728
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7730
 msgid "You fall expertly and take no damage."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7730
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:7732
 #, c-format
 msgid "You fall heavily, taking %d damage."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8019
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8021
 #, c-format
 msgid "A %s comes down the %s!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8022
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8024
 #, c-format
 msgid "A %s comes up the %s!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8224
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8226
 msgid "1 hour"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8224
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8226
 msgid "30 Minutes"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8224
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8226
 msgid "5 Minutes"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8224
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8226
 msgid "Wait for how long?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8225
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8227
 msgid "2 hours"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8225
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8227
 msgid "3 hours"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8225
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8227
 msgid "6 hours"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8225
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8227
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/vehicle.cpp:231
 msgid "Exit"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8245
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8247
 msgid "GAME OVER"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8309
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8311
 msgid "Press q to return"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8323
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8325
 #, c-format
 msgid "%s ago:"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8389
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8391
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/map.cpp:639
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/melee.cpp:128
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/melee.cpp:229
@@ -8911,23 +8972,23 @@ msgstr ""
 msgid "You"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8397
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8403
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8399
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8405
 #, c-format
 msgid "%s teleport into the middle of a %s!"
 msgid_plural "%s teleports into the middle of a %s!"
 msgstr[0] ""
 msgstr[1] ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8460
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8462
 msgid "Sensitivity"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8509
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8511
 msgid "Saving game, this may take a while"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8523
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:8525
 msgid ""
 "Whoa. Whoa. Hey. This game requires a minimum terminal size of 80x25. I'm\n"
 "sorry if your graphical terminal emulator went with the woefully-"
@@ -10192,6 +10253,10 @@ msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/item.cpp:583
 msgid " charges"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/item.cpp:583
+msgid " of "
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/item.cpp:590
@@ -17229,10 +17294,6 @@ msgstr ""
 msgid "Contains some substances commonly produced by mutated poppy flower"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4400
-msgid "Null 2 - num_items"
-msgstr ""
-
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4408
 msgid "adamantite claws"
 msgstr ""
@@ -17261,28 +17322,15 @@ msgid "karate"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4449
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4501
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4530
-msgid "quickly punch"
+msgid "karate punch"
 msgstr ""
 
+#. I18N: quickly punch
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4450
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4480
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4502
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4506
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4519
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4520
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4532
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4540
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4541
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4561
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4605
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4623
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4632
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4641
-msgid "block"
+msgid "karate block"
 msgstr ""
 
+#. I18N: block
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4451
 msgid "karate chop"
 msgstr ""
@@ -17299,25 +17347,22 @@ msgid "aikido"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4459
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4503
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4560
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4582
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4614
 msgid "feint at"
 msgstr ""
 
+#. I18N: feint at
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4460
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4471
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4472
-msgid "throw"
+msgid "aikido throw"
 msgstr ""
 
+#. I18N: throw
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4461
+msgid "aikido disarm1"
+msgstr ""
+
+#. I18N: disarm
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4462
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4481
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4505
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4508
-msgid "disarm"
+msgid "aikido disarm2"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4465
@@ -17332,11 +17377,17 @@ msgid "judo"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4470
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4510
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4552
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4593
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4642
-msgid "grab"
+msgid "judo grab"
+msgstr ""
+
+#. I18N: grab
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4471
+msgid "judo throw1"
+msgstr ""
+
+#. I18N: throw
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4472
+msgid "judo throw2"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4475
@@ -17352,8 +17403,18 @@ msgstr ""
 msgid "tai chi"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4480
+msgid "tai chi block"
+msgstr ""
+
+#. I18N: block
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4481
+msgid "tai chi disarm"
+msgstr ""
+
+#. I18N: disarm
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4482
-msgid "strike"
+msgid "tai chi strike"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4485
@@ -17368,21 +17429,22 @@ msgid "capoeira"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4490
-msgid "bluff"
+msgid "capoeira bluff"
 msgstr ""
 
+#. I18N: bluff
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4491
-msgid "low kick"
+msgid "capoeira low kick"
 msgstr ""
 
+#. I18N: low kick
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4492
-msgid "spin and hit"
+msgid "capoeira spin and hit"
 msgstr ""
 
+#. I18N: spin and hit
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4493
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4544
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4595
-msgid "spin-kick"
+msgid "capoeira spin-kick"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4496
@@ -17397,19 +17459,44 @@ msgstr ""
 msgid "krav maga"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4504
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4531
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4542
-msgid "jab"
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4501
+msgid "krav maga quickly punch"
 msgstr ""
 
+#. I18N: quickly punch
+#. I18N: disarm
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4502
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4506
+msgid "krav maga block"
+msgstr ""
+
+#. I18N: block
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4503
+msgid "krav maga feint at"
+msgstr ""
+
+#. I18N: feint at
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4504
+msgid "krav maga jab"
+msgstr ""
+
+#. I18N: jab
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4505
+msgid "krav maga disarm1"
+msgstr ""
+
+#. I18N: block
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4507
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4522
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4572
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4594
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4633
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4651
-msgid "counter-attack"
+msgid "krav maga counter-attack"
+msgstr ""
+
+#. I18N: counter-attack
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4508
+msgid "krav maga disarm2"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4510
+msgid "krav maga grab"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4513
@@ -17424,11 +17511,27 @@ msgid "muay thai"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4518
-msgid "slap"
+msgid "muay thai slap"
 msgstr ""
 
+#. I18N: slap
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4519
+msgid "muay thai block1"
+msgstr ""
+
+#. I18N: block
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4520
+msgid "muay thai block2"
+msgstr ""
+
+#. I18N: block
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4521
-msgid "power-kick"
+msgid "muay thai power-kick"
+msgstr ""
+
+#. I18N: power-kick
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4522
+msgid "muay thai counter-attack"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4525
@@ -17442,6 +17545,20 @@ msgstr ""
 msgid "ninjutsu"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4530
+msgid "ninjutsu quickly punch"
+msgstr ""
+
+#. I18N: quickly punch
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4531
+msgid "ninjutsu jab"
+msgstr ""
+
+#. I18N: jab
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4532
+msgid "ninjutsu block"
+msgstr ""
+
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4535
 msgid ""
 "Taekwondo is the national sport of Korea, and was used by the South Korean\n"
@@ -17453,8 +17570,28 @@ msgstr ""
 msgid "taekwondo"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4540
+msgid "taekwondo block1"
+msgstr ""
+
+#. I18N: block
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4541
+msgid "taekwondo block2"
+msgstr ""
+
+#. I18N: block
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4542
+msgid "taekwondo jab"
+msgstr ""
+
+#. I18N: jab
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4543
-msgid "brutally kick"
+msgid "taekwondo brutally kick"
+msgstr ""
+
+#. I18N: brutally kick
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4544
+msgid "taekwondo spin-kick"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4547
@@ -17466,6 +17603,10 @@ msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4547
 msgid "tiger style"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4552
+msgid "tiger grab"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4555
@@ -17480,8 +17621,17 @@ msgstr ""
 msgid "crane style"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4560
+msgid "crane feint at"
+msgstr ""
+
+#. I18N: feint at
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4561
+msgid "crane block"
+msgstr ""
+
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4563
-msgid "hand-peck"
+msgid "crane hand-peck"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4566
@@ -17497,12 +17647,17 @@ msgid "leopard style"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4571
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4581
-msgid "swiftly jab"
+msgid "leopard swiftly jab"
 msgstr ""
 
+#. I18N: swiftly jab
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4572
+msgid "leopard counter-attack"
+msgstr ""
+
+#. I18N: counter-attack
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4573
-msgid "leopard fist"
+msgid "leopard leopard fist"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4576
@@ -17517,13 +17672,23 @@ msgstr ""
 msgid "snake style"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4583
-msgid "snakebite"
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4581
+msgid "snake swiftly jab"
 msgstr ""
 
+#. I18N: swiftly jab
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4582
+msgid "snake feint at"
+msgstr ""
+
+#. I18N: feint at
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4583
+msgid "snake snakebite"
+msgstr ""
+
+#. I18N: snakebite
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4584
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4615
-msgid "writhe free from"
+msgid "snake writhe free from"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4587
@@ -17538,8 +17703,23 @@ msgstr ""
 msgid "dragon style"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4593
+msgid "dragon grab"
+msgstr ""
+
+#. I18N: grab
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4594
+msgid "dragon counter-attack"
+msgstr ""
+
+#. I18N: counter-attack
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4595
+msgid "dragon spin-kick"
+msgstr ""
+
+#. I18N: spin-kick
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4596
-msgid "dragon strike"
+msgid "dragon dragon strike"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4599
@@ -17554,7 +17734,12 @@ msgid "centipede style"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4604
-msgid "swiftly hit"
+msgid "centipede swiftly hit"
+msgstr ""
+
+#. I18N: swiftly hit
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4605
+msgid "centipede block"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4608
@@ -17566,6 +17751,15 @@ msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4608
 msgid "viper style"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4614
+msgid "viper feint at"
+msgstr ""
+
+#. I18N: feint at
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4615
+msgid "viper writhe free from"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4618
@@ -17580,8 +17774,13 @@ msgstr ""
 msgid "scorpion style"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4623
+msgid "scorpion block"
+msgstr ""
+
+#. I18N: block
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4624
-msgid "pincer fist"
+msgid "scorpion pincer fist"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4627
@@ -17596,6 +17795,15 @@ msgstr ""
 msgid "lizard style"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4632
+msgid "lizard block"
+msgstr ""
+
+#. I18N: block
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4633
+msgid "lizard counter-attack"
+msgstr ""
+
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4636
 msgid ""
 "One of the Five Deadly Venoms. Immensely powerful, and immune to nearly any\n"
@@ -17606,6 +17814,15 @@ msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4636
 msgid "toad style"
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4641
+msgid "toad block"
+msgstr ""
+
+#. I18N: block
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4642
+msgid "toad grab"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4645
@@ -17621,7 +17838,12 @@ msgid "zui quan"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4650
-msgid "stumble and leer at"
+msgid "zui quan stumble and leer at"
+msgstr ""
+
+#. I18N: stumble and leer at
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4651
+msgid "zui quan counter-attack"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/itypedef.cpp:4823
@@ -21684,6 +21906,12 @@ msgstr ""
 msgid "The %s fires its smg!"
 msgstr ""
 
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/monattack.cpp:1165
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/monattack.cpp:1204
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/vehicle.cpp:1947
+msgid "The "
+msgstr ""
+
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/monattack.cpp:1193
 msgid "beep-beep-beep!"
 msgstr ""
@@ -25086,27 +25314,27 @@ msgstr ""
 msgid "!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1654
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1651
 msgid "L: Look at"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1655
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1652
 msgid "S: Size up stats"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1672
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1669
 msgid "You may be attacked! Proceed?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1674
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1671
 msgid "You'll be helpless! Proceed?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1682
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1679
 msgid "You: "
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1747
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1740
 #, c-format
 msgid ""
 "Trading with %s\n"
@@ -25115,40 +25343,36 @@ msgid ""
 "? to get information on an item"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1796
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1789
 msgid "Cost"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1796
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1789
 msgid "Profit"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1812
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1805
 #, c-format
 msgid "You: $%d"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1821
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1832
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1814
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1825
 msgid "< Back"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1823
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1834
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1816
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1827
 msgid "More >"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1874
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1867
 msgid "Examine which item?"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1893
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/npctalk.cpp:1886
 #, c-format
 msgid "Not enough cash!  You have $%d, price is $%d."
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/omdata.cpp:6
-msgid "nothing"
 msgstr ""
 
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/omdata.cpp:7

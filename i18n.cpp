@@ -287,22 +287,22 @@ void i18n::init()
 
   // faction (goal)
   FOR_BEGIN(facgoal_data, i)
-  TRANSLATE_MEMBER(facgoal_data, i, name);
+    TRANSLATE_MEMBER(facgoal_data, i, name);
   FOR_END()
 
   // faction (job)
   FOR_BEGIN(facjob_data, i)
-  TRANSLATE_MEMBER(facjob_data, i, name);
+    TRANSLATE_MEMBER(facjob_data, i, name);
   FOR_END()
 
   // faction (val?)
   FOR_BEGIN(facval_data, i)
-  TRANSLATE_MEMBER(facval_data, i, name);
+    TRANSLATE_MEMBER(facval_data, i, name);
   FOR_END()
 
   // oterlist
   FOR_BEGIN(oterlist, i)
-  TRANSLATE_MEMBER(oterlist, i, name);
+    TRANSLATE_MEMBER(oterlist, i, name);
   FOR_END()
 
   // pltype_name
@@ -328,12 +328,17 @@ void i18n::init()
 
   // vehicle parts
   FOR_BEGIN(vpart_list, i)
-  TRANSLATE_MEMBER(vpart_list, i, name);
+    TRANSLATE_MEMBER(vpart_list, i, name);
+  FOR_END()
+
+  // season_name
+  FOR_BEGIN(season_name, i)
+    TRANSLATE(season_name, i);
   FOR_END()
 
   // weather data
   FOR_BEGIN(weather_data, i)
-  TRANSLATE_MEMBER(weather_data, i, name);
+    TRANSLATE_MEMBER(weather_data, i, name);
   FOR_END()
 
   // inventory_ui.h
@@ -401,15 +406,16 @@ std::string &i18n::trim(std::string &source, const std::string &pattern)
   return source;
 }
 
-std::string _wordwrap(const std::string &str, int width, bool space)
+std::string _wordwrap(const std::string &str, size_t width, bool space)
 {
   std::setlocale(LC_ALL, "");
+  size_t size = str.length();
   std::ostringstream ss;
-  for (size_t i = 0; i < str.length(); )
+  for (size_t i = 0; i < size; )
   {
     std::string buffer;
     int j = 0;
-    while (i + j < str.length())
+    while (i + j < size)
     {
       int len = mblen(str.data() + i + j, MB_CUR_MAX);
       if (width <= buffer.length())
@@ -417,7 +423,7 @@ std::string _wordwrap(const std::string &str, int width, bool space)
       buffer += str.substr(i + j, len);
       j += len;
     }
-    if (str.length() <= i + j)
+    if (size <= i + j)
     {
       i18n::replace(buffer, "\n", space ? " " : "");
       ss << buffer;
@@ -443,7 +449,22 @@ std::string _wordwrap(const std::string &str, int width, bool space)
   return ss.str();
 }
 
-std::string i18n::wordwrap(const std::string &str, int width)
+std::string i18n::wordwrap(const std::string &str, size_t width)
 {
   return _wordwrap(str, width, str.find(' ') != std::string::npos);
+}
+
+std::vector<std::string> i18n::splitc(const std::string &str, char delim)
+{
+  std::vector<std::string> lines;
+  std::istringstream ss(str);
+  std::string line;
+  while (std::getline(ss, line, delim))
+    lines.push_back(line);
+  return lines;
+}
+
+std::vector<std::string> i18n::splitw(const std::string &str, size_t width)
+{
+  return i18n::splitc(i18n::wordwrap(str, width));
 }

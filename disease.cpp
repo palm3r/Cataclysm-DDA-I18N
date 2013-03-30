@@ -343,7 +343,7 @@ void dis_effect(game *g, player &p, disease &dis)
     g->add_msg(_("You cough heavily."));
     g->sound(p.posx, p.posy, 12, "");
    } else
-    g->sound(p.posx, p.posy, 12, _("a hacking cough."));
+    g->sound(p.posx, p.posy, 12, _("a hacking cough"));
    p.moves -= 80;
    p.hurt(g, bp_torso, 0, 1 - (rng(0, 1) * rng(0, 1)));
   }
@@ -1307,7 +1307,7 @@ std::string dis_name(disease dis)
   switch (dis.intensity) {
    case 1: return _("Snakebite Unlocked!");
    case 2: return _("Viper Strike Unlocked!");
-   default: return _("VIPER BUG!!!!");
+   default: return "VIPER BUG!!!!";
   }
   case DI_BITE:
   if (dis.duration > 3000) return _("Bite Wound");

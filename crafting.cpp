@@ -1435,6 +1435,7 @@ void game::craft()
      xpos = 32;
      mvwputch(w_data, ypos, 30, col, '>');
 
+     std::string orstr(_("OR "));
      for (int j = 0; j < current[line]->tools[i].size(); j++) {
       itype_id type = current[line]->tools[i][j].type;
       int charges = current[line]->tools[i][j].count;
@@ -1461,8 +1462,8 @@ void game::craft()
         xpos = 32;
         ypos++;
        }
-       mvwprintz(w_data, ypos, xpos, c_white, _("OR "));
-       xpos += 3;
+       mvwprintz(w_data, ypos, xpos, c_white, orstr.c_str());
+       xpos += orstr.length();
       }
      }
     }
@@ -1476,6 +1477,7 @@ void game::craft()
      mvwputch(w_data, ypos, 30, col, '>');
     }
     xpos = 32;
+    std::string orstr(_("OR "));
     for (int j = 0; j < current[line]->components[i].size(); j++) {
      int count = current[line]->components[i][j].count;
      itype_id type = current[line]->components[i][j].type;
@@ -1499,8 +1501,8 @@ void game::craft()
        ypos++;
        xpos = 32;
       }
-      mvwprintz(w_data, ypos, xpos, c_white, _("OR "));
-      xpos += 3;
+      mvwprintz(w_data, ypos, xpos, c_white, orstr.c_str());
+      xpos += orstr.length();
      }
     }
    }

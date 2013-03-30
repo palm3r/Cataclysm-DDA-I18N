@@ -1554,7 +1554,7 @@ void parse_tags(std::string &phrase, player *u, npc *me)
     }
    } else if (tag == "<punc>") {
     switch (rng(0, 2)) {
-     case 0: phrase.replace(fa, l, _("."));   break;
+     case 0: phrase.replace(fa, l, _(", "));   break;
      case 1: phrase.replace(fa, l, _("...")); break;
      case 2: phrase.replace(fa, l, _("!"));   break;
     }
@@ -1590,15 +1590,10 @@ talk_topic dialogue::opt(talk_topic topic, game *g)
  history.push_back(""); // Empty line between lines of dialogue
 
 // Number of lines to highlight
- int hilight_lines = 1;
+ std::vector<std::string> lines = i18n::splitw(challenge, 39);
+ std::copy(lines.begin(), lines.end(), std::back_inserter(history));
+ int hilight_lines = lines.size();
  size_t split;
- while (challenge.length() > 40) {
-  hilight_lines++;
-  split = challenge.find_last_of(' ', 40);
-  history.push_back(challenge.substr(0, split));
-  challenge = challenge.substr(split);
- }
- history.push_back(challenge);
 
  std::vector<std::string> options;
  std::vector<nc_color>    colors;
@@ -1635,21 +1630,23 @@ talk_topic dialogue::opt(talk_topic topic, game *g)
    col = c_red;
   else
    col = c_dkgray;
-  mvwprintz(win, curline, 1, col, history[history.size() - curhist].c_str());
+  size_t hs = history.size();
+  std::string ch = history[hs - curhist];
+  const char *cs = ch.c_str();
+  mvwprintz(win, curline, 1, col, cs);
   curline--;
   curhist++;
  }
 
  curline = 3;
  for (int i = 0; i < options.size(); i++) {
-  while (options[i].size() > 36) {
-   split = options[i].find_last_of(' ', 36);
-   mvwprintz(win, curline, 42, colors[i], options[i].substr(0, split).c_str());
-   options[i] = "  " + options[i].substr(split);
-   curline++;
+  std::vector<std::string> lines = i18n::splitw(options[i], 34);
+  size_t ls = lines.size();
+  for (int j = 0; j < ls; j++) {
+    std::string line = j > 0 ? std::string("  ") + lines[j] : lines[j];
+    mvwprintz(win, curline, 42, colors[i], line.c_str());
+    curline++;
   }
-  mvwprintz(win, curline, 42, colors[i], options[i].c_str());
-  curline++;
  }
  mvwprintz(win, curline + 2, 42, c_magenta, _("L: Look at"));
  mvwprintz(win, curline + 3, 42, c_magenta, _("S: Size up stats"));
@@ -1680,13 +1677,9 @@ talk_topic dialogue::opt(talk_topic topic, game *g)
   return special_talk(ch);
 
  std::string response_printed = _("You: ") + responses[ch].text;
- while (response_printed.length() > 40) {
-  hilight_lines++;
-  split = response_printed.find_last_of(' ', 40);
-  history.push_back(response_printed.substr(0, split));
-  response_printed = response_printed.substr(split);
- }
- history.push_back(response_printed);
+  lines = i18n::splitw(response_printed, 39);
+  std::copy(lines.begin(), lines.end(), std::back_inserter(history));
+  hilight_lines += lines.size();
 
  talk_response chosen = responses[ch];
  if (chosen.mission_index != -1)

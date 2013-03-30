@@ -171,8 +171,7 @@ It may have unknown powers; use 'a' to activate them."), art->name.c_str());
   art->storage = info->storage;
   std::stringstream description;
   description << i18n::format(_("This is the %s.\n"), art->name.c_str()) <<
-                 (info->plural ? _("They are the only ones of their kind.") :
-                                 _("It is the only one of its kind."));
+                 P_("It is the only one of its kind.", "They are the only ones of their kind.", info->plural);
 
 // Modify the armor further
   if (!one_in(4)) {
@@ -213,7 +212,7 @@ It may have unknown powers; use 'a' to activate them."), art->name.c_str());
     else
      art->storage = 0;
 
-    description << "\n" << (info->plural ? _("They are ") : _("It is ")) <<
+    description << "\n" << P_("It is ", "They are ", info->plural) <<
                    modinfo->name;
    }
   }

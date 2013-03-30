@@ -3,7 +3,7 @@
 
 extern oter_t oterlist[num_ter_types];
 oter_t oterlist[num_ter_types] = {
-{N_("nothing"),   '%',  c_white,  0, no_extras, false, false},
+{"nothing",   '%',  c_white,  0, no_extras, false, false},
 {N_("crater"),    'O',  c_red,    2, field_extras, false, false},
 {N_("field"),   '.',  c_brown,  2, field_extras, false, false},
 {N_("dirt lot"),    'O',  c_brown,  1, field_extras, false, false},

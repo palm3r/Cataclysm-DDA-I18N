@@ -1267,16 +1267,16 @@ bool game::handle_action()
 
      vMenu.push_back(iteminfo("MENU", "", "iOffsetX", 3));
      vMenu.push_back(iteminfo("MENU", "", "iOffsetY", 0));
-     vMenu.push_back(iteminfo("MENU", "a", "ctivate"));
-     vMenu.push_back(iteminfo("MENU", "R", "ead"));
-     vMenu.push_back(iteminfo("MENU", "E", "at"));
-     vMenu.push_back(iteminfo("MENU", "W", "ear"));
-     vMenu.push_back(iteminfo("MENU", "w", "ield"));
-     vMenu.push_back(iteminfo("MENU", "t", "hrow"));
-     vMenu.push_back(iteminfo("MENU", "T", "ake off"));
-     vMenu.push_back(iteminfo("MENU", "d", "rop"));
-     vMenu.push_back(iteminfo("MENU", "U", "nload"));
-     vMenu.push_back(iteminfo("MENU", "r", "eload"));
+     vMenu.push_back(iteminfo("MENU", _("a"), _("ctivate")));
+     vMenu.push_back(iteminfo("MENU", _("R"), _("ead")));
+     vMenu.push_back(iteminfo("MENU", _("E"), _("at")));
+     vMenu.push_back(iteminfo("MENU", _("W"), _("ear")));
+     vMenu.push_back(iteminfo("MENU", _("w"), _("ield")));
+     vMenu.push_back(iteminfo("MENU", _("t"), _("hrow")));
+     vMenu.push_back(iteminfo("MENU", _("T"), _("ake off")));
+     vMenu.push_back(iteminfo("MENU", _("d"), _("rop")));
+     vMenu.push_back(iteminfo("MENU", _("U"), _("nload")));
+     vMenu.push_back(iteminfo("MENU", _("r"), _("eload")));
 
      oThisItem.info(true, &vThisItem);
      compare_split_screen_popup(0, 50, TERMY-VIEW_OFFSET_Y*2, oThisItem.tname(this), vThisItem, vDummy);
@@ -7378,16 +7378,18 @@ void game::plmove(int x, int y)
 // List items here
   if (!u.has_disease(DI_BLIND) && m.i_at(x, y).size() <= 3 &&
                                   m.i_at(x, y).size() != 0) {
-   std::string buff = _("You see here ");
-   for (int i = 0; i < m.i_at(x, y).size(); i++) {
-    buff += m.i_at(x, y)[i].tname(this);
-    if (i + 2 < m.i_at(x, y).size())
-     buff += _(", ");
-    else if (i + 1 < m.i_at(x, y).size())
-     buff += _(", and ");
-   }
-   buff += _(".");
-   add_msg(buff.c_str());
+    std::vector<std::string> v;
+    for (int i = 0; i < m.i_at(x, y).size(); i++) {
+      v.push_back(m.i_at(x, y)[i].tname(this));
+    }
+    std::ostringstream ss;
+    for (int i = 0; i < v.size(); i++) {
+      if (i > 0) {
+        ss << (i == (v.size() - 1)) ? _(", and ") : _(", ");
+      }
+      ss << v[i];
+    }
+    add_msg(i18n::format(_("You see here %s."), ss.str().c_str()).c_str());
   } else if (m.i_at(x, y).size() != 0)
    add_msg(_("There are many items here."));
 
@@ -7487,10 +7489,10 @@ void game::fling_player_or_monster(player *p, monster *zz, int dir, int flvel)
         if (is_u)
             sname = std::string (_("You are"));
         else
-            sname = p->name + _(" is");
+            sname = i18n::format(_("%s is"), p->name.c_str());
     }
     else
-        sname = zz->name() + _(" is");
+        sname = i18n::format(_("%s is"), zz->name().c_str());
     int range = flvel / 10;
     int x = (is_player? p->posx : zz->posx);
     int y = (is_player? p->posy : zz->posy);
