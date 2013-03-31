@@ -36,6 +36,38 @@
     const_cast<string&>(array[(index)].member) = gettext(array[(index)].member.c_str()); \
   }
 
+#include <iostream>
+#include <fstream>
+class logger
+{
+public:
+  logger() : ofs_("i18n.log") {}
+  virtual ~logger() { ofs_.flush(); }
+  std::ostream& log() { return ofs_; }
+protected:
+  std::ofstream ofs_;
+};
+const char* Z_(const char* file, int line, const char* str)
+{
+  using namespace std;
+  logger lg;
+  (lg.log() << "gettext (" << file << ":" << line << ")" << endl).flush();
+  (lg.log() << ">> \"" << str << "\"" << endl).flush();
+  const char* result = gettext(str);
+  (lg.log() << "<< \"" << result << "\"" << endl).flush();
+  return result;
+}
+const char* ZP_(const char* file, int line, const char* str1, const char* str2, int plural)
+{
+  using namespace std;
+  logger lg;
+  (lg.log() << "ngettext (" << file << ":" << line << ")" << endl).flush();
+  (lg.log() << ">> \"" << (plural == 1 ? str1 : str2) << "\"" << endl).flush();
+  const char* result = ngettext(str1, str2, plural);
+  (lg.log() << "<< \"" << result << "\"" << endl).flush();
+  return result;
+}
+
 void i18n::init()
 {
   using namespace std;

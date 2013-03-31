@@ -332,6 +332,7 @@ void game::construction_menu()
 
 // Print stages and their requirements
    int posx = 33, posy = 2;
+   std::string orstr = _(" OR ");
    for (int n = 0; n < current_con->stages.size(); n++) {
      nc_color color_stage = (player_can_build(u, total_inv, current_con, n,
 					      false, true) ?
@@ -360,14 +361,14 @@ void game::construction_menu()
        posx = 33;
       }
       mvwprintz(w_con, posy, posx, col, itypes[tool]->name.c_str());
-      posx += length + 1; // + 1 for an empty space
+      posx += length;
       if (j < stage.tools[i].size() - 1) { // "OR" if there's more
        if (posx > 77) {
         posy++;
         posx = 33;
        }
-       mvwprintz(w_con, posy, posx, c_white, _("OR"));
-       posx += 3;
+       mvwprintz(w_con, posy, posx, c_white, orstr.c_str());
+       posx += orstr.length();
       }
      }
     }
@@ -412,8 +413,8 @@ void game::construction_menu()
         posy++;
         posx = 33;
        }
-       mvwprintz(w_con, posy, posx, c_white, _("OR"));
-       posx += 3;
+       mvwprintz(w_con, posy, posx, c_white, orstr.c_str());
+       posx += orstr.length();
       }
      }
      posy++;

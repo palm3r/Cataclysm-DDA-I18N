@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cataclysm 0.3-i18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-31 01:12+0900\n"
+"POT-Creation-Date: 2013-03-31 16:12+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1364,7 +1364,7 @@ msgstr ""
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/bionics.cpp:322
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/bionics.cpp:375
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/bionics.cpp:461
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:587
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:588
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4086
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4137
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/game.cpp:4167
@@ -2909,51 +2909,50 @@ msgstr ""
 msgid "Difficulty:"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:339
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:335
+msgid " OR "
+msgstr ""
+
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:340
 #, c-format
 msgid "Stage %d: %s"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:369
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:415
-msgid "OR"
-msgstr ""
-
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:461
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:462
 msgid "You can't build that!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:583
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:584
 msgid "Pick a direction in which to construct:"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:598
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:599
 msgid "You cannot build there!"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:795
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:796
 msgid "Press a direction for the furniture to move (. to cancel):"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:807
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:808
 msgid "Can't move furniture there! Choose a direction with open floor."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:826
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:827
 msgid "Press a direction for the tree to fall in:"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:848
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:849
 #: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/veh_interact.cpp:407
 msgid "Enter new vehicle name"
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:861
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:862
 #, c-format
 msgid "You tape up the %s."
 msgstr ""
 
-#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:878
+#: C:/MinGW/msys/1.0/home/palm3r/repos/Cataclysm-DDA-I18N/construction.cpp:879
 #, c-format
 msgid "You disassemble the %s."
 msgstr ""

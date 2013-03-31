@@ -7,9 +7,18 @@
 #include <vector>
 #include <algorithm>
 
+/*
 #define _(msg) gettext((msg))
 #define N_(msg) (msg)
 #define P_(msg1, msg2, n) ngettext((msg1), (msg2), (n))
+/*/
+#define _(msg) Z_(__FILE__, __LINE__, (msg))
+#define N_(msg) (msg)
+#define P_(msg1, msg2, n) ZP_(__FILE__, __LINE__, (msg1), (msg2), (n))
+//*/
+
+const char* Z_(const char* file, int line, const char* str);
+const char* ZP_(const char* file, int line, const char* str1, const char* str2, int plural);
 
 namespace i18n
 {
